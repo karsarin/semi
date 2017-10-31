@@ -20,6 +20,7 @@
 				<ul class="sub">
 					<li><a href="minfor?userid=<%=member.getMemberId()%>">내정보보기</a></li>
 					<li><a href="suglist?reciver=<%=member.getMemberId()%>">쪽지보관함</a></li>
+					<li><a href="sugslist?writer=<%=member.getMemberId()%>">보낸쪽지함</a></li>
 					<li><a href="dselect?memberid=<%= member.getMemberId() %>">기부현황보기</a></li>
 					<li><a href="#">작성한 글 보기</a></li>
 					<li><a href="mdelete?memberid=<%=member.getMemberId()%>">회원탈퇴</a></li>					

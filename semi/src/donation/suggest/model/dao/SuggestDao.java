@@ -175,5 +175,48 @@ public class SuggestDao {
 		
 		return result;
 	}
+	
+	public ArrayList<Suggest> selectSendList(Connection con, String suggestWriter) {
+	      ArrayList<Suggest> list = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String query = "select * from suggest where suggest_writer = ? order by suggest_no desc";
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setString(1, suggestWriter);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         if(rset != null){
+	            list = new ArrayList<Suggest>();
+	            
+	            while(rset.next()){
+	               Suggest suggest = new Suggest();
+	               
+	               suggest.setSuggestNo(rset.getInt("suggest_no"));
+	               suggest.setSuggestTitle(rset.getString("suggest_title"));
+	               suggest.setSuggestPreoid(rset.getString("suggest_request_preoid"));
+	               suggest.setSuggestContent(rset.getString("suggest_content"));
+	               suggest.setSuggestDate(rset.getDate("suggest_date"));
+	               suggest.setSuggestOriginalFileName(rset.getString("suggest_original_filename"));
+	               suggest.setSuggestRenameFileName(rset.getString("suggest_rename_filename"));
+	               suggest.setSuggestWriter(rset.getString("suggest_writer"));
+	               suggest.setSuggestReciver(rset.getString("suggest_recive"));
+	               
+	               list.add(suggest);
+	            }
+	         }
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }finally{
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return list;
+	   }
 
 }

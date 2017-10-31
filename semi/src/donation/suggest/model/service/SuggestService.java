@@ -54,5 +54,14 @@ public class SuggestService {
 		close(con);
 		return suggest;
 	}
+	
+	public ArrayList<Suggest> selectSendList(String suggestWriter) {
+	      // 보낸 쪽지함 전체 조회
+	      Connection con = getConnection();
+	      ArrayList<Suggest> list = new SuggestDao().selectSendList(con, suggestWriter);
+	      close(con);
+	      return list;
+	   }
+
 
 }

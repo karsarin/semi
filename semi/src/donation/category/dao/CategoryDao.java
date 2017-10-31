@@ -391,8 +391,9 @@ public class CategoryDao {
 						+ "category_donation = ?, work_date = ?, "
 						+ "phone = ?, email = ?, original_image = ?, rename_image = ?, "
 						+ "add_image1 = ?, add_image2 = ?, add_image3 = ?, add_image4 = ?, "
-						+ "add_rename_image1 = ?, add_rename_image2 = ?, add_rename_image3 =  ?, "
-						+ "add_rename_image4 = ?";
+						+ "add_rename_image1 = ?, add_rename_image2 = ?, add_rename_image3 = ?, "
+						+ "add_rename_image4 = ? "
+						+ "where category_no = ? ";
 				
 		try {
 			pstmt = con.prepareStatement(query);
@@ -414,8 +415,9 @@ public class CategoryDao {
 			pstmt.setString(15, c.getAddRenameImage2());
 			pstmt.setString(16, c.getAddRenameImage3());
 			pstmt.setString(17, c.getAddRenameImage4());
+			pstmt.setInt(18, c.getCategoryNo());
 			
-					
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 					e.printStackTrace();
 		} finally {
