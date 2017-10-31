@@ -185,6 +185,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
+	<br><br><br><br><br><br>
 <div style="float:left; width:1000px;">
 <form action="/clist" method="post">
 	<div>
@@ -192,14 +193,7 @@ $(document).ready(function() {
 		<div class="row" style="width: 1000px">
   		<div class="col-md-4"><h1 style="font-size:20pt">카테고리 게시판</h1>
 			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3></div>
- 		 <div class="col-md-4"></div>
-  		<div class="col-md-4">
-  		<button type="button" class="btn btn-primary">조회순</button>
 
-			<button type="button" class="btn btn-success">구매순</button>
-
-			<button type="button" class="btn btn-info">평가순</button>
-		</div>
 		</div>
 			</hgroup>
 		<br><br>

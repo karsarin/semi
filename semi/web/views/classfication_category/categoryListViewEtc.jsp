@@ -190,6 +190,7 @@ ul.sub li:hover {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
+	<br><br><br><br><br>
 	<div style="float: left; width: 1000px;">
 		<form action="/clist" method="post">
 			<div>
