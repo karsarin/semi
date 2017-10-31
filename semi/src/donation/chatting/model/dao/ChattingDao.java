@@ -19,7 +19,7 @@ public class ChattingDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, reciver);
 			rset = pstmt.executeQuery();
-			if(rset.next()) result = true;
+			if(rset.next() && rset.getString("member_id")!=null) result = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
