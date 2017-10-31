@@ -13,22 +13,42 @@
 <html>
 <head>
    <meta charset="UTF-8">
-    <title>Chatting</title>    
+    <title>Chatting</title>   
+     
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+    <link href="/semi/css/suggest/suggest.css" rel="stylesheet" type="text/css" media="all" />
+   
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" href="/semi/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/semi/css/font-awesome.css">
+        <link rel="stylesheet" href="/semi/css/animate.css">
+        <link rel="stylesheet" href="/semi/css/templatemo_misc.css">
+        <link rel="stylesheet" href="/semi/css/templatemo_style.css">
+        <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="/semi/js/jquery-3.2.1.min.js"></script> 
+    
+         
 </head>
 <body>
    	<%@ include file = "../../header.jsp" %>
 	<!-- 채팅 -->
-	<div id="_chatbox" style="margin-top:180px; width:auto;">
-	   <fieldset>
-	        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-	        <br/>
-	        <!-- enter 눌렀을 시 전송 설정 -->
-	        <input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send();}">
-	        <input type="submit" value="send" onclick="send()">
-	    </fieldset>
-	</div>   
+	<div id="_chatbox" style="margin-top:200px; width:auto;">
+   <fieldset>
+   <table>
+      <tr>
+         <td colspan="3"><textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea></td>
+      </tr>
+      <tr>
+         <td colspan="2"><input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send();}" style="width:337px;"></td>
+         <td><input type="submit" value="send" onclick="send()"></td>
+      </tr>
+   </table>
+   </fieldset>
+   </div>
+
 </body>
 
    <!-- 채팅 -->   
