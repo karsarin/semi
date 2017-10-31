@@ -16,6 +16,15 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리 디자인 게시판</title>
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    	$(function(){
+    		$('.main-menu ul #insertc').removeClass('active');
+    		$('.main-menu ul #home').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #category').addClass('active');
+    	});
+</script>
 <script type="text/javascript">
 	function insertPage() {
 		location.href = "views/notice/noticeWriteForm.jsp";
