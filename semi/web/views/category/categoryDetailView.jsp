@@ -136,14 +136,21 @@ function goSuggestion(){
 <%} %>
  
  <% if(member == null || !member.getMemberId().equals(category.getCategoryWriter())){ %>
- <tr><td align="center"><button type="button" class="btn btn-success" onclick="javascript:goSuggestion();">문의 보내기</button></td>
- 		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
+ <tr>
+ 	<td align="center"><button type="button" class="btn btn-success" onclick="javascript:goSuggestion();">문의 보내기</button></td>
+ 	<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
  				<button type="button" class="btn btn-success"><a href="/semi/chatcon?chatRe=<%= category.getUserId() %>">채팅가능</a></button>
  			<%} else { %>
  				<button type="button" class="btn btn-danger">로그아웃상태</button>
  			<%} %>
- 		</td></tr>
-<%} %>
+ 	</td>
+ </tr>
+<%if(member.getMemberId().equals("admin") && category.getApproval().equals("N")){%>
+ <tr>
+ 	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/capprove?cno=<%=category.getCategoryNo()%>'">승인</button></td>
+ 	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/crefusal?cno=<%=category.getCategoryNo()%>'">거절</button></td>
+ </tr>
+<%}} %>
  	
 </table>
 

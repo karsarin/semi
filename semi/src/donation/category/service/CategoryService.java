@@ -113,6 +113,12 @@ public class CategoryService {
 		return result;
 	}
 	
-	
+	public int updateApprove(int cno) {
+		Connection con = getConnection();
+		int result = new CategoryDao().updateApprove(con, cno);
+		if(result>0) commit(con);
+		else rollback(con);
+		return result;
+	}
 
 }

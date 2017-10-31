@@ -63,6 +63,13 @@ public class ManagerService {
 		close(conn);
 		return qlist;
 	}
+
+	public ArrayList<Member> searchMember(String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Member> list = new ManagerDao().searchMember(conn, keyword);
+		close(conn);
+		return list;
+	}
 }
 
 
