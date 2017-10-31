@@ -17,6 +17,15 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리 게시판</title>
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    	$(function(){
+    		$('.main-menu ul #insertc').removeClass('active');
+    		$('.main-menu ul #home').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #category').addClass('active');
+    	});
+</script>
 <script type="text/javascript">
 	function insertPage()
 	{
@@ -153,16 +162,7 @@ $(document).ready(function() {
 
 <%@ include file="../../headerbar.jsp" %>
 
-<%if(member!=null&&member.getMemberId().equals("admin")) { %>
-	<%@ include file="../manager/managerHeader.jsp" %>
-<% } else { %>
-
-	
-	
-<%} %> 
-
-
-	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left; margin-top:250px;">
 
 		<ul id="navi">
 			<li class="group">

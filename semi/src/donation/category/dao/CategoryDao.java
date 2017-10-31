@@ -19,7 +19,7 @@ public class CategoryDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select count(*) from category_board";
+		String query = "select count(*) from category_board where approval='Y'";
 		
 		try {
 			stmt = con.createStatement();
@@ -44,8 +44,9 @@ public class CategoryDao {
 		ResultSet rset = null;
 		
 		
-		String query = "select * from (select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
-				+ "where rownum >= ? and rownum <= ?";
+		String query = "select * from "
+					 + "(select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
+					 + "where rownum >= ? and rownum <= ? and approval='Y'";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
@@ -269,7 +270,7 @@ public class CategoryDao {
 		
 		
 		String query = "select * from (select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
-				+ "where rownum >= ? and rownum <= ? and category_group = ?";
+				+ "where rownum >= ? and rownum <= ? and category_group = ? and approval='Y'";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
@@ -423,5 +424,19 @@ public class CategoryDao {
 		return result;
 	}
 
-	
+	public int updateApprove(Connection con, int cno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update category_board set approval='Y' where category_no=?";
+		try {
+			pstmt = con.prepareStatement(query);			
+			pstmt.setInt(1, cno);			
+			result = pstmt.executeUpdate();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
 }
