@@ -150,30 +150,15 @@ ul.sub li:hover {
 
 <body>
 <%@ include file="../../headerbar.jsp"%>
-	
-
-	<%
-		if (member != null && member.getMemberId().equals("admin")) {
-	%>
-	<%@ include file="../manager/managerHeader.jsp"%>
-	<%
-		} else {
-	%>
-
-
-
-	<%
-		}
-	%>
-	
 
 	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+		style="margin-left: 30px; width: 230px; height: 500px; float: left; margin-top:250px;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
+				<li><a href="/semi/clist">모두 보기</a>
 					<li><a href="/semi/cfIT">IT</a></li>
 					<li><a href="/semi/cfdesign">디자인</a></li>
 					<li><a href="/semi/cfmarketing">마케팅</a></li>
@@ -190,7 +175,7 @@ ul.sub li:hover {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-	<br><br><br><br><br>
+	<br><br><br><br><br><br>
 	<div style="float: left; width: 1000px;">
 		<form action="/clist" method="post">
 			<div>
@@ -201,13 +186,7 @@ ul.sub li:hover {
 							
 						</div>
 						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							<button type="button" class="btn btn-primary">조회순</button>
-
-							<button type="button" class="btn btn-success">구매순</button>
-
-							<button type="button" class="btn btn-info">평가순</button>
-						</div>
+						
 					</div>
 				</hgroup>
 				<br>
