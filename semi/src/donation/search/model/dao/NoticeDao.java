@@ -23,7 +23,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		String query = "select * from CATEGORY_BOARD "
-				+ "where category_title like ? order by category_no desc";
+				+ "where category_title like ? and approval='Y' order by category_no desc";
 		
 		try {
 			pstmt = con.prepareStatement(query);
