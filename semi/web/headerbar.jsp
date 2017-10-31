@@ -27,7 +27,10 @@
         function goHomePage() { location.href="/semi/index.jsp"; }        
         function goCategoryPage(){location.href="/semi/clist";}
        	function insertCategory(){location.href="/semi/views/category/categoryInsertView.jsp";}
-       	function loginView(){location.href="/semi/views/member/Login.jsp"}
+       	function loginView(){
+       		alert("재능 등록을 위해선 로그인이 필요합니다. 로그인 화면으로 이동합니다.");
+       		location.href="/semi/views/member/Login.jsp"
+       		}
 </script>
 </head>
 <body>
@@ -61,7 +64,7 @@
 							<% if(member!=null){ %>
 							<li id="insertc"><a href="javascript:insertCategory()">재능 등록</a></li>
 							<% } else { %>
-							<li><a href="" onclick="loginView();">재능 등록</a></li>
+							<li><a href="javascript:loginView()">재능 등록</a></li>
 							<% } %>							
 						</ul>
 					</div>
