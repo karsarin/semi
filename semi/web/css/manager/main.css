@@ -1,0 +1,214 @@
+p {
+	line-height: 170%;
+}
+
+a {
+	color: #171717;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+hr {
+	display: none;
+}
+
+/*********************************************************************************/
+/* Heading Titles                                                                */
+/*********************************************************************************/
+.title {
+	margin-bottom: 2em;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.title h2 {
+	letter-spacing: 0.20em;
+	font-weight: 700;
+	font-size: 2em;
+	color: #00AABB;
+}
+
+.title .byline {
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 0.90em;
+	color: #6F6F6F;
+}
+
+/*********************************************************************************/
+/* Portfolio                                                                     */
+/*********************************************************************************/
+
+#portfolio {
+	overflow: hidden;
+}
+
+#portfolio p {
+	height: 100px;
+}
+
+#portfolio .title h2 {
+	font-size: 1.1em;
+}
+
+#columnC {
+	width: 240px;
+	float: left;
+	text-align: center;
+	margin-right: 20px;
+}
+
+#pre {
+	float: left;
+	margin-right: 20px;
+}
+
+#pre, #next {
+	margin-top: 80px;
+	background: white;
+}
+
+@media screen and (max-width: 1200px) {
+	#pre, #next {
+		display:none;
+	}
+	#columnC {
+		margin-left:25%;
+		margin-bottom:100px;
+	}
+	button#tmore {
+		/* visibility:visible; */
+		display:inline;
+	}
+}
+
+
+
+
+
+/*********************************************************************************/
+/* Button Style                                                                  */
+/*********************************************************************************/
+.container {
+	align: center;
+}
+
+.button {
+	display: inline-block;
+	margin-top: 1.5em;
+	padding: 0.50em 3em 0.50em 2em;
+	background: #00AABB;
+	letter-spacing: 0.20em;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 0.90em;
+	color: #FFF;
+}
+
+.button:before {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	text-align: center;
+	color: #FFF;
+}
+
+#qpre, #qnext, #qmore {
+	color: gray;
+	font-weight: bold;
+	background: white;
+	width: 100px;
+	height: 40px;
+	margin: auto;
+	margin-left:20px;
+}
+
+button#tmore {
+	color: gray;
+	font-weight: bold;
+	background: white;
+	width: 100px;
+	height: 40px;
+	margin: auto;
+	/* visibility:hidden; */
+	display: none;
+}
+
+
+
+
+
+
+/*********************************************************************************/
+/* Table Style                                                                  */
+/*********************************************************************************/
+.qnatb {
+	border-collapse: collapse;
+	text-align: center;
+	line-height: 1.5;
+	margin: auto;
+}
+
+.qnatb thead th {
+	text-align: center;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #369;
+	border-bottom: 3px solid #036;
+}
+
+.qnatb thead th:nth-child(1) {
+	background: #f3f6f7;
+}
+
+.qnatb thead th:nth-child(2) {
+	width: 350px;
+}
+
+.qnatb thead th:nth-child(3) {
+	width: 450px;
+	background: #f3f6f7;
+}
+
+.qnatb thead th:nth-last-child(1) {
+	width: 110px;
+	background: #f3f6f7;
+}
+
+.qnatb thead th:nth-last-child(2) {
+	width: 110px;
+}
+
+.qnatb tbody th {
+	text-align: center;
+	width: 100px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+	background: #f3f6f7;
+}
+
+.qnatb td {
+	padding: 10px;
+	vertical-align: top;
+	border-bottom: 1px solid #ccc;
+}
+
+.qnatb td:nth-last-child(1) {
+	background: #f3f6f7;
+}
+
+.qnatb td:nth-child(3) {
+	background: #f3f6f7;
+}
+
+.qnatb a {
+	color:gray;
+}

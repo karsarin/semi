@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.right_menu {
+	float:right; 
+	width:100px;
+	height:800px; 
+	margin-right:45px; 
+	text-align:center;
+}
+.right_menu #rtitle {
+	background-color:#000039;
+	color:white; 
+	text-align:center; 
+	height: 100px;
+}
+.right_menu #rtitle p {
+	padding-top:25px;
+	font-weight:bold;
+	font-size:15px;
+}
+.right_menu #m1, .right_menu #m2, .right_menu #m3, .right_menu #m4 {
+	margin-top:10px;
+	padding-bottom:10px;
+	border:1px solid #c9cdd1;
+	height:auto;
+}
+.right_menu #m1 p, .right_menu #m2 p, .right_menu #m3 p, .right_menu #m4 p {
+	
+}

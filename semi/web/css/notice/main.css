@@ -1,0 +1,20 @@
+.ntb table tr:nth-child(1) td {
+	border-top-style:none;
+}
+.ntb table tr:nth-child(1) {
+	margin-bottom:20px;
+}
+.ntb table tr:nth-child(1) td #keyword {
+	height:auto;
+	width:250px;
+}
+.ntb table tr:nth-child(1) td #sbt {
+	color: gray;
+	font-weight: bold;
+	background: white;
+	width: 60px;
+	height: auto;
+}
+.ntb table tr:nth-child(1) td #sselect {
+	height:auto;
+}
