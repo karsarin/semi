@@ -174,7 +174,11 @@
          
          //서블릿으로 이동하는거 보내시면 됩니다.
          
-         
+         location.href="/semi/minsert?memberid="+memberid
+		 +"&membername="+membername+"&memberno"+memberno
+		 +"&memberpwd1="+memberpwd1+"&membernik="+membernik
+		 +"&memberaddress1="+memberaddress1+"&memberaddress2="+memberaddress2
+		 +"&memberemail="+memberemail+"&memberphone="+memberphone+"&talent="+talent;
          
          
          
