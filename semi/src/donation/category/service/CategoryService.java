@@ -99,6 +99,19 @@ public class CategoryService {
 		close(con);
 		return result;
 	}
+
+	public int updateCategory(Category c) {
+		Connection con = getConnection();
+		int result = new CategoryDao().updateCategory(con, c);
+		
+		if(result > 0)
+			commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 	
 	
 
