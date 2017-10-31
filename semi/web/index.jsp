@@ -5,7 +5,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>Talent Donation</title>
-	
+	<style type="text/css">
+		.portfolio-overlay h3 {
+			width:150px;
+			font-size:20pt;
+			font-weight:bold;
+			padding-top:30px;
+		}
+	</style>
 	<script src="/semi/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(function(){
@@ -28,6 +35,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/templatemo_misc.css">
 	<link rel="stylesheet" href="css/templatemo_style.css">
+	<link rel="stylesheet" href="css/main.css">
 	<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	<!--  헤더바 끝 -->
 	
@@ -238,7 +246,7 @@
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Counseling.png" alt="">
 						<a href="#"><div class="portfolio-overlay">
-							<h3>Know-how</h3>
+							<h3>Counseling</h3>
 							<p>Category Know-how classification.Click here to find out more about know-how.</p>
 						</div> <!-- /.portfolio-overlay --></a>
 					</div>
@@ -296,7 +304,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
-					<h2>재능 기부 BEST 전문가들</h2>
+					<h2>재능기부 BEST 전문가들</h2>
 					<p>The best experts</p>
 				</div>
 				<!-- /.heading-section -->
@@ -307,7 +315,7 @@
 					<div class="member-thumb">
 						<img src="images/indexPicture/jisun.jpg" alt="">
 						<div class="team-overlay">
-							<h3>Tracy</h3>
+							<h3>Ji-sun</h3>
 							<span>Designer</span>
 							<ul class="social">
 								<li><a href="#" class="fa fa-facebook"></a></li>
@@ -324,7 +332,7 @@
 					<div class="member-thumb">
 						<img src="images/indexPicture/bigbro.jpg" alt="">
 						<div class="team-overlay">
-							<h3>Cindy</h3>
+							<h3>se-haw</h3>
 							<span>Developer</span>
 							<ul class="social">
 								<li><a href="#" class="fa fa-facebook"></a></li>
@@ -341,7 +349,7 @@
 					<div class="member-thumb">
 						<img src="images/indexPicture/subin.jpg" alt="">
 						<div class="team-overlay">
-							<h3>Mary</h3>
+							<h3>su-bin</h3>
 							<span>Director</span>
 							<ul class="social">
 								<li><a href="#" class="fa fa-facebook"></a></li>
@@ -373,58 +381,46 @@
 				<!-- /.team-member -->
 			</div>
 			<!-- /.row -->
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<div class="skills-heading">
-						<h3 class="skills-title">재능별 조회</h3>
-						<p class="small-text">A graph devoted much to talent</p>
+			<div class="content-section" id="our-team">
+				<div class="container">
+					<div class="row">
+						<div class="heading-section col-md-12 text-center">
+							<h2>재능별 조회</h2>
+							<p>A graph devoted much to talent</p>
+						</div>
 					</div>
+					<div class="row">
+				<div class="col-md-7 col-sm-12">
+					<p><img src="images/indexPicture/gift.png" width="atuo" height="auto"></p>
 				</div>
-				<!-- /.col-md-12 -->
-			</div>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-md-8 col-sm-6">
-					<p>
-
-						<img src="images/indexPicture/gift.gif " width="900px"
-							height="200px">
-
-					</p>
-				</div>
-				<!-- /.col-md-8 -->
-				<div class="col-md-4 col-sm-6">
+				<!-- /.col-md-6 -->
+				<div class="col-md-5 col-sm-12" style="margin-top:44px;">
 					<ul class="progess-bars">
 						<li>
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="30"
-									aria-valuemin="0" aria-valuemax="100" style="width: 90%;">IT</div>
+								<div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">IT</div>
 							</div>
 						</li>
 						<li>
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="18"
-									aria-valuemin="0" aria-valuemax="100" style="width: 80%;">Design
-								</div>
+								<div class="progress-bar" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">Design</div>
 							</div>
 						</li>
 						<li>
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="20"
-									aria-valuemin="0" aria-valuemax="100" style="width: 70%;">Health
-								</div>
+								<div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%;">Health</div>
 							</div>
 						</li>
 						<li>
 							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="23"
-									aria-valuemin="0" aria-valuemax="100" style="width: 80%;">Marketing
-								</div>
+								<div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">Marketing</div>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<!-- /.col-md-4 -->
+			</div>
+				</div>
 			</div>
 			<!-- /.row -->
 		</div>
@@ -434,10 +430,9 @@
 
 
 	<!--많이 도와준사람 -->
-
-
+	
 	<!-- 최신/마감 -->
-	<div class="content-section" id="services">
+	<div class="content-section" id="services" style="margin-top:60px;">
 		<div class="container">
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
@@ -447,7 +442,6 @@
 				<!-- /.heading-section -->
 			</div>
 			<!-- /.row -->
-
 			<div class="row">
 				<div class="col-md-3 col-sm-6">
 					<div class="service-item" id="service-1">
@@ -459,8 +453,7 @@
 							<a href="#">
 								<div class="inner-service">
 									<h3>[기타]전자기계 싸게 사는법</h3>
-									<p>삼성,애플,LG 등등 컴퓨터 및 핸드폰 싸게사는 팁 알려드립니다. 최소 20% ~ 최대 50% 까지
-										해외직구 하는법</p>
+									<p>삼성,애플,LG 등등 컴퓨터 및 핸드폰 싸게사는 팁 알려드립니다. 최소 20% ~ 최대 50% 까지	해외직구 하는법</p>
 									<br>(최신 10시간전)
 								</div>
 							</a>
@@ -481,8 +474,7 @@
 							<a href="#"><div class="inner-service">
 
 									<h3>[디자인]로고 만들어드립니다</h3>
-									<p>KH 교육학원, 다재다능 홈페이지 등 로고를 제작했습니다. 제작하기 어렵거나 힘드시는분들 언제나
-										환영합니다.</p>
+									<p>KH 교육학원, 다재다능 홈페이지 등 로고를 제작했습니다. 제작하기 어렵거나 힘드시는분들 언제나 환영합니다.</p>
 									<br>(최신 7시간전)
 								</div></a>
 
@@ -540,18 +532,8 @@
 	</div>
 	<!-- /#services -->
 
-
-
-
-
-
-
-
-
-
 	<!-- 이색재능 -->
-
-	<div class="content-section" id="portfolio">
+	<div class="content-section" id="portfolio" style="margin-top:70px;">
 		<div class="container">
 			<div class="row">
 				<div class="heading-section col-md-12 text-center">
@@ -564,11 +546,10 @@
 			<div class="row">
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
-						<img src="images/indexPicture/Unusual1.jpg" alt=""> <a
+						<img src="images/indexPicture/Unusual1.png" alt=""> <a
 							href="#"><div class="portfolio-overlay">
 								<h3>IT</h3>
 								<p>아무 웹사이트 해킹해드립니다. 해킹 독학 1년차입니다. 도전정신 강합니다. 다뚫습니다.</p>
-
 							</div> <!-- /.portfolio-overlay -->
 					</div>
 					<!-- /.portfolio-thumb -->
@@ -577,7 +558,7 @@
 
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
-						<img src="images/indexPicture/Unusual2.jpg" alt=""> <a
+						<img src="images/indexPicture/Unusual2.png" alt=""> <a
 							href="#"><div class="portfolio-overlay">
 								<h3>Design</h3>
 								<p>색다른 명함만들어드립니다. 자신과 같게생긴 레고를 만들어서 레고뒤에 전화번호를 입혀서 임펙트있는 명함을
@@ -591,7 +572,7 @@
 
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
-						<img src="images/indexPicture/Unusual3.jpg" alt=""> <a
+						<img src="images/indexPicture/Unusual3.png" alt=""> <a
 							href="#"><div class="portfolio-overlay">
 								<h3>기타</h3>
 								<p>게임 레벨 키워드립니다. 경력은 게임 20년간 해왓습니다. 맡겨주시면 최대한 키워드립니다.</p>
@@ -604,7 +585,7 @@
 
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
-						<img src="images/indexPicture/Unusual4.jpg" alt=""> <a
+						<img src="images/indexPicture/Unusual4.png" alt=""> <a
 							href="#"><div class="portfolio-overlay">
 								<h3>기타</h3>
 								<p>책읽어 드립니다. 성우로서 일을 많이 해온지라 아이들 책읽는데 재능을 기부하고 싶습니다.</p>
@@ -619,53 +600,25 @@
 			<!-- /.container -->
 		</div>
 		<!-- /#portfolio -->
-
 		<!-- 이색재능 끝-->
 		<br> <br> <br>
 
 
 		<!-- 기부 현황 -->
-
-		<div class="container">
-
-			<div style="float: left;">
+		<div class="container" style="margin-top:100px; margin-bottom:50px;">			
+			<div style="float:left;">
 				<h2>기부현황(년도별)</h2>
 				<p>단위 : 억</p>
-
 				<div id="chartdiv"></div>
 			</div>
-
-			<div style="float: left;">
-				<h2>기부현황(카테고리별)</h2>
-				<p>단위 : %</p>
-
+			<div style="float:left;">
+				<h2 align="right">기부현황(카테고리별)</h2>
+				<p align="right">단위 : %</p>
 				<div id="chartdiv2"></div>
 			</div>
-
-
 		</div>
-
-
-
-
-
-
 		<!-- 기부 현황  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 
 		<div id="footer" style="clear: both;">
 			<div class="container">
