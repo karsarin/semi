@@ -53,7 +53,6 @@ function addImage4Check()
 </head>
 
 <body>
-	<%@ include file="../../header.jsp" %>
 <%@ include file="../../headerbar.jsp" %>	
 		
 		<div class="row">

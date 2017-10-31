@@ -85,7 +85,7 @@
 
 </head>
 <body style="margin-left:30px; margin-right:30px">
- <%@ include file="../../header.jsp" %>
+
 <%@ include file="../../headerbar.jsp" %>
 <script type="text/javascript">
 function goPurchaseView(){

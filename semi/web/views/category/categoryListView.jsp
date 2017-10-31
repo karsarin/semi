@@ -151,7 +151,7 @@ $(document).ready(function() {
 
 <body>
 
-<%@ include file="../../header.jsp" %>
+<%@ include file="../../headerbar.jsp" %>
 
 <%if(member!=null&&member.getMemberId().equals("admin")) { %>
 	<%@ include file="../manager/managerHeader.jsp" %>
@@ -160,7 +160,7 @@ $(document).ready(function() {
 	
 	
 <%} %> 
-<%@ include file="../../headerbar.jsp" %>
+
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
