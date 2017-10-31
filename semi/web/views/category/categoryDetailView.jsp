@@ -131,7 +131,7 @@ function goPurchaseView(){
  <%} %>
  
  <% if(member == null || !member.getMemberId().equals(category.getCategoryWriter())){ %>
- <tr><td align="center"><button type="button" class="btn btn-success" onclick="goSuggestion();">문의 보내기</button></td>
+ <tr><td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></button></td>
  		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
  				<button type="button" class="btn btn-success"><a href="/semi/chatcon?chatRe=<%= category.getUserId() %>">채팅가능</a></button>
  			<%} else { %>
