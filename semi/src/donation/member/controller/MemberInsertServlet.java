@@ -44,22 +44,8 @@ public class MemberInsertServlet extends HttpServlet {
 		String memberAddress = request.getParameter("memberaddress1") +" " + request.getParameter("memberaddress2");
 		String memberEmail = request.getParameter("memberemail");
 		String memberPhone = request.getParameter("memberphone");
-		String[] talents = request.getParameterValues("talent");
-		StringBuilder t = new StringBuilder();
-		String talent = null;
+		String talent = request.getParameter("talent");
 		
-		if(talents!=null){
-			for(int i = 0; i<talents.length;i++){
-				if(i<talents.length-1)
-					t.append(talents[i] + ",");
-				else
-					t.append(talents[i]);
-			}
-			
-			talent = t.toString();
-		}else{
-			talent = "";
-		}
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
 		int result = new MemberService().memberInsertCheck(member,memberPwd2);
 		if(result ==0){
