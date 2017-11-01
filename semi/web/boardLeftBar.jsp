@@ -13,7 +13,7 @@
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
-	background-color: lightgray;
+	background-color: lightgray ;
 }
 
 ul#navi, ul#navi ul {
