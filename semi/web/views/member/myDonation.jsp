@@ -81,12 +81,27 @@ background-color:lightblue;
 <hr>
 
 <br><br><br><br>
-<%=member.getMemberNik() %>님의 기부 랭킹은 <%= ranking %>위 입니다.<br>
+<%if(((double)ranking/memberTotal*100)<1){ %>
+<image src="/semi/images/rank/challenger.jpg" align="center" width="250px" height="150px"></image>
+<% }else if(((double)ranking/memberTotal*100)<4){ %>
+<image src="/semi/images/rank/master.jpg" align="center" width="250px" height=150px"></image>
+<% }else if(((double)ranking/memberTotal*100)<11){ %>
+<image src="/semi/images/rank/Diamond.jpg" align="center" width="250px" height="150px"></image>
+<% }else if(((double)ranking/memberTotal*100)<24){ %>
+<image src="/semi/images/rank/Platinum.jpg" align="center" width="250px" height="150px"></image>
+<% }else if(((double)ranking/memberTotal*100)<48){ %>
+<image src="/semi/images/rank/gold.jpg" align="center" width="250px" height="150px"></image>
+<% }else if(((double)ranking/memberTotal*100)<70){ %>
+<image src="/semi/images/rank/silver.jpg" align="center" width="250px" height="150px"></image>
+<% }else{ %>
+<image src="/semi/images/rank/bronze.png" align="center" width="250px" height="150px"></image>
+<% } %>
+<%=member.getMemberNik() %>님의 기부 랭킹 : <%= ranking %>위<br>
 
-상위<%= (double)ranking/memberTotal*100 %>%입니다.<br>
-<%=member.getMemberNik() %>님의 총 기부금액 은 총 <%= myDonation %>원 입니다.
+상위<%= (int)((double)ranking/memberTotal*100) %>%<br>
+ 총 기부금액  총 <%= myDonation %>원
 </div>
-<hr>
+
 <br><br><br>
 <form action="/semi/dselect?memberid=<%= member.getMemberId() %>"method="post">
 	<div style="margin-left:0%;">
@@ -98,14 +113,14 @@ background-color:lightblue;
 	</div>
 </form>
 <table align="center"class="table table-hover" id="table">
-<tr><th width = "50pt">No</th><th width="400pt">제 목</th><th width="100pt">날짜</th><th width = "100pt">기부금</th>
+<tr><th width = "50pt">No</th><th width = "100pt">기부자</th><th width = "200pt">기부금</th><th width="100pt">날짜</th>
 <% if(listCount != 0){ %>
 	<% for(Donate d : list){ %>
 	<tr>
 	<td align="center"><%= d.getDonationNo() %></td>
-	<td><a href = "#"><%= d.getMemberId() %></a></td>
-	<td><%=d.getDonationDate() %></td>
-	<td><%= d.getDonation() %></td>
+	<td><%= d.getMemberId() %></td>
+	<td><%= d.getDonation() %></td>	
+	<td><%=d.getDonationDate() %></td>	
 	</tr>
 	<% } %>
 <% }else{ %>
