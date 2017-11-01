@@ -138,19 +138,19 @@ function goSuggestion(){
  <% if(member == null || !member.getMemberId().equals(category.getCategoryWriter())){ %>
 
  <tr>
- 	<td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></button></td>
+ 	<td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></td>
  	<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
 
 <%--  <tr><td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></button></td>
  		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %> --%>
 
- 				<button type="button" class="btn btn-success"><a href="/semi/chatcon?chatRe=<%= category.getUserId() %>">채팅가능</a></button>
+ 				<a href="/semi/chatcon?chatRe=<%= category.getUserId() %>" class="btn btn-success">채팅가능</a>
  			<%} else { %>
  				<button type="button" class="btn btn-danger">로그아웃상태</button>
  			<%} %>
  	</td>
  </tr>
-<%if(member.getMemberId().equals("admin") && category.getApproval().equals("N")){%>
+<%if(member != null && member.getMemberId().equals("admin") && category.getApproval().equals("N")){%>
  <tr>
  	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/capprove?cno=<%=category.getCategoryNo()%>'">승인</button></td>
  	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/crefusal?cno=<%=category.getCategoryNo()%>'">거절</button></td>
