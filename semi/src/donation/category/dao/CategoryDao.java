@@ -441,4 +441,24 @@ public class CategoryDao {
 		}
 		return result;
 	}
+
+	public int deletePurchase(Connection con, int cnum) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from category_used where category_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cnum);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

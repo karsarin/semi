@@ -144,6 +144,35 @@ public class Category {
 		
 	}
 	
+	public Category(int categoryNo, String userId, String categoryTitle, int categoryGroup, String categoryWriter, String categoryContent, int categoryDonation, 
+			int workDate, String email, String phone, String originalImage, String renameImage, String addImage1, String addRenameImage1, String addImage2, String addRenameImage2, 
+			String addImage3, String addRenameImage3, String addImage4, String addRenameImage4)
+	{
+		this.categoryNo = categoryNo;
+		this.userId = userId;
+		this.categoryTitle = categoryTitle;
+		this.categoryGroup = categoryGroup;
+		this.categoryWriter = categoryWriter;
+		this.categoryContent = categoryContent;
+		this.categoryDonation = categoryDonation;
+		this.workDate = workDate;
+		this.email = email;
+		this.phone = phone;
+		
+		this.originalImage = originalImage;
+		this.renameImage = renameImage;
+		
+		this.addImage1 = addImage1;
+		this.addRenameImage1 = addRenameImage1;
+		this.addImage2 = addImage2;
+		this.addRenameImage2 = addRenameImage2;
+		this.addImage3 = addImage3;
+		this.addRenameImage3 = addRenameImage3;
+		this.addImage4 = addImage4;
+		this.addRenameImage4 = addRenameImage4;
+		
+		
+	}
 	
 	public int getCategoryNo() {
 		return categoryNo;
