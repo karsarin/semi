@@ -191,7 +191,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/IT.png" alt=""> 
-						<a href="#">
+						<a href="/semi/cfIT">
 							<div class="portfolio-overlay">
 								<h3>IT</h3>
 								<p>Category IT classification. Click if you want to find out about IT.</p>
@@ -205,7 +205,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Design.png" alt=""> 
-						<a href="#">
+						<a href="/semi/cfdesign">
 							<div class="portfolio-overlay">
 								<h3>Design</h3>
 								<p>Category design classification. Click to find design related matters.</p>
@@ -219,7 +219,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Marketing.png" alt=""> 
-						<a href="#">
+						<a href="/semi/cfmarketing">
 							<div class="portfolio-overlay">
 								<h3>MarKeting</h3>
 								<p>Category marketing category.Click if you want to find something related to marketing.</p>
@@ -233,7 +233,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Music.png" alt=""> 
-						<a href="#"><div class="portfolio-overlay">
+						<a href="/semi/cfmusic"><div class="portfolio-overlay">
 							<h3>Music</h3>
 							<p>Category Music classification.Click if you want to find music related stuff.</p>
 						</div> <!-- /.portfolio-overlay --></a>
@@ -245,7 +245,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Counseling.png" alt="">
-						<a href="#"><div class="portfolio-overlay">
+						<a href="/semi/cfknowhow"><div class="portfolio-overlay">
 							<h3>Counseling</h3>
 							<p>Category Know-how classification.Click here to find out more about know-how.</p>
 						</div> <!-- /.portfolio-overlay --></a>
@@ -258,7 +258,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Translation.png" alt="">
-						<a href="#"><div class="portfolio-overlay">
+						<a href="/semi/cftranslation"><div class="portfolio-overlay">
 							<h3>Translation</h3>
 							<p>Category Know-How Translation.Click here to find translations.</p>
 						</div> <!-- /.portfolio-overlay --></a>
@@ -270,7 +270,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/Health.png" alt="">
-						<a href="#"><div class="portfolio-overlay">
+						<a href="/semi/cfhealth"><div class="portfolio-overlay">
 							<h3>Health</h3>
 							<p>Category health.Click if you want to find out about your health.</p>
 						</div> <!-- /.portfolio-overlay --></a>
@@ -282,7 +282,7 @@
 				<div class="portfolio-item col-md-3 col-sm-6">
 					<div class="portfolio-thumb">
 						<img src="images/indexPicture/etc.png" alt=""> 
-						<a href="#"><div class="portfolio-overlay">
+						<a href="/semi/cfetc"><div class="portfolio-overlay">
 							<h3>Etc</h3>
 							<p>Category is etc.Click if you want to find something related to the etc.</p>
 						</div> <!-- /.portfolio-overlay --></a>
@@ -364,9 +364,9 @@
 				<!-- /.team-member -->
 				<div class="team-member col-md-3 col-sm-6">
 					<div class="member-thumb">
-						<img src="images/indexPicture/jisun.jpg" alt="">
+						<img src="images/indexPicture/jihun.png" alt="">
 						<div class="team-overlay">
-							<h3>Linda</h3>
+							<h3>ji-hun</h3>
 							<span>Chief Executive</span>
 							<ul class="social">
 								<li><a href="#" class="fa fa-facebook"></a></li>
