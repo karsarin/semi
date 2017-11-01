@@ -31,7 +31,7 @@ public class QuestionReplyUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ëŒ“ê¸€ ìˆ˜ì • ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		// ´ñ±Û ¼öÁ¤ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -48,7 +48,7 @@ public class QuestionReplyUpdateServlet extends HttpServlet {
 			response.sendRedirect("/semi/qlist?page=" + currentPage);
 		}else{
 			
-			request.setAttribute("message", "QAëŒ“ê¸€ ìˆ˜ì • ì‹¤íŒ¨!");
+			request.setAttribute("message", "QA´ñ±Û ¼öÁ¤ ½ÇÆÐ!");
 			request.getRequestDispatcher("views/question/questionError.jsp").forward(request, response);
 		}
 		

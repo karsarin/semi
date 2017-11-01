@@ -11,7 +11,7 @@ import donation.question.model.dao.QuestionDao;
 public class QuestionService {
 	public QuestionService(){}
 	
-	//ì „ì²´ ê²Œì‹œê¸€ ê°¯ìˆ˜ ì¡°íšŒìš©
+	//ÀüÃ¼ °Ô½Ã±Û °¹¼ö Á¶È¸¿ë
 	public int getListCount(){
 		Connection con = getConnection();
 		int listCount = new QuestionDao().getListCount(con);
@@ -19,7 +19,7 @@ public class QuestionService {
 		return listCount;
 	}
 	
-	//í˜ì´ì§€ë³„ ëª©ë¡ ì¡°íšŒìš©
+	//ÆäÀÌÁöº° ¸ñ·Ï Á¶È¸¿ë
 	public ArrayList<Question> selectList(int currentPage, int limit){
 		Connection con = getConnection();
 		ArrayList<Question> list = new QuestionDao().selectList(con, currentPage, limit);
@@ -27,7 +27,7 @@ public class QuestionService {
 		return list;
 	}
 
-	//ì›ê¸€ ë“±ë¡ ì²˜ë¦¬ìš©
+	//¿ø±Û µî·Ï Ã³¸®¿ë
 	public int insertQuestion(Question q) {
 		Connection con = getConnection();
 		int result = new QuestionDao().insertQuestion(con, q);
@@ -39,7 +39,7 @@ public class QuestionService {
 		return result;
 	}
 
-	//ì¡°íšŒìˆ˜ 1 ì¦ê°€ ì²˜ë¦¬ 
+	//Á¶È¸¼ö 1 Áõ°¡ Ã³¸® 
 	public void addReadCount(int qnum) {
 		Connection con = getConnection();
 		int result = new QuestionDao().addReadCount(con, qnum);
@@ -60,7 +60,7 @@ public class QuestionService {
 		return Question;
 	}
 
-	//ê²Œì‹œê¸€ ì‚­ì œ ê¸°ëŠ¥
+	//°Ô½Ã±Û »èÁ¦ ±â´É
 	public int deleteQuestion(int qnum) {
 		Connection con = getConnection();
 		int result = new QuestionDao().deleteQuestion(con, qnum);
@@ -86,7 +86,7 @@ public class QuestionService {
 			
 		close(con);
 			
-		//return ;	 ìƒëµê°€ëŠ¥	
+		//return ;	 »ı·«°¡´É	
 	}
 
 	public int insertQuestionReply(Question originQuestion, Question replyQuestion) {

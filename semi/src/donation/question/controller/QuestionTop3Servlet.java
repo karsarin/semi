@@ -38,19 +38,19 @@ public class QuestionTop3Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// ê²Œì‹œê¸€ ì¡°íšŒìˆ˜ íƒ‘ 3 ì›ê¸€ ì¡°íšŒ Ajax ìš”ì²­ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		// °Ô½Ã±Û Á¶È¸¼ö Å¾ 3 ¿ø±Û Á¶È¸ Ajax ¿äÃ» Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 
 		ArrayList<Question> list = new QuestionService().selectTop3();
 
-		// ì „ì†¡í•  ìµœì¢… json ê°ì²´
+		// Àü¼ÛÇÒ ÃÖÁ¾ json °´Ã¼
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
 
 		for (Question b : list) {
-			// í•œ ì‚¬ëŒì˜ ì •ë³´ë¥¼ ì €ì¥í•  json ê°ì²´
+			// ÇÑ »ç¶÷ÀÇ Á¤º¸¸¦ ÀúÀåÇÒ json °´Ã¼
 			JSONObject job = new JSONObject();
 			job.put("bnum", b.getQuestionNum());
-			// jsonì—ì„œ í•œê¸€ ê¹¨ì§ì„ ë§‰ìœ¼ë ¤ë©´, java.net.URLEncoder í´ë˜ìŠ¤ì˜ encode() ë©”ì†Œë“œë¡œ ì¸ì½”ë”© ì²˜ë¦¬
+			// json¿¡¼­ ÇÑ±Û ±úÁüÀ» ¸·À¸·Á¸é, java.net.URLEncoder Å¬·¡½ºÀÇ encode() ¸Ş¼Òµå·Î ÀÎÄÚµù Ã³¸®
 			job.put("btitle", URLEncoder.encode(b.getQuestionTitle(), "UTF-8"));
 
 			jarr.add(job);

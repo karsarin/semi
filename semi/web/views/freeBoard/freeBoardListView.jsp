@@ -19,12 +19,6 @@
 <head>
 <meta charset="UTF-8">
 <title>boardListView</title>
-<script type="text/javascript">
-	function insertPage() {
-		location.href = "views/freeBoard/freeBoardWriteForm.jsp";
-		return false;
-	}
-</script>
 
 
 <!-- 카테고리  -->
@@ -47,53 +41,7 @@
 <%-- 헤더바 끝 --%>
 
 <style>
-ul#navi {
-	width: 200px;
-	text-indent: 10px;
-	background-color: lightgray;
-}
 
-ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-li.group {
-	margin-bottom: 3px;
-}
-
-li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightblue;
-	cursor: pointer;
-}
-
-ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
-}
-
-ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
-}
-
-ul.sub li:hover {
-	background: aliceblue;
-}
-
-
-
-
-<!--세로목록 끝 -->
 #table {
 	width: 66vw;
 }
@@ -124,7 +72,8 @@ text-align:center;
 }
 
 #firstTr {
-	background-color: lightblue;
+background-color: #F29661;
+
 }
 
 #searchInput{
@@ -133,23 +82,31 @@ text-align:center;
 
 }
 #searchButton{
-	width:3vw;
-	height:36px;
+	width:4vw;
+	height:37px;
+}
+#searchType{
+	height:37px;
+}
+#writeButton{
+	height:37px;
+	
 }
 #typeSelect{
 	width:5vw;
+	height:34px;
 }
-#writeButton{
+
+#menuBarBorder{
 	
-	height:36px;
+	padding-top : 20px;
+	margin-left:10px;
+	margin-right:10px;
+	width:220px;
+	height:450px;
+	background-color:#EAEAEA;
 }
-
 </style>
-
-
-
-
-
 
 </head>
 
@@ -162,84 +119,26 @@ text-align:center;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
-		<div class="col-md-2">
-			<div
-				style="margin-left: 30px; width: 230px; height: 300px; float: left;">
-				<ul id="navi">
-					<li class="group">
-						<div class="title">카테고리</div>
-						<ul class="sub">
-							<li><a href="/semi/nlist">공지사항</a></li>
-							<li><a href="/semi/flist">자유 게시판</a></li>
-							<li><a href="/semi/qlist">QnA게시판</a></li>
-						</ul>
-					</li>
-					
-					
-										<script type="text/javascript">
-						$(function() {
-							$
-									.ajax({
-										url : "/semi/ftop3",
-										type : "get",
-										dataType : "json",
-										success : function(data) {
-											var json = JSON.parse(JSON
-													.stringify(data));
-											var values = "";
-											var rank = 0;
-											for ( var i in json.list) {
-										/* 		values += "<tr><td><a href='/first/bdetail?bnum="
-														+ json.list[i].bnum
-														+ "&page=1'>"
-														+ decodeURIComponent(json.list[i].btitle)
-														+ "</a></td></tr>"; */
-											rank += 1;		
-														
-														values += "<li><a href='/semi/fdetail?no="
-												+ json.list[i].bnum
-												+ "&page=1'>"
-												/* + decodeURIComponent(json.list[i].btitle) */
-												+"<img src=\"/semi/uploadfiles/top3Images/" + rank + ".jpg\" width=\"200px\" height=\"70px\">"
-												+ "</a></li>"; 	 
-											
-												
-											}
-
-											$('#toplist').html(values);
-										}
-									});
-						});
-					</script>
-			<li class="group">
-			<div class="title">후기 인기 순위</div>
-				<ul id="toplist">				
-				</ul>
-			</li>
-		</ul>
+			
+			
+	<div class="col-md-2">
+	<%if(member != null){ %>
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%}else{ %>
+	<%@ include file="../../boardLeftBar2.jsp"%>	
+	<%} %>
+	
 	</div>
-	
-	
-	
-				</ul>
-			</div>
-		
-
 		<div class="col-md-8">
-
-
-
 			<!--  게시판 -->
-
-			<table class="table table-hover" id="table">
-					
+			<table class="table table-hover" id="table">					
 					<tr id="firstTr">
-					<!-- <th id="type" >분류</th> 	-->
-					<th id="type"><select class="form-control" onchange="chageLangSelect(this.value)" id="typeSelect">
+					<th id="type">
+					<select class="form-control" onchange="chageLangSelect(this.value)" id="typeSelect">
 						<option  value="전체">전체</option>
 						<option  value="자유">자유</option>
 						<option  value="후기">후기</option>
-						</select>
+					</select>
 					</th>
 
 					<script>
@@ -282,29 +181,60 @@ text-align:center;
 
 
 			<div align="right">
-				<form action="/semi/fsearch" method="post">
+	<!-- 			<form action="/semi/fsearch" method="post"> -->
 				
 			<table>
-				<tr>
-				<td>
-					<select class="form-control" name="type"  id="searchType">
- 	 					<option>분류</option>
-  						<option>제목</option>
-  						<option>작성자</option>
-					</select>
-					</td>
-				<td><input type="search" autocomlete class="form-control" name="keyword" id="searchInput" length="50"></td>
-				<td><input type="submit" class="form-control" value="검색" id="searchButton" ></td>
-				<td>
-					<%if(member!=null) { %>	
-					<button onclick="return insertPage();" class="form-control" id="writeButton">글쓰기</button>
-					<%} %>
-				</td>
-				</tr>
+							<tr>
+								<td><select class="form-control" name="type"
+									id="searchType">
+										<option>분류</option>
+										<option>제목</option>
+										<option>작성자</option>
+								</select>
+								</td>
+								<td><input type="search" autocomlete class="form-control"
+									name="keyword" id="searchInput" length="50"></td>
+							<!-- 	<td><input type="submit" class="form-control" value="검색"
+									id="searchButton"></td> -->
+								
+					<td><button onclick="return serchList();" class="form-control" id="serchList">검색</button></td>
+				<script type="text/javascript">
+					function serchList() {
+					if($("#searchInput").val() == ""){
+									
+						alert("원하는 검색어를 입력하세요 ");
+					}
+					else{
+						
+						var keyword =  $("#searchInput").val() ;
+						var type = $("#searchType").val();
+						location.href = "/semi/fsearch?keyword="+keyword+"&type="+type;
+						return false;						
+					}					
+				}
+				</script>	
+								
+								
 			
-			</table>
+								
+								<td> 
+								<%if(member!=null) { %>
+								<button class="form-control" onclick="return insertPage();" id="writeButton">글쓰기</button>
+								<%}%>
+								</td>
+									<script type="text/javascript">
+										function insertPage() {
+											location.href = "views/freeBoard/freeBoardWriteForm.jsp";
+											return false;
+										}
+									</script>
+
+								
+							</tr>
+
+						</table>
 			
-				</form>
+			<!-- 	</form> -->
 			</div>
 
 			<%-- 페이지 번호 처리 --%>
@@ -354,45 +284,13 @@ text-align:center;
 
 		</div>
 
+	
+	<%@ include file="../../footerbar.jsp" %>
 
-		<div class="col-md-2">
-			<%@ include file="../../rightList.jsp"%>
-		</div>
 	</div>
 
 
+	
 
-
-
-
-
-
-
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
 </body>
 </html>
-
-
-
-
-
-
-
-
-

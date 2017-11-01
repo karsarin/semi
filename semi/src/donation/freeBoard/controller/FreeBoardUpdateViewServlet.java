@@ -31,12 +31,12 @@ public class FreeBoardUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ê³µì§€ê¸€ ìˆ˜ì •í˜ì´ì§€ ì¶œë ¥ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬		
-		//ìˆ˜ì •í•  notice ê¸€ì„ dbì—ì„œ ë‹¤ì‹œ ë¶ˆëŸ¬ì™€ì„œ ìˆ˜ì •í•´ì•¼ ì •í™•í•¨
+		// °øÁö±Û ¼öÁ¤ÆäÀÌÁö Ãâ·Â Ã³¸®¿ë ÄÁÆ®·Ñ·¯		
+		//¼öÁ¤ÇÒ notice ±ÛÀ» db¿¡¼­ ´Ù½Ã ºÒ·¯¿Í¼­ ¼öÁ¤ÇØ¾ß Á¤È®ÇÔ
 		response.setContentType("text/html charset=utf-8");
 		
 		FreeBoard fboard = new FreeBoardService().selectFreeBoard(Integer.parseInt(request.getParameter("no")));
-		//ì—¬ê¸°ì„œ DBì— ìˆëŠ” ê²Œì‹œê¸€ ì •ë³´ ì´ë¯¸ ë¶ˆëŸ¬ì˜´
+		//¿©±â¼­ DB¿¡ ÀÖ´Â °Ô½Ã±Û Á¤º¸ ÀÌ¹Ì ºÒ·¯¿È
 		
 		
 		
@@ -48,7 +48,7 @@ public class FreeBoardUpdateViewServlet extends HttpServlet {
 		}else{
 
 			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-			request.setAttribute("message", "ììœ  ê²Œì‹œê¸€ ìˆ˜ì • í˜ì´ì§€ ì¶œë ¥ ì²˜ë¦¬ ì‹¤íŒ¨");
+			request.setAttribute("message", "ÀÚÀ¯ °Ô½Ã±Û ¼öÁ¤ ÆäÀÌÁö Ãâ·Â Ã³¸® ½ÇÆĞ");
 			view.forward(request, response);
 		}
 		
