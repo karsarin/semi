@@ -53,7 +53,7 @@ public class ChatConnectServlet extends HttpServlet {
 			else if(sresult!=null) request.setAttribute("reciver", sresult);
 			view.forward(request, response);
 		}else{
-			view = request.getRequestDispatcher("views/chatting/chattingtError.jsp");
+			view = request.getRequestDispatcher("views/chatting/chattingError.jsp");
 			if(!rresult) request.setAttribute("message", reciver+"님이 접속 중이 아닙니다.");
 			if(sresult!=null) request.setAttribute("message", "채팅방을 열 수 없습니다.");
 			

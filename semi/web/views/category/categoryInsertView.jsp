@@ -8,6 +8,15 @@
 <head>
 <meta charset="UTF-8">
 <title>재능 등록</title>
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    	$(function(){
+    		$('.main-menu ul #category').removeClass('active');
+    		$('.main-menu ul #home').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #insertc').addClass('active');
+    	});
+</script>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../css/font-awesome.css">
     <link rel="styles2heet" href="../../css/animate.css">
@@ -60,10 +69,10 @@ function onTestChange()
 <body>
 <%@ include file="../../headerbar.jsp" %>	
 		
-		<div class="row">
-  <div class="col-md-2">
- <%@ include file="../../leftList.jsp" %> 
- </div> 
+<div class="row">
+  	<div class="col-md-2" style="margin-top:200px;">
+ 		<%@ include file="../../leftList.jsp" %> 
+ 	</div> 
 
  
   <div style="width:1000px;">
