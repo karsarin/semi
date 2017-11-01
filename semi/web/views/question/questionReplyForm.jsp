@@ -84,12 +84,14 @@ height:200px;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
- 			<div class="col-md-2">
-				  		<%if(member != null){ %>
-	<%@ include file="../../boardLeftBar.jsp"%>
+<div class="col-md-2">
+<%if( !(member != null) || member.getMemberId().equals("admin")) {%>
+	
+	<%@ include file="../../boardLeftBar2.jsp"%>
 	<%}else{ %>
-	<%@ include file="../../boardLeftBar2.jsp"%>	
-	<%} %>
+		
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%} %> 
 			</div>
   <div class="col-md-8">
 

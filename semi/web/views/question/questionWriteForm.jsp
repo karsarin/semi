@@ -71,11 +71,13 @@ width:66vw;
 <div class="row" style="margin-top:200px;">
 <%}%>
  			<div class="col-md-2">
-				  		<%if(member != null){ %>
-	<%@ include file="../../boardLeftBar.jsp"%>
+<%if( !(member != null) || member.getMemberId().equals("admin")) {%>
+	
+	<%@ include file="../../boardLeftBar2.jsp"%>
 	<%}else{ %>
-	<%@ include file="../../boardLeftBar2.jsp"%>	
-	<%} %>
+		
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%} %> 
 			</div>
   <div class="col-md-8">
 
@@ -97,33 +99,8 @@ width:66vw;
 	<a href="/semi/qlist">목록</a>
     </div>
 
-
-
-
-
-	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
   </div>
 	
-	
-
   </div>
 	
 <%@ include file="../../footerbar.jsp" %>

@@ -119,11 +119,13 @@ background-color: #F29661;
 <div class="row" style="margin-top:200px;">
 <%}%>
   			<div class="col-md-2">
-				  		<%if(member != null){ %>
-	<%@ include file="../../boardLeftBar.jsp"%>
+<%if( !(member != null) || member.getMemberId().equals("admin")) {%>
+	
+	<%@ include file="../../boardLeftBar2.jsp"%>
 	<%}else{ %>
-	<%@ include file="../../boardLeftBar2.jsp"%>	
-	<%} %>
+		
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%} %> 
 			</div>
   <div class="col-md-8">
 
@@ -252,6 +254,10 @@ background-color: #F29661;
 
   </div>
 </div>	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
  </div>
   
 <%@ include file="../../footerbar.jsp" %>
