@@ -34,9 +34,9 @@
 <%if(member!=null && member.getMemberId().equals("admin")) {%>
 <div class="heading-section text-center" style="margin-top:150px;">	
 <%} else {%>
-<div class="heading-section text-center" style="margin-top:200px;">	
+<div style="text-align: center; padding-right: 160px; margin-top:200px;">	
 <%}%>		
-		<h2 style="text-shadow:1px 1px 2px gray;">쪽지함</h2>
+		<h2 style="text-shadow:1px 1px 2px gray; font-weight: bold; font-size: 30px; margin-bottom: 50px;">쪽지함</h2>
 	</div>
 
 	<table class="suggesttb">
