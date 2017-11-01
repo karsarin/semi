@@ -6,18 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
+<link rel="stylesheet" href="/semi/css/loginstyle.css">
 </head>
 <body>
 
 	<%@ include file = "../../myPageLeftBar.jsp" %>
 <br><br><br><br><br><br><br>
-<h4 align="center">회원탈퇴를 위한 패스워드를 입력해주세요</h4>
+<div class="login-page" >
+  <div class="form">
+<h4 align="center">회원탈퇴를 위한 패스워드를 입력해주세요.</h4>
+<br>
+
 <div align="center">
-<input type="password" id="inputpwd" value="">
+<input type="password" id="inputpwd" value="" placeholder="password">
 <input type="hidden" id="memberpwd" value="<%= member.getMemberPwd() %>">
 <input type="hidden" name="memberid" value="<%= member.getMemberId() %>">
 <br>
-<input type="button"value="탈퇴"onclick="memberDelete();">
+<button onclick="memberDelete();">탈퇴</button>
 	<script type="text/javascript">
 
 
@@ -37,6 +42,12 @@ function memberDelete(){
 
 
 </script>
+ <script type="text/javascript">
+   
+   document.getElementById('inputpwd').focus();
+   </script>
+</div>
+</div>
 </div>
 
 <script src="/semi/js/loginjs.js"></script>
