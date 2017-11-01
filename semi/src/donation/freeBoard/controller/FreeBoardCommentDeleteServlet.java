@@ -74,7 +74,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 	         request.setAttribute("message", "댓글 삭제 에러");
 	         view.forward(request, response);
 	      } 
-		
+		 
 		
 		
 	
