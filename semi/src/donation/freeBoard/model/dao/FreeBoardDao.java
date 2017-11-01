@@ -2,7 +2,7 @@ package donation.freeBoard.model.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
- 
+
 import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.vo.Notice;
@@ -106,7 +106,7 @@ public class FreeBoardDao {
 			pstmt.setInt(1,  no);
 			
 			rset = pstmt.executeQuery();
-			if(rset.next())//pk·Î Á¶È¸ÇÑ°Ç °á°ú°¡ ÇÑ°³´Ï±î if¹® »ç¿ë
+			if(rset.next())//pkë¡œ ì¡°íšŒí•œê±´ ê²°ê³¼ê°€ í•œê°œë‹ˆê¹Œ ifë¬¸ ì‚¬ìš©
 			{
 				fboard = new FreeBoard();
 				fboard.setfreeBoardNo(rset.getInt("FREEBOARD_NO"));
@@ -234,7 +234,7 @@ public class FreeBoardDao {
 		
 		
 		String query = "";
-		if(type.equals("ÀÛ¼ºÀÚ")) {
+		if(type.equals("ì‘ì„±ì")) {
 			
 			 query ="select * from ("
 						+ "select rownum rnum, freeboard_NO, freeboard_TITLE, "
@@ -245,7 +245,7 @@ public class FreeBoardDao {
 						+ "where rnum >= ? and rnum <= ?";
 				
 			
-		}else if(type.equals("³»¿ë")) {
+		}else if(type.equals("ë‚´ìš©")) {
 		
 			 query ="select * from ("
 						+ "select rownum rnum, freeboard_NO, freeboard_TITLE, "
@@ -255,7 +255,7 @@ public class FreeBoardDao {
 						+ " )) "
 						+ "where rnum >= ? and rnum <= ?";
 				
-		}else if(type.equals("ºĞ·ù")) {
+		}else if(type.equals("ë¶„ë¥˜")) {
 			
 			 query ="select * from ("
 						+ "select rownum rnum, freeboard_NO, freeboard_TITLE, "
@@ -265,7 +265,7 @@ public class FreeBoardDao {
 						+ " )) "
 						+ "where rnum >= ? and rnum <= ?";
 				
-		}else if(type.equals("Á¦¸ñ")) {
+		}else if(type.equals("ì œëª©")) {
 			
 			query ="select * from ("
 					+ "select rownum rnum, freeboard_NO, freeboard_TITLE, "
@@ -276,7 +276,7 @@ public class FreeBoardDao {
 					+ "where rnum >= ? and rnum <= ?";
 		}
 	
-		//currentPage ¿¡ ÇØ´çµÇ´Â ¸ñ·Ï¸¸ Á¶È¸
+		//currentPage ì— í•´ë‹¹ë˜ëŠ” ëª©ë¡ë§Œ ì¡°íšŒ
 	
 		
 		
@@ -331,27 +331,27 @@ public class FreeBoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		System.out.println("Dao´Ü type :" + type);
+		System.out.println("Daoë‹¨ type :" + type);
 		
 		String query = "";
-		if(type.equals("ÀÛ¼ºÀÚ")) {
+		if(type.equals("ì‘ì„±ì")) {
 			
 			query = "select count(*) from freeboard where FREEBOARD_WRITER like ?";
 			
-		}else if(type.equals("³»¿ë")) {
+		}else if(type.equals("ë‚´ìš©")) {
 		
 			 query = "select count(*) from freeboard where FREEBOARD_CONTENT like ?";
-		}else if(type.equals("ºĞ·ù")) {
+		}else if(type.equals("ë¶„ë¥˜")) {
 			
 			 query = "select count(*) from freeboard where BOARDTYPE like ?";
-		}else if(type.equals("Á¦¸ñ")) {
+		}else if(type.equals("ì œëª©")) {
 			
 			 query = "select count(*) from freeboard where FREEBOARD_TITLE like ?";
 		}
 	
 		
 		
-		//¿©±â¼­ like µÚ¿¡ % ¾²¸é¾ÈµÊ ¿©±â´Â ?¸¸ ¾²°í setStringÇÒ ¶§ ¹®ÀÚ¿­ °ªÀ¸·Î Ãß°¡½ÃÄÑÁà¾ßµÊ
+		//ì—¬ê¸°ì„œ like ë’¤ì— % ì“°ë©´ì•ˆë¨ ì—¬ê¸°ëŠ” ?ë§Œ ì“°ê³  setStringí•  ë•Œ ë¬¸ìì—´ ê°’ìœ¼ë¡œ ì¶”ê°€ì‹œì¼œì¤˜ì•¼ë¨
 		try {
 			pstmt = con.prepareStatement(query);
 			//pstmt.setString(1, type);
@@ -473,7 +473,7 @@ public class FreeBoardDao {
 				+ "(select rownum rnum, FREEBOARD_NO, " 
 				+ "FREEBOARD_TITLE "
 				+ "from (select * from FREEBOARD "
-				+ "where BOARDTYPE like 'ÈÄ±â' "
+				+ "where BOARDTYPE like 'í›„ê¸°' "
 				+ "order by READ_COUNT desc)) " 
 				+ "where rnum >= 1 and rnum <= 3";		
 

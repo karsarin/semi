@@ -3,7 +3,7 @@ package donation.freeBoard.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -55,7 +55,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 		
 		int result = fservice.deleteCommentBoard(commentNum);
 		
-		System.out.println("≥ª≤® result : " + result   );
+		System.out.println("ÎÇ¥Í∫º result : " + result   );
 	
 		
 		System.out.println(result);
@@ -71,7 +71,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 	         
 	      }else {
 	         RequestDispatcher view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-	         request.setAttribute("message", "¥Ò±€ ªË¡¶ ø°∑Ø");
+	         request.setAttribute("message", "ÎåìÍ∏Ä ÏÇ≠Ï†ú ÏóêÎü¨");
 	         view.forward(request, response);
 	      }
 		

@@ -11,7 +11,7 @@ public class CommentBoard {
 	private String content;
 	 
 	public CommentBoard() {}
-	 
+	
 	public CommentBoard(int commentNum, int boardNum, String writer, Date date, String content) {
 		super();
 		this.commentNum = commentNum;

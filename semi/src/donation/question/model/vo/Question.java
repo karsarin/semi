@@ -194,7 +194,7 @@ public class Question implements java.io.Serializable {
 	public void setQuestionRef(int questionRef) {
 		this.questionRef = questionRef;
 	}
- 
+
 	public int getQuestionReplyRef() {
 		return questionReplyRef;
 	}

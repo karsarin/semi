@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
- 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,29 +40,29 @@ public class QuestionInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °Ô½Ã±Û ¿ø±Û µî·Ï Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê²Œì‹œê¸€ ì›ê¸€ ë“±ë¡ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		//¾÷·ÎµåÇÒ ÆÄÀÏÀÇ ¿ë·® Á¦ÇÑ : 10Mbyte ·Î Á¦ÇÑÇÑ´Ù¸é
+		//ì—…ë¡œë“œí•  íŒŒì¼ì˜ ìš©ëŸ‰ ì œí•œ : 10Mbyte ë¡œ ì œí•œí•œë‹¤ë©´
 		int maxSize = 1024 * 1024 * 10;
 		
-		//enctype="multipart/form-data" ·Î Àü¼ÛµÇ¾ú´ÂÁö È®ÀÎ
+		//enctype="multipart/form-data" ë¡œ ì „ì†¡ë˜ì—ˆëŠ”ì§€ í™•ì¸
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)){
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "form enctype ¼Ó¼º »ç¿ë ¾È ÇÔ!");
+			request.setAttribute("message", "form enctype ì†ì„± ì‚¬ìš© ì•ˆ í•¨!");
 			view.forward(request, response);
 		}
 		
-		//ÇØ´ç ÄÁÅ×ÀÌ³Ê¿¡¼­ ±¸µ¿ÁßÀÎ À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ ·çÆ® °æ·Î ¾Ë¾Æ³¿
+		//í•´ë‹¹ ì»¨í…Œì´ë„ˆì—ì„œ êµ¬ë™ì¤‘ì¸ ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ ë£¨íŠ¸ ê²½ë¡œ ì•Œì•„ëƒ„
 		String root = request.getSession().getServletContext().getRealPath("/");
-		//¾÷·ÎµåµÇ´Â ÆÄÀÏÀÌ ÀúÀåµÉ Æú´õ¸í°ú ·çÆ® °æ·Î ¿¬°á Ã³¸®
+		//ì—…ë¡œë“œë˜ëŠ” íŒŒì¼ì´ ì €ì¥ë  í´ë”ëª…ê³¼ ë£¨íŠ¸ ê²½ë¡œ ì—°ê²° ì²˜ë¦¬
 		String savePath = root  + "uploadfiles/" + "quploadfiles";
-		//web/buploadfiles ·Î ÁöÁ¤µÊ
+		//web/buploadfiles ë¡œ ì§€ì •ë¨
 		
-		//request ¸¦ MultipartRequest °´Ã¼·Î º¯È¯ÇÔ
-		//ÀÚµ¿ ÁöÁ¤µÈ °æ·Î¿¡ ÆÄÀÏ ÀúÀåµÊ
+		//request ë¥¼ MultipartRequest ê°ì²´ë¡œ ë³€í™˜í•¨
+		//ìë™ ì§€ì •ëœ ê²½ë¡œì— íŒŒì¼ ì €ì¥ë¨
 		MultipartRequest mrequest = new MultipartRequest(request, savePath,
 				maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -76,7 +76,7 @@ public class QuestionInsertServlet extends HttpServlet {
 		
 		Question q = null;
 		if(originalFileName != null){
-			//¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì, ÆÄÀÏ¸íÀ» "³â¿ùÀÏ½ÃºĞÃÊ.È®ÀåÀÚ"·Î º¯°æÇÔ
+			//ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ ê²½ìš°, íŒŒì¼ëª…ì„ "ë…„ì›”ì¼ì‹œë¶„ì´ˆ.í™•ì¥ì"ë¡œ ë³€ê²½í•¨
 			SimpleDateFormat sdf = 
 					new SimpleDateFormat("yyyyMMddHHmmss");
 			String renameFileName = sdf.format(
@@ -84,13 +84,13 @@ public class QuestionInsertServlet extends HttpServlet {
 					+ originalFileName.substring(
 							originalFileName.lastIndexOf(".") + 1);
 			
-			//¾÷·ÎµåµÇ¾î ÀÖ´Â ¿ø·¡ ÆÄÀÏÀÇ ÀÌ¸§À» »õ ÀÌ¸§À¸·Î ¹Ù²Ù±â
+			//ì—…ë¡œë“œë˜ì–´ ìˆëŠ” ì›ë˜ íŒŒì¼ì˜ ì´ë¦„ì„ ìƒˆ ì´ë¦„ìœ¼ë¡œ ë°”ê¾¸ê¸°
 			File originalFile = new File(savePath + "\\" + originalFileName);
 			File renameFile = new File(savePath + "\\" + renameFileName);
 			
-			//ÆÄÀÏÀÌ¸§ ¹Ù²Ù±â ½ÇÇà >> ½ÇÆĞ½Ã Á÷Á¢ ¹Ù²Ù±âÇÔ
-			//»õ ÆÄÀÏ ¸¸µé°í, ¿ø·¡ ÆÄÀÏÀÇ ³»¿ë ÀĞ¾î¼­ º¹»ç ±â·ÏÇÏ°í
-			//¿ø ÆÄÀÏ »èÁ¦ÇÔ
+			//íŒŒì¼ì´ë¦„ ë°”ê¾¸ê¸° ì‹¤í–‰ >> ì‹¤íŒ¨ì‹œ ì§ì ‘ ë°”ê¾¸ê¸°í•¨
+			//ìƒˆ íŒŒì¼ ë§Œë“¤ê³ , ì›ë˜ íŒŒì¼ì˜ ë‚´ìš© ì½ì–´ì„œ ë³µì‚¬ ê¸°ë¡í•˜ê³ 
+			//ì› íŒŒì¼ ì‚­ì œí•¨
 			if(!originalFile.renameTo(renameFile)){
 				int read = -1;
 				byte[] buf = new byte[1024];
@@ -106,15 +106,15 @@ public class QuestionInsertServlet extends HttpServlet {
 				originalFile.delete();
 			}
 			q = new Question(title, writer, content, originalFileName, renameFileName, 3);
-		}else  //Ã·ºÎ ÆÄÀÏÀÌ ¾øÀ» ¶§
+		}else  //ì²¨ë¶€ íŒŒì¼ì´ ì—†ì„ ë•Œ
 			q = new Question(title, writer, content, null, null, 3);
 		
-		//Ã³¸®°á°ú¿¡ µû¶ó ºä ÁöÁ¤ÇÔ
+		//ì²˜ë¦¬ê²°ê³¼ì— ë”°ë¼ ë·° ì§€ì •í•¨
 		if(new QuestionService().insertQuestion(q) > 0){
 			response.sendRedirect("/semi/qlist?page=1");
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "QNA °Ô½Ã±Û µî·Ï ½ÇÆĞ");
+			request.setAttribute("message", "QNA ê²Œì‹œê¸€ ë“±ë¡ ì‹¤íŒ¨");
 			view.forward(request, response);
 		}
 	}

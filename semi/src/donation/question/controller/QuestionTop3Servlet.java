@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
- 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,19 +38,19 @@ public class QuestionTop3Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// °Ô½Ã±Û Á¶È¸¼ö Å¾ 3 ¿ø±Û Á¶È¸ Ajax ¿äÃ» Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê²Œì‹œê¸€ ì¡°íšŒìˆ˜ íƒ‘ 3 ì›ê¸€ ì¡°íšŒ Ajax ìš”ì²­ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 
 		ArrayList<Question> list = new QuestionService().selectTop3();
 
-		// Àü¼ÛÇÒ ÃÖÁ¾ json °´Ã¼
+		// ì „ì†¡í•  ìµœì¢… json ê°ì²´
 		JSONObject json = new JSONObject();
 		JSONArray jarr = new JSONArray();
 
 		for (Question b : list) {
-			// ÇÑ »ç¶÷ÀÇ Á¤º¸¸¦ ÀúÀåÇÒ json °´Ã¼
+			// í•œ ì‚¬ëŒì˜ ì •ë³´ë¥¼ ì €ì¥í•  json ê°ì²´
 			JSONObject job = new JSONObject();
 			job.put("bnum", b.getQuestionNum());
-			// json¿¡¼­ ÇÑ±Û ±úÁüÀ» ¸·À¸·Á¸é, java.net.URLEncoder Å¬·¡½ºÀÇ encode() ¸Ş¼Òµå·Î ÀÎÄÚµù Ã³¸®
+			// jsonì—ì„œ í•œê¸€ ê¹¨ì§ì„ ë§‰ìœ¼ë ¤ë©´, java.net.URLEncoder í´ë˜ìŠ¤ì˜ encode() ë©”ì†Œë“œë¡œ ì¸ì½”ë”© ì²˜ë¦¬
 			job.put("btitle", URLEncoder.encode(b.getQuestionTitle(), "UTF-8"));
 
 			jarr.add(job);

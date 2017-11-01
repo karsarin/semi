@@ -3,7 +3,7 @@ import static donation.common.JDBCTemplate.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
- 
+
 import donation.freeBoard.model.dao.FreeBoardDao;
 import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
@@ -61,7 +61,7 @@ public class FreeBoardService {
 		}
 		close(con);
 		
-		//ÀÌ ¸Ş¼Òµå¸¦ È£ÃâÇÑ ¼­ºí¸´ ´ÜÀÇ ¸Ş¼Òµå°¡ voidÇüÀÌ¶ó ¸®ÅÏ¾È½ÃÅ´
+		//ì´ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•œ ì„œë¸”ë¦¿ ë‹¨ì˜ ë©”ì†Œë“œê°€ voidí˜•ì´ë¼ ë¦¬í„´ì•ˆì‹œí‚´
 	}
 
 	public int insertNotice(FreeBoard fboard) {
@@ -118,7 +118,7 @@ public class FreeBoardService {
 	public int getSearchListCount(String type, String keyword) {
 		Connection con = getConnection();
 		int listCount = new FreeBoardDao().getSearchListCount(con, type, keyword);
-		System.out.println("Service´Ü type :" + type);
+		System.out.println("Serviceë‹¨ type :" + type);
 		
 		close(con);
 		return listCount;

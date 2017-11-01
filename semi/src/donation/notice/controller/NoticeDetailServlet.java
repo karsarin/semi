@@ -1,7 +1,7 @@
 package donation.notice.controller;
 
 import java.io.IOException;
- 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,15 +31,15 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// a ÅÂ±×·Î ¿äÃ»¿Â°Ç doGet()ÀÌ ¹ŞÀ½
-		//°øÁö±Û »ó¼¼ Á¶È¸ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// a íƒœê·¸ë¡œ ìš”ì²­ì˜¨ê±´ doGet()ì´ ë°›ìŒ
+		//ê³µì§€ê¸€ ìƒì„¸ ì¡°íšŒ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		response.setContentType("text/html; charset=utf-8");
 		
 		int no  = Integer.parseInt(request.getParameter("no"));
 		
 		NoticeService nservice  = new NoticeService();
-		//Á¶È¸¼ö 1 Áõ°¡ Ã³¸®(DB¿¡ count°ªÀ» updateÇØ¾ßÇÔ)
-		nservice.addReadCount(no); //public void - ¸®ÅÏ¾È½ÃÅ°°í ±×³É °ª¸¸ º¯°æÇÔ
+		//ì¡°íšŒìˆ˜ 1 ì¦ê°€ ì²˜ë¦¬(DBì— countê°’ì„ updateí•´ì•¼í•¨)
+		nservice.addReadCount(no); //public void - ë¦¬í„´ì•ˆì‹œí‚¤ê³  ê·¸ëƒ¥ ê°’ë§Œ ë³€ê²½í•¨
 		Notice notice = nservice.selectNotice(no);
 		
 		RequestDispatcher view = null;
@@ -52,7 +52,7 @@ public class NoticeDetailServlet extends HttpServlet {
 			
 		}else{
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "°øÁö±Û »ó¼¼ Á¶È¸ ½ÇÆĞ!");
+			request.setAttribute("message", "ê³µì§€ê¸€ ìƒì„¸ ì¡°íšŒ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 		

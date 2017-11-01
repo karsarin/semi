@@ -1,5 +1,5 @@
 package donation.question.controller;
- 
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -30,7 +30,7 @@ public class QuestionDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °Ô½Ã±Û »èÁ¦ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê²Œì‹œê¸€ ì‚­ì œ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		response.setContentType("text/html; charset=utf-8");
 		
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -39,7 +39,7 @@ public class QuestionDeleteServlet extends HttpServlet {
 			response.sendRedirect("/semi/qlist?page=1");
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message","QA°Ô½Ã±Û »èÁ¦ Ã³¸® ½ÇÆÐ!");
+			request.setAttribute("message","QAê²Œì‹œê¸€ ì‚­ì œ ì²˜ë¦¬ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 				

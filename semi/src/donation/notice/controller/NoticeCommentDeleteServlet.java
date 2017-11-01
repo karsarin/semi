@@ -56,8 +56,8 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		
 		int result = nservice.deleteCommentNotice(commentNum);
 		
-		System.out.println("≥ª≤® result : " + result   );
-	 
+		System.out.println("ÎÇ¥Í∫º result : " + result   );
+	
 		
 		System.out.println(result);
 		System.out.println("noticeNum" + noticeNum);
@@ -72,7 +72,7 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 	         
 	      }else {
 	         RequestDispatcher view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-	         request.setAttribute("message", "¥Ò±€ ªË¡¶ ø°∑Ø");
+	         request.setAttribute("message", "ÎåìÍ∏Ä ÏÇ≠Ï†ú ÏóêÎü¨");
 	         view.forward(request, response);
 	      }
 		

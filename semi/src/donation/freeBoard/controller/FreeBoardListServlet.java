@@ -36,7 +36,7 @@ public class FreeBoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		int currentPage = 1; 
+		int currentPage = 1;
 		int limit = 10;
 		
 		if(request.getParameter("page")!=null )
@@ -57,13 +57,11 @@ public class FreeBoardListServlet extends HttpServlet {
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-	
+		
 		int endPage = startPage + limit -1 ;
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}
-		
-	
 		
 		RequestDispatcher view = null;
 		if(list != null) {
@@ -80,7 +78,7 @@ public class FreeBoardListServlet extends HttpServlet {
 			
 		}else {
 			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-			request.setAttribute("message", "ÀÚÀ¯ °Ô½ÃÆÇ ¸®½ºÆ® ÆäÀÌÁö ºÒ·¯¿À±â ½ÇÆÐ");
+			request.setAttribute("message", "ìžìœ  ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ íŽ˜ì´ì§€ ë¶ˆëŸ¬ì˜¤ê¸° ì‹¤íŒ¨");
 			view.forward(request, response);
 			
 		}
