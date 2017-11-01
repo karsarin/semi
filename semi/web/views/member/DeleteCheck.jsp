@@ -14,7 +14,7 @@
 <br><br><br><br><br><br><br>
 <div class="login-page" >
   <div class="form">
-<h4 align="center">회원탈퇴를 위한 패스워드를 입력해주세요.</h4>
+<h4 align="center"style="font-size: 12pt;">회원탈퇴를 위한 패스워드를 입력해주세요.</h4>
 <br>
 
 <div align="center">
