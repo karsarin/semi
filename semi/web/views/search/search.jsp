@@ -203,7 +203,7 @@ ul.sub li:hover {
 		<div class="row" style="float:left; width:300px; height:400px;">
 		  <div class="col-md-4" style="width:300px;">
 		  	<div class="imgholder">			
-				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&page=<%= ccurrentPage%>">
+				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&cpage=<%= ccurrentPage%>">
 				<img src="cuploadfiles/<%=c.getRenameImage() %>" /> </a>
 				</div>
 
