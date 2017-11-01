@@ -347,7 +347,8 @@ background-color: #F29661;
 						},
 					  error : function(data){  //실패했을 때 구동되는 함수
 						  consolse.log("에러발생 : " + data);
-					  }
+					  }
+
 					});
 
 					}
