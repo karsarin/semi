@@ -21,7 +21,7 @@
     		$('.main-menu ul #board').removeClass('active');
     		$('.main-menu ul #home').addClass('active');
     		
-    		setInterval("chat()", 60000);
+    		setInterval("chat()", 10000);
     	});
     </script>
 	
