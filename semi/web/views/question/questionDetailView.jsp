@@ -41,73 +41,34 @@
 <%-- 헤더바 끝 --%>
 
 <style>
-ul#navi {
-	width: 200px;
-	text-indent: 10px;
-	background-color: lightgray;
+
+#detailview {
+	width: 66vw;
 }
 
-ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+#title {
+	width: 40vw;
 }
 
-li.group {
-	margin-bottom: 3px;
+#readCount {
+	width: 7vw;
 }
 
-li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightblue;
-	cursor: pointer;
+#date {
+	width: 7vw;
 }
 
-ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
+#writer {
+	width: 7vw;
 }
 
-ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
+#detailTitlebar {
+background-color: #F29661; 
 }
 
-ul.sub li:hover {
-	background: lightblue;
-}
-<!-- 세로목록 끝 -->
-
-#detailview{
-width:66vw;
-}
-
-#textBox{
-	height:200px;
-}
-
-#title{
-
-width:40%;
-}
-#readCount{
-width:8%;
-}
-#date{
-width:15%;
-}
-#writer{
-width:13%;
-}
-#file{
-width:20%;
+#textBox {
+	height: 415px;
+	font-size: 15px;
 }
 
 </style>
@@ -128,20 +89,13 @@ width:20%;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
-		<ul id="navi">
-			<li class="group">
-				<div class="title">카테고리</div>
-				<ul class="sub">
-					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/qlist">QnA게시판</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
+  			<div class="col-md-2">
+				  		<%if(member != null){ %>
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%}else{ %>
+	<%@ include file="../../boardLeftBar2.jsp"%>	
+	<%} %>
+			</div>
   
   <div class="col-md-8">
 
@@ -150,26 +104,59 @@ width:20%;
 <table  class="table table-hover" id="detailview">
 <tr id = "detailTitlebar">
 <td id="titlie"><label><%= q.getQuestionTitle() %></label></td>
-<td id="readCount"><label><%= q.getQuestionReadCount() %></label></td>
+<td id="readCount"><label>조회수 : <%= q.getQuestionReadCount() %></label></td>
 <td id="date"><label><%= q.getQuestionDate() %> </label></td>
 <td id="writer"><label><%= q.getQuestionWriter() %></label></td>
-<td id="file">
-	<% if(q.getQuestionOriginalImageName() == null){ %>
-		첨부파일 없음
-	<% }else{ %>
-	<a href="/semi/qfdown?ofile=<%= q.getQuestionOriginalImageName() %>&rfile=<%= q.getQuestionRenameImageName()%>">
-		<%= q.getQuestionOriginalImageName() %>
-	</a>
-	<% } %>
-	</td>
+
 </tr>	
 	
 
 <tr id="textBox">
-		<td colspan="5">
-		<%= q.getQuestionContent() %>
+		<td colspan="6" height="415px">
+		<%if(q.getQuestionOriginalImageName() != null){	%>	
+			
+		
+			<img src="/semi/uploadfiles/quploadfiles/<%=q.getQuestionRenameImageName()%>" width="400px" height="400px" title="클릭하시면 원본크기로 보실 수 있습니다."
+   				  style="cursor: pointer;" onclick="doImgPop('/semi/uploadfiles/quploadfiles/<%=q.getQuestionRenameImageName()%>')"  />
+			<script>
+			function doImgPop(img){ 
+				 img1= new Image(); 
+				 img1.src=(img); 
+				 imgControll(img); 
+				} 
+				  
+				function imgControll(img){ 
+				 if((img1.width!=0)&&(img1.height!=0)){ 
+				    viewImage(img); 
+				  } 
+				  else{ 
+				     controller="imgControll('"+img+"')"; 
+				     intervalID=setTimeout(controller,20); 
+				  } 
+				}
+				function viewImage(img){ 
+				 W=img1.width; 
+				 H=img1.height; 
+				 O="width="+W+",height="+H+",scrollbars=yes"; 
+				 imgWin=window.open("","",O); 
+				 imgWin.document.write("<html><head><title>원본 이미지 보기</title></head>");
+				 imgWin.document.write("<body topmargin=0 leftmargin=0>");
+				 imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
+				 imgWin.document.close();
+				}
+			</script>
+		
+			<%=q.getQuestionContent().replaceAll("\n","<br>") %>
+		<%}else{ %> 			
+			<%=q.getQuestionContent().replaceAll("\n","<br>") %>
+			<%} %>
 		</td>
-</tr>
+	
+	</tr>
+
+
+
+
 
 <tr><td colspan="5" align="right">
 <%  if(member != null){ 
@@ -195,37 +182,11 @@ width:20%;
 	
 
   </div>
-  </div></div>
+  </div>
+ </div>
 
+<%@ include file="../../footerbar.jsp" %>
 
-<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

@@ -36,49 +36,7 @@
 <%-- 헤더바 끝 --%>
 
 <style>
-ul#navi {
-	width: 200px;
-	text-indent: 10px;
-	background-color: lightgray;
-}
 
-ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-li.group {
-	margin-bottom: 3px;
-}
-
-li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightblue;
-	cursor: pointer;
-}
-
-ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
-}
-
-ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
-}
-
-ul.sub li:hover {
-	background: aliceblue;
-}
-<!-- 세로목록 끝 -->
 
 
 #writetable{
@@ -88,7 +46,7 @@ ul.sub li:hover {
 }
 
 #textarea textarea{
-height:200px;
+height: 500px;
 width:66vw;
 }
 
@@ -112,31 +70,23 @@ width:66vw;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
-		<ul id="navi">
-			<li class="group">
-				<div class="title">카테고리</div>
-				<ul class="sub">
-					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/qlist">QnA게시판</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-  
+ 			<div class="col-md-2">
+				  		<%if(member != null){ %>
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%}else{ %>
+	<%@ include file="../../boardLeftBar2.jsp"%>	
+	<%} %>
+			</div>
   <div class="col-md-8">
 
 	
 	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
 	<table id="writetable">
-	<th colspan="2">QnA 글쓰기</th>
+	<th colspan="2" style="font-size:20px;">QnA 글쓰기</th>
 	
 	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
 	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
-	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
+	<tr><td>이미지</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
 	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
 	<tr><td colspan="2" align="right"><input type="submit" value="등록" class="btn btn-default">&nbsp; <input type="reset" value="취소" class="btn btn-default"></td></tr>
 	</table>
@@ -173,11 +123,10 @@ width:66vw;
   </div>
 	
 	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
+
   </div>
 	
+<%@ include file="../../footerbar.jsp" %>
 
 
 	

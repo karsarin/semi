@@ -40,29 +40,29 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ì›ê¸€ ìˆ˜ì • ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		// ¿ø±Û ¼öÁ¤ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		//ì—…ë¡œë“œí•  íŒŒì¼ì˜ ìš©ëŸ‰ ì œí•œ : 10Mbyte ë¡œ ì œí•œí•œë‹¤ë©´
+		//¾÷·ÎµåÇÒ ÆÄÀÏÀÇ ¿ë·® Á¦ÇÑ : 10Mbyte ·Î Á¦ÇÑÇÑ´Ù¸é
 		int maxSize = 1024 * 1024 * 10;
 		
-		//enctype="multipart/form-data" ë¡œ ì „ì†¡ë˜ì—ˆëŠ”ì§€ í™•ì¸
+		//enctype="multipart/form-data" ·Î Àü¼ÛµÇ¾ú´ÂÁö È®ÀÎ
 		RequestDispatcher view = null;
 		if(!ServletFileUpload.isMultipartContent(request)){
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "form enctype ì†ì„± ì‚¬ìš© ì•ˆ í•¨!");
+			request.setAttribute("message", "form enctype ¼Ó¼º »ç¿ë ¾È ÇÔ!");
 			view.forward(request, response);
 		}
 		
-		//í•´ë‹¹ ì»¨í…Œì´ë„ˆì—ì„œ êµ¬ë™ì¤‘ì¸ ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜ì˜ ë£¨íŠ¸ ê²½ë¡œ ì•Œì•„ëƒ„
+		//ÇØ´ç ÄÁÅ×ÀÌ³Ê¿¡¼­ ±¸µ¿ÁßÀÎ À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ ·çÆ® °æ·Î ¾Ë¾Æ³¿
 		String root = request.getSession().getServletContext().getRealPath("/");
-		//ì—…ë¡œë“œë˜ëŠ” íŒŒì¼ì´ ì €ì¥ë  í´ë”ëª…ê³¼ ë£¨íŠ¸ ê²½ë¡œ ì—°ê²° ì²˜ë¦¬
+		//¾÷·ÎµåµÇ´Â ÆÄÀÏÀÌ ÀúÀåµÉ Æú´õ¸í°ú ·çÆ® °æ·Î ¿¬°á Ã³¸®
 		String savePath = root + "uploadfiles/" + "quploadfiles";
-		//web/buploadfiles ë¡œ ì§€ì •ë¨
+		//web/buploadfiles ·Î ÁöÁ¤µÊ
 		
-		//request ë¥¼ MultipartRequest ê°ì²´ë¡œ ë³€í™˜í•¨
-		//ìë™ ì§€ì •ëœ ê²½ë¡œì— íŒŒì¼ ì €ì¥ë¨
+		//request ¸¦ MultipartRequest °´Ã¼·Î º¯È¯ÇÔ
+		//ÀÚµ¿ ÁöÁ¤µÈ °æ·Î¿¡ ÆÄÀÏ ÀúÀåµÊ
 		MultipartRequest mrequest = new MultipartRequest(request, savePath,
 				maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -77,7 +77,7 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 		Question b = null;
 		if(originalImageName != null && 
 				!oImageName.equals(originalImageName)){
-			//ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ ê²½ìš°, íŒŒì¼ëª…ì„ "ë…„ì›”ì¼ì‹œë¶„ì´ˆ.í™•ì¥ì"ë¡œ ë³€ê²½í•¨
+			//¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì, ÆÄÀÏ¸íÀ» "³â¿ùÀÏ½ÃºĞÃÊ.È®ÀåÀÚ"·Î º¯°æÇÔ
 			SimpleDateFormat sdf = 
 					new SimpleDateFormat("yyyyMMddHHmmss");
 			String renameImageName = sdf.format(
@@ -85,13 +85,13 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 					+ originalImageName.substring(
 							originalImageName.lastIndexOf(".") + 1);
 			
-			//ì—…ë¡œë“œë˜ì–´ ìˆëŠ” ì›ë˜ íŒŒì¼ì˜ ì´ë¦„ì„ ìƒˆ ì´ë¦„ìœ¼ë¡œ ë°”ê¾¸ê¸°
+			//¾÷·ÎµåµÇ¾î ÀÖ´Â ¿ø·¡ ÆÄÀÏÀÇ ÀÌ¸§À» »õ ÀÌ¸§À¸·Î ¹Ù²Ù±â
 			File originalImage = new File(savePath + "\\" + originalImageName);
 			File renameImage = new File(savePath + "\\" + renameImageName);
 			
-			//íŒŒì¼ì´ë¦„ ë°”ê¾¸ê¸° ì‹¤í–‰ >> ì‹¤íŒ¨ì‹œ ì§ì ‘ ë°”ê¾¸ê¸°í•¨
-			//ìƒˆ íŒŒì¼ ë§Œë“¤ê³ , ì›ë˜ íŒŒì¼ì˜ ë‚´ìš© ì½ì–´ì„œ ë³µì‚¬ ê¸°ë¡í•˜ê³ 
-			//ì› íŒŒì¼ ì‚­ì œí•¨
+			//ÆÄÀÏÀÌ¸§ ¹Ù²Ù±â ½ÇÇà >> ½ÇÆĞ½Ã Á÷Á¢ ¹Ù²Ù±âÇÔ
+			//»õ ÆÄÀÏ ¸¸µé°í, ¿ø·¡ ÆÄÀÏÀÇ ³»¿ë ÀĞ¾î¼­ º¹»ç ±â·ÏÇÏ°í
+			//¿ø ÆÄÀÏ »èÁ¦ÇÔ
 			if(!originalImage.renameTo(renameImage)){
 				int read = -1;
 				byte[] buf = new byte[1024];
@@ -108,15 +108,15 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 				new File(savePath + "/" + rImageName).delete();
 			}
 			b = new Question(no ,title, content, originalImageName, renameImageName);
-		}else  //ì²¨ë¶€ íŒŒì¼ì´ ì—†ê±°ë‚˜, ì²¨ë¶€ íŒŒì¼ì´ ë³€ê²½ë˜ì§€ ì•Šì•˜ë‹¤ë©´
+		}else  //Ã·ºÎ ÆÄÀÏÀÌ ¾ø°Å³ª, Ã·ºÎ ÆÄÀÏÀÌ º¯°æµÇÁö ¾Ê¾Ò´Ù¸é
 			b = new Question(no, title, content, oImageName, rImageName);
 				
-		//ì²˜ë¦¬ê²°ê³¼ì— ë”°ë¼ ë·° ì§€ì •í•¨
+		//Ã³¸®°á°ú¿¡ µû¶ó ºä ÁöÁ¤ÇÔ
 		if(new QuestionService().updateQuestion(b) > 0){
 			response.sendRedirect("/semi/qlist?page=" + currentPage);
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "QA ì›ê¸€ ìˆ˜ì • ì‹¤íŒ¨");
+			request.setAttribute("message", "QA ¿ø±Û ¼öÁ¤ ½ÇÆĞ");
 			view.forward(request, response);
 		}
 	}

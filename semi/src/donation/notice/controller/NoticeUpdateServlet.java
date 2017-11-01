@@ -40,7 +40,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ê³µì§€ê¸€ ìˆ˜ì • ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		// °øÁö±Û ¼öÁ¤ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -50,59 +50,59 @@ public class NoticeUpdateServlet extends HttpServlet {
 		notice.setNoticeContent(request.getParameter("content"));*/
 		
 		
-		//enctype ì´ mulitpart ë°©ì‹ìœ¼ë¡œ ì „ì†¡ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ì‘ì—…ì´ í•„ìš”í•¨
+		//enctype ÀÌ mulitpart ¹æ½ÄÀ¸·Î Àü¼ÛµÇ¾ú´ÂÁö È®ÀÎÇÏ´Â ÀÛ¾÷ÀÌ ÇÊ¿äÇÔ
 		
 		RequestDispatcher view = null;
 		Notice notice = null;
-		if(!ServletFileUpload.isMultipartContent(request) ){ // requestë¥¼ ê°€ì§€ê³  ìš”ì²­ëœ viewì˜ form ì••ì¶•ë°©ì‹ì´  multipart ë°©ì‹ì¸ì§€ í™•ì¸í•¨
-															//ServletFileUpload ì´ê±´ cos.jar(íŒŒì¼ ì…ì¶œë ¥ ë¼ì´ë¸ŒëŸ¬ë¦¬)ê°€ ì œê³µí•¨ 
+		if(!ServletFileUpload.isMultipartContent(request) ){ // request¸¦ °¡Áö°í ¿äÃ»µÈ viewÀÇ form ¾ĞÃà¹æ½ÄÀÌ  multipart ¹æ½ÄÀÎÁö È®ÀÎÇÔ
+															//ServletFileUpload ÀÌ°Ç cos.jar(ÆÄÀÏ ÀÔÃâ·Â ¶óÀÌºê·¯¸®)°¡ Á¦°øÇÔ 
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "form ì˜ enctype ì†ì„± ëˆ„ë½ë¨!");
+			request.setAttribute("message", "form ÀÇ enctype ¼Ó¼º ´©¶ôµÊ!");
 			view.forward(request, response);
 		}
-			//ì—…ë¡œë“œ í•  íŒŒì¼ì˜ ìš©ëŸ‰ ì œí•œ : 10Mbyte ë¡œ ì œí•œí•œë‹¤ë©´
+			//¾÷·Îµå ÇÒ ÆÄÀÏÀÇ ¿ë·® Á¦ÇÑ : 10Mbyte ·Î Á¦ÇÑÇÑ´Ù¸é
 			int maxSize = 1024 * 1024  * 10;
 			
-			//ì—…ë¡œë“œëœ íŒŒì¼ì˜ ì €ì¥ ìœ„ì¹˜ ì§€ì •
-			//í•´ë‹¹ ì»¨í…Œì´ë„ˆ(í†°ìº£) êµ¬ë™ì¤‘ì¸ ì›¹ ì–´í”Œë¦¬ì¼€ì´ì…˜ ë£¨íŠ¸ í´ë”(content directory)ì˜ ê²½ë¡œë¥¼ ì•Œì•„ëƒ„
-			//ê·¸ë˜ì„œ í˜„ì¬ í†°ìº£ì—ì„œ êµ¬ë™ì¤‘ì¸ ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ê²½ë¡œë¥¼ ì•Œì•„ë‚´ì„œ ê·¸ í´ë”ì•ˆì— ì €ì¥ë˜ê²Œ ì†ŒìŠ¤ì½”ë“œë¡œ ì§€ì •í•´ì¤Œ
-			//ì´ë ‡ê²Œ í•˜ë©´ ì„œë²„ê°€ ë°”ê»´ë„ ì†ŒìŠ¤ ë³€ê²½í•  í•„ìš”ì—†ìŒ
+			//¾÷·ÎµåµÈ ÆÄÀÏÀÇ ÀúÀå À§Ä¡ ÁöÁ¤
+			//ÇØ´ç ÄÁÅ×ÀÌ³Ê(ÅèÄ¹) ±¸µ¿ÁßÀÎ À¥ ¾îÇÃ¸®ÄÉÀÌ¼Ç ·çÆ® Æú´õ(content directory)ÀÇ °æ·Î¸¦ ¾Ë¾Æ³¿
+			//±×·¡¼­ ÇöÀç ÅèÄ¹¿¡¼­ ±¸µ¿ÁßÀÎ ¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ °æ·Î¸¦ ¾Ë¾Æ³»¼­ ±× Æú´õ¾È¿¡ ÀúÀåµÇ°Ô ¼Ò½ºÄÚµå·Î ÁöÁ¤ÇØÁÜ
+			//ÀÌ·¸°Ô ÇÏ¸é ¼­¹ö°¡ ¹Ù²¸µµ ¼Ò½º º¯°æÇÒ ÇÊ¿ä¾øÀ½
 			String root = request.getSession().getServletContext().getRealPath("/");
-			//ì„¸ì…˜ê°ì²´ê°€ ë§Œë“¤ì–´ì§€ëŠ”  ì–´í”Œë¦¬ì¼€ì´ì…˜(context)   "/" ì€ root í´ë”ë¥¼ ì˜ë¯¸í•¨ 
-			//ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ë£¨íŠ¸í´ë”ë¥¼ ì•Œì•„ë‚´ë¼ëŠ” ëœ» 
+			//¼¼¼Ç°´Ã¼°¡ ¸¸µé¾îÁö´Â  ¾îÇÃ¸®ÄÉÀÌ¼Ç(context)   "/" Àº root Æú´õ¸¦ ÀÇ¹ÌÇÔ 
+			//¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ ·çÆ®Æú´õ¸¦ ¾Ë¾Æ³»¶ó´Â ¶æ 
 			
-			//ì—…ë¡œë“œ ë  íŒŒì¼ì˜ í´ë”ëª…ê³¼ ë£¨íŠ¸ í´ë” ì—°ê²° ì²˜ë¦¬
+			//¾÷·Îµå µÉ ÆÄÀÏÀÇ Æú´õ¸í°ú ·çÆ® Æú´õ ¿¬°á Ã³¸®
 			String savePath = root + "uploadfiles/" + "nuploadfiles";
-			// web/uploadfiles ë¡œ ë§Œë“¤ì–´ì§
+			// web/uploadfiles ·Î ¸¸µé¾îÁü
 			
-			//request ë¥¼ MultipartRequest ê°ì²´ë¡œ ë³€í™˜í•¨
+			//request ¸¦ MultipartRequest °´Ã¼·Î º¯È¯ÇÔ
 			MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy()); 
-			//MulitpartRequest ì–˜ëŠ” í´ë˜ìŠ¤
-			//new MultipartRequest(requestê°ì²´,  íŒŒì¼ì—…ë¡œë“œí•˜ëŠ” ì €ì¥ê²½ë¡œ, ì—…ë¡œë“œ í•  íŒŒì¼ì˜ ìš©ëŸ‰, ì¸ì½”ë”© ê°’, ë®ì–´ì“°ê¸° ë°©ì§€ í´ë˜ìŠ¤) 
+			//MulitpartRequest ¾ê´Â Å¬·¡½º
+			//new MultipartRequest(request°´Ã¼,  ÆÄÀÏ¾÷·ÎµåÇÏ´Â ÀúÀå°æ·Î, ¾÷·Îµå ÇÒ ÆÄÀÏÀÇ ¿ë·®, ÀÎÄÚµù °ª, µ¤¾î¾²±â ¹æÁö Å¬·¡½º) 
 			
-			//new DefaultFileRenamePolicy()ëŠ” íŒŒì¼ì„ ë®ì–´ì“°ê¸°í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì´ë¦„ ë³€ê²½í•´ì„œ  ì´ë¦„(1).txt, ì´ë¦„(2)tx. ì´ë ‡ê²Œ êµ¬ë¶„í•´ì„œ íŒŒì¼ ì—…ë¡œë“œí•˜ëŠ” í´ë˜ìŠ¤  
+			//new DefaultFileRenamePolicy()´Â ÆÄÀÏÀ» µ¤¾î¾²±âÇÏ´Â°Ô ¾Æ´Ï¶ó ÀÌ¸§ º¯°æÇØ¼­  ÀÌ¸§(1).txt, ÀÌ¸§(2)tx. ÀÌ·¸°Ô ±¸ºĞÇØ¼­ ÆÄÀÏ ¾÷·ÎµåÇÏ´Â Å¬·¡½º  
 					
 			int no = Integer.parseInt(mrequest.getParameter("no"));			
-			//ì´ì œ requestê°€ mrequstë¡œ ë°”ê¼ˆê¸° ë•Œë¬¸ì— mrequestì—ì„œ getParameter() í•´ì•¼í•œë‹¤.
+			//ÀÌÁ¦ request°¡ mrequst·Î ¹Ù²¼±â ¶§¹®¿¡ mrequest¿¡¼­ getParameter() ÇØ¾ßÇÑ´Ù.
 			String title = mrequest.getParameter("title");
 			String writer = mrequest.getParameter("writer");
 			String content = mrequest.getParameter("content");
-			String originalFileName = mrequest.getFilesystemName("file"); //íŒŒì¼ ì´ë¦„ë§Œ ì¶”ì¶œ
+			String originalFileName = mrequest.getFilesystemName("file"); //ÆÄÀÏ ÀÌ¸§¸¸ ÃßÃâ
 			
 			
-			//ì—…ë¡œë“œë˜ì–´ ìˆëŠ” íŒŒì¼ëª…ì„ 'ë…„ì›”ì¼ì‹œë¶„ì´ˆ.í™•ì¥ì' í˜•ì‹ìœ¼ë¡œ ë°”ê¾¸ê¸° ì²˜ë¦¬
+			//¾÷·ÎµåµÇ¾î ÀÖ´Â ÆÄÀÏ¸íÀ» '³â¿ùÀÏ½ÃºĞÃÊ.È®ÀåÀÚ' Çü½ÄÀ¸·Î ¹Ù²Ù±â Ã³¸®
 			if(originalFileName != null){
-				//ë³€ê²½í•  íŒŒì¼ëª… ë§Œë“¤ê¸° 
+				//º¯°æÇÒ ÆÄÀÏ¸í ¸¸µé±â 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + 
 				originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
 				
-				//íŒŒì¼ëª… ë°”ê¾¸ë ¤ë©´ File ê°ì²´ì˜ renameTo() ë©”ì†Œë“œ ì‚¬ìš©í•¨
-				File originalFile = new File(savePath + "\\" + originalFileName); // ì›¹ì—ì„œëŠ” ê²½ë¡œì“¸ ë–„ /ë¥¼ ì“°ì§€ë§Œ ì—¬ê¸°ì„œëŠ” "\\" ì‚¬ìš© 
-				File renameFile = new File(savePath + "\\" + renameFileName); //java.io.File import í•´ì•¼ë¨
-				//ì„±ê³µí•˜ë©´ true , ì‹¤íŒ¨í•˜ë©´ falseê°€ ë¦¬í„´ë¨
+				//ÆÄÀÏ¸í ¹Ù²Ù·Á¸é File °´Ã¼ÀÇ renameTo() ¸Ş¼Òµå »ç¿ëÇÔ
+				File originalFile = new File(savePath + "\\" + originalFileName); // À¥¿¡¼­´Â °æ·Î¾µ ‹š /¸¦ ¾²Áö¸¸ ¿©±â¼­´Â "\\" »ç¿ë 
+				File renameFile = new File(savePath + "\\" + renameFileName); //java.io.File import ÇØ¾ßµÊ
+				//¼º°øÇÏ¸é true , ½ÇÆĞÇÏ¸é false°¡ ¸®ÅÏµÊ
 				if(!originalFile.renameTo(renameFile)){
-					//ì´ë¦„ë°”ê¾¸ê¸°ê°€ ì‹¤íŒ¨í–ˆë‹¤ë©´  ì› íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ì–´ì„œ, ë³µì‚¬ë³¸ íŒŒì¼ì— ì˜®ê²¨ ê¸°ë¡í•˜ê³  í´ë”ì—ì„œ ì› íŒŒì¼ì„ ì‚­ì œí•¨
+					//ÀÌ¸§¹Ù²Ù±â°¡ ½ÇÆĞÇß´Ù¸é  ¿ø ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ¾î¼­, º¹»çº» ÆÄÀÏ¿¡ ¿Å°Ü ±â·ÏÇÏ°í Æú´õ¿¡¼­ ¿ø ÆÄÀÏÀ» »èÁ¦ÇÔ
 					int read = -1;
 					byte[] buf = new byte[1024];
 					
@@ -110,25 +110,25 @@ public class NoticeUpdateServlet extends HttpServlet {
 					FileOutputStream fout = new FileOutputStream(renameFile);
 					
 					
-					while((read = fin.read(buf, 0, buf.length)) != -1){  //readì—ëŠ” ì½ì–´ë“¤ì¸ ë°”ì´íŠ¸ ì‚¬ì´ì¦ˆê°€ ë“¤ì–´ìˆìŒ, ë‹¤ ì½ìœ¼ë©´ -1ì´ ë“¤ì–´ê°
+					while((read = fin.read(buf, 0, buf.length)) != -1){  //read¿¡´Â ÀĞ¾îµéÀÎ ¹ÙÀÌÆ® »çÀÌÁî°¡ µé¾îÀÖÀ½, ´Ù ÀĞÀ¸¸é -1ÀÌ µé¾î°¨
 						fout.write(buf, 0 , read);					
-						//bufê°€ ê°€ì§„ ê°’ì„ 0 ë°”ì´íŠ¸ë¶€í„° readê°€ ê°€ì§„ ë§Œí¼ writeí•´ë¼						
+						//buf°¡ °¡Áø °ªÀ» 0 ¹ÙÀÌÆ®ºÎÅÍ read°¡ °¡Áø ¸¸Å­ writeÇØ¶ó						
 					}
 					fin.close();
 					fout.close();
 					
-					//í´ë”ì—ì„œ ì› íŒŒì¼ì„ ì‚­ì œí•¨
+					//Æú´õ¿¡¼­ ¿ø ÆÄÀÏÀ» »èÁ¦ÇÔ
 					originalFile.delete();
 			
 				}
-				//ì—…ë¡œë“œ ëœ íŒŒì¼ì´ ìˆì„ ê²½ìš°
-				 notice = new Notice(no, title, writer, content, null, originalFileName, renameFileName, 0); //ë¶ˆëŸ¬ì˜¨ ê°’ìœ¼ë¡œ noticeê°ì²´ ì´ˆê¸°í™”
+				//¾÷·Îµå µÈ ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì
+				 notice = new Notice(no, title, writer, content, null, originalFileName, renameFileName, 0); //ºÒ·¯¿Â °ªÀ¸·Î notice°´Ã¼ ÃÊ±âÈ­
 				
 				
 			}
 			else{
-				// ì—…ë¡œë“œ ëœ íŒŒì¼ì´ ì—†ì„ ê²½ìš°(ì²¨ë¶€íŒŒì¼ì´ ì—†ì„ ê²½ìš°)
-				 notice = new Notice(no, title, writer, content, null, null, null, 0); //ë¶ˆëŸ¬ì˜¨ ê°’ìœ¼ë¡œ noticeê°ì²´ ì´ˆê¸°í™”
+				// ¾÷·Îµå µÈ ÆÄÀÏÀÌ ¾øÀ» °æ¿ì(Ã·ºÎÆÄÀÏÀÌ ¾øÀ» °æ¿ì)
+				 notice = new Notice(no, title, writer, content, null, null, null, 0); //ºÒ·¯¿Â °ªÀ¸·Î notice°´Ã¼ ÃÊ±âÈ­
 			}		
 		
 		
@@ -137,7 +137,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 			response.sendRedirect("/semi/nlist");
 		}else{
 			view= request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "ê³µì§€ê¸€ ìˆ˜ì • ì²˜ë¦¬ ì‹¤íŒ¨!");
+			request.setAttribute("message", "°øÁö±Û ¼öÁ¤ Ã³¸® ½ÇÆĞ!");
 			view.forward(request, response);
 		}
 		

@@ -55,51 +55,7 @@
 <%-- 헤더바 끝 --%>
 
 <style>
-ul#navi {
-	width: 200px;
-	text-indent: 10px;
-	background-color: lightgray;
-}
 
-ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-li.group {
-	margin-bottom: 3px;
-}
-
-li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightblue;
-	cursor: pointer;
-}
-
-ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
-}
-
-ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
-}
-
-ul.sub li:hover {
-	background: aliceblue;
-}
-
-
-<!-- 세로목록 끝 -->
 #table{
 width:66vw;
 }
@@ -123,7 +79,7 @@ width:7vw;
 text-align:center;
 }
 #firstTr{
-background-color:lightblue;
+background-color: #F29661; 
 }
 #searchInput{
 	width:10vw;
@@ -131,12 +87,21 @@ background-color:lightblue;
 
 }
 #searchButton{
-	width:3vw;
-	height:36px;
+	width:4vw;
+	height:37px;
 }
 #writeButton{
 	
-	height:36px;
+	height:37px;
+}
+#menuBarBorder{
+	
+	padding-top : 20px;
+	margin-left:10px;
+	margin-right:10px;
+	width:220px;
+	height:450px;
+	background-color:#EAEAEA;
 }
 </style>
 
@@ -155,65 +120,13 @@ background-color:lightblue;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
-		<ul id="navi">
-			<li class="group">
-				<div class="title">카테고리</div>
-				<ul class="sub">
-					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/qlist">QnA게시판</a></li>
-				</ul>
-			</li>
-			
-								<script type="text/javascript">
-						$(function() {
-							$
-									.ajax({
-										url : "/semi/ftop3",
-										type : "get",
-										dataType : "json",
-										success : function(data) {
-											var json = JSON.parse(JSON
-													.stringify(data));
-											var values = "";
-											var rank = 0;
-											for ( var i in json.list) {
-										/* 		values += "<tr><td><a href='/first/bdetail?bnum="
-														+ json.list[i].bnum
-														+ "&page=1'>"
-														+ decodeURIComponent(json.list[i].btitle)
-														+ "</a></td></tr>"; */
-											rank += 1;		
-														
-														values += "<li><a href='/semi/fdetail?no="
-												+ json.list[i].bnum
-												+ "&page=1'>"
-												/* + decodeURIComponent(json.list[i].btitle) */
-												+"<img src=\"/semi/uploadfiles/top3Images/" + rank + ".jpg\" width=\"200px\" height=\"70px\">"
-												+ "</a></li>"; 	 
-											
-												
-											}
-
-											$('#toplist').html(values);
-										}
-									});
-						});
-					</script>
-			<li class="group">
-			<div class="title">후기 인기 순위</div>
-				<ul id="toplist">				
-				</ul>
-			</li>
-		</ul>
-	</div>
-	
-		</ul>
-	</div>
-
-  
+ 			<div class="col-md-2">
+				  		<%if(member != null){ %>
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%}else{ %>
+	<%@ include file="../../boardLeftBar2.jsp"%>	
+	<%} %>
+			</div>
   <div class="col-md-8">
 
 	
@@ -267,20 +180,39 @@ background-color:lightblue;
 	
 	<!-- 검색 -->
 		<div align="right">
-			<form action="/semi/qsearch" method="post">
+			
 				
 				<table>
 				<tr>
 				<td><input type="search" autocomlete class="form-control" name="keyword" id="searchInput" length="50"></td>
-				<td><input type="submit" class="form-control" value="검색" id="searchButton" ></td>
-				<td><%if(member!=null) { %>	
-					<button onclick="return insertPage();" class="form-control">글쓰기</button>
-				<%} %></td>
+				<td><button onclick="return serchList();" class="form-control" id="serchList">검색</button></td>
+				<script type="text/javascript">
+					function serchList() {
+					if($("#searchInput").val() == ""){
+									
+						alert("원하는 검색어를 입력하세요 ");
+					}
+					else{
+						var keyword =  $("#searchInput").val() ;
+						location.href = "/semi/qsearch?keyword="+keyword;
+						return false;						
+					}					
+				}
+				</script>	
+				
+				
+				
+				<td>
+				<%if(member!=null) { %>	
+					<button onclick="return insertPage();" class="form-control" id="writeButton">글쓰기</button>
+				<%} %>
+				</td>
+
 				</tr>
 			
 			</table>
 			
-				</form>
+				
 			</div>
 
 
@@ -323,27 +255,7 @@ background-color:lightblue;
   </div>
   </div>
 
-
-
-
-
-<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
+<%@ include file="../../footerbar.jsp" %>
 
 </body>
 </html>

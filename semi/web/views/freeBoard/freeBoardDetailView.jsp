@@ -4,7 +4,7 @@
  <%
  FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
  CommentBoard cboard = (CommentBoard)request.getAttribute("cboard");
- %>   
+ %>    
     
 <!DOCTYPE html>
 <html>
@@ -12,18 +12,81 @@
 <meta charset="UTF-8">
 <title>noticeDetailView</title>
 <style type="text/css">
-	#reply{
-		
-	}
 	
-	#replyDiv{
-	width:62vw;
+	
+#replyDiv{
+	width:61vw;
 	height:50px;
 	border-top: 1px solid #BDBDBD;
 	border-bottom: 1px solid #BDBDBD;
 	padding-top : 5px;
-	}
+}
+	
+<!-- 테이블 -->
+#detailview{
+	width:66vw;
+}
+
+#textBox{
+	height:415px;
+	font-size : 15px;
+}
+#type{
+width:5vw;
+}
+#title{
+
+width:40vw;
+}
+#readCount{
+width:5vw;
+}
+#date{ 
+width:7vw;
+}
+#writer{
+width:7vw;
+}
+
+#detailTitlebar{
+background-color: #F29661;
+color: #4C4C4C;
+}
+#textBox{
+	height:200px;
+	font-size : 15px;
+}
+
+<!-- 댓글 -->
+
+
+	
+#replyview{
+	width:60vw;
+}
+#commentWriter{
+	color: black;
+	font-weight: bold; 
+	
+}
+#commentContent{
+	color: black;
+}
+#deleteBtn{
+	height:50px;
+	padding-bottom:10px;
+	margin-left : 8px;
+
+
+}
+#replyinput{
+	width:62vw;
+}
+	
 </style>
+
+
+
 <script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
 <!-- 카테고리  -->
 
@@ -41,116 +104,7 @@
 
 <%-- 헤더바 끝 --%>
 
-<style>
-ul#navi {
-	width: 200px;
-	text-indent: 10px;
-	background-color: lightgray;
-}
 
-ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-li.group {
-	margin-bottom: 3px;
-}
-
-li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightblue;
-	cursor: pointer;
-}
-
-ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
-}
-
-ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
-}
-
-ul.sub li:hover {
-	background: aliceblue;
-}
-<!-- 세로목록 끝 -->
-
-
-<!-- 테이블 -->
-#detailview{
-	width:66vw;
-}
-
-#textBox{
-	height:200px;
-	
-}
-#type{
-width:5vw;
-}
-#title{
-
-width:40vw;
-}
-#readCount{
-width:5vw;
-}
-#date{
-width:7vw;
-}
-#writer{
-width:7vw;
-}
-#file{
-
-}
-#detailTitlebar{
-background : lightblue;
-color: #4C4C4C;
-}
-#textBox{
-	height:200px;
-	font-size : 15px;
-}
-
-
-
-
-
-<!-- 댓글 -->
-#replyview{
-	width:62vw;
-}
-#commentWriter{
-	color: black;
-	font-weight: bold;
-	
-}
-#commentContent{
-	color: black;
-	font-weight: bold;
-}
-#deleteBtn{
-	height:50px;
-	padding-bottom:10px;
-
-
-}
-#replyinput{
-	width:62vw;
-
-</style>
 
 <body>
 	
@@ -159,8 +113,6 @@ color: #4C4C4C;
 
 <script type="text/javascript">
 	window.onload = function(){ 
-	
-
 		var memberid = "<%=member.getMemberId() %>";		
 		$.ajax({url: "/semi/reList",			
 			data: {boardNum :  $("#boardNum").val()},
@@ -168,21 +120,12 @@ color: #4C4C4C;
 			  success: function(data){
 					
 					
-					var jsonStr = JSON.stringify(data); 
-				
-					var json = JSON.parse(jsonStr); 
-					
-					var values = $("#reply").html();	
-					
-					
+					var jsonStr = JSON.stringify(data); 				
+					var json = JSON.parse(jsonStr); 					
+					var values = $("#reply").html();						
 					for(var i in json.list){
 						
-		
-				
-						
 			 		if(memberid ==  decodeURIComponent(json.list[i].writer)){
-				
-								
 			 		$("#reply").append(							
 						"<div   id=\"replyDiv\"  style=\"float:left;  >" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
 					
@@ -210,10 +153,7 @@ color: #4C4C4C;
 
 	}
 	
-	
 	function commentDelete(commentNum, boardNum) {		
-	
-			        
         var memberid = "<%=member.getMemberId() %>";		
 		$.ajax({url: "/semi/commentDelete",			
 			data: {boardNum : boardNum, commentNum : commentNum},
@@ -223,13 +163,8 @@ color: #4C4C4C;
 				
 					var json = JSON.parse(jsonStr); 
 					
-				
-					
 					$("#reply").html("");
-					
-					
 					for(var i in json.list){
-						
 			 		if(memberid ==  decodeURIComponent(json.list[i].writer)){
 
 			 			$("#reply").append(							
@@ -251,11 +186,7 @@ color: #4C4C4C;
 			  error : function(data){  //실패했을 때 구동되는 함수
 				  consolse.log("에러발생 : " + data);
 			  }
-			
 		});			
-        
-        
-        //
         
 	} 
 	
@@ -266,21 +197,13 @@ color: #4C4C4C;
 <%} else {%>
 <div class="row" style="margin-top:200px;">
 <%}%>
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
-		<ul id="navi">
-			<li class="group">
-				<div class="title">카테고리</div>
-				<ul class="sub">
-					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/qlist">QnA게시판</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-  
+			<div class="col-md-2">
+				  		<%if(member != null){ %>
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%}else{ %>
+	<%@ include file="../../boardLeftBar2.jsp"%>	
+	<%} %>
+			</div>
   <div class="col-md-8">
 
 	<!-- 게시글 -->
@@ -299,25 +222,11 @@ color: #4C4C4C;
 		<td id="date"><label><%=fboard.getfreeBoardDate() %></label></td>
 		<td id="writer"><label><%=fboard.getfreeBoardWriter() %></label></td>
 		
-		<!-- 
-		<td id="file"><label>
-		<%if(fboard.getOriginalImageName() != null){	%>	
-		<a href="/semi/ffdown?oname=<%=fboard.getOriginalImageName()%>&rname=<%=fboard.getRenameImageName()%>"> <%=fboard.getOriginalImageName() %></a> 
-			<%}else{ %> 
-		첨부파일 없음
-		<%} %></label></td>
-		 -->
-		
 		
 	<tr id="textBox">
-		<td colspan="6">
+		<td colspan="6" height="415px">
 		<%if(fboard.getOriginalImageName() != null){	%>	
 			
-			<!--  
-			<img src="/semi/uploadfiles/fuploadfiles/<%=fboard.getRenameImageName()%>" width="500px"  height="400px"></img>
-			<%=fboard.getfreeBoardContent() %>
-			-->
-		
 		
 			<img src="/semi/uploadfiles/fuploadfiles/<%=fboard.getRenameImageName()%>" width="400px" height="400px" title="클릭하시면 원본크기로 보실 수 있습니다."
    				  style="cursor: pointer;" onclick="doImgPop('/semi/uploadfiles/fuploadfiles/<%=fboard.getRenameImageName()%>')"  />
@@ -349,9 +258,9 @@ color: #4C4C4C;
 				}
 			</script>
 		
-			<%=fboard.getfreeBoardContent() %>
+			<%=fboard.getfreeBoardContent().replaceAll("\n","<br>") %>
 		<%}else{ %> 			
-			<%=fboard.getfreeBoardContent() %>
+			<%=fboard.getfreeBoardContent().replaceAll("\n","<br>") %>
 			<%} %>
 		</td>
 	
@@ -368,14 +277,6 @@ color: #4C4C4C;
 	
 	</table>
 	<!-- 게시글 -->
-
-
-	
-	
-	
-			
-	
-	
 
 
 	<!-- 댓글 입력-->
@@ -412,16 +313,11 @@ color: #4C4C4C;
 							for(var i in json.list){
 								
 					 		if(memberid ==  decodeURIComponent(json.list[i].writer)){
-						
-									 
-					 			$("#reply").append(							
+						 
+					 		$("#reply").append(							
 										"<div   id=\"replyDiv\"  style=\"float:left;  >" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
-									
-									
 										+"</div>" + "<div>" 
-										
 										+"<button id =\"deleteBtn\" class= \"btn btn-danger\" onclick=" + "commentDelete("+json.list[i].commentNum+","+json.list[i].boardNum+")>삭제</button>"	
-										
 										+"<div>" +"<br style=\"clear:left\">"); 
 								 
 							}else{
@@ -457,23 +353,8 @@ color: #4C4C4C;
 
 	
 	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
+	
+<%@ include file="../../footerbar.jsp" %>
 
 
 

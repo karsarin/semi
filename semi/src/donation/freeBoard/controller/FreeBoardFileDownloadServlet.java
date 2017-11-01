@@ -31,48 +31,48 @@ public class FreeBoardFileDownloadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//íŒŒì¼ ë‹¤ìš´ë¡œë“œ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		//ÆÄÀÏ ´Ù¿î·Îµå Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		request.setCharacterEncoding("utf-8");
 		
-		//í”„ë¡œì íŠ¸ ë‚´ì˜ ì €ì¥ëœ íŒŒì¼ì˜ í´ë” ê²½ë¡œì •ë³´ ì•Œì•„ëƒ„
+		//ÇÁ·ÎÁ§Æ® ³»ÀÇ ÀúÀåµÈ ÆÄÀÏÀÇ Æú´õ °æ·ÎÁ¤º¸ ¾Ë¾Æ³¿
 		String savePath = request.getSession().getServletContext().getRealPath("/uploadfiles/fuploadfiles");
-			// getServletContext() ì„¸ì…˜ì„ ê°€ì§€ê³  ìˆëŠ” ì´ í”„ë¡œì íŠ¸ë¥¼ ì˜ë¯¸í•¨
+			// getServletContext() ¼¼¼ÇÀ» °¡Áö°í ÀÖ´Â ÀÌ ÇÁ·ÎÁ§Æ®¸¦ ÀÇ¹ÌÇÔ
 			
 		String originalFileName = request.getParameter("oname");
 		String renameFileName = request.getParameter("rname");
 		
 		File downFile = new File(savePath + "/" + renameFileName);
 		
-		//í´ë¼ì´ì–¸íŠ¸ë¡œ ë‚´ë³´ë‚¼ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ìƒì„±
-		ServletOutputStream downOut = response.getOutputStream();//responseê°€ ê°€ì§€ê³  ìˆëŠ” í´ë¼ì´ì–¸íŠ¸ì˜ urlì„ ê°€ì§€ê³  OutputStream ìƒì„±
+		//Å¬¶óÀÌ¾ğÆ®·Î ³»º¸³¾ Ãâ·Â ½ºÆ®¸² »ı¼º
+		ServletOutputStream downOut = response.getOutputStream();//response°¡ °¡Áö°í ÀÖ´Â Å¬¶óÀÌ¾ğÆ®ÀÇ urlÀ» °¡Áö°í OutputStream »ı¼º
 		
 		
-		//ì½ì–´ì„œ ë‚´ë³´ë‚¼ ë•ŒëŠ” original íŒŒì¼ì„ ë‚´ë³´ë‚´ì•¼í•˜ëŠ”ë° 
+		//ÀĞ¾î¼­ ³»º¸³¾ ¶§´Â original ÆÄÀÏÀ» ³»º¸³»¾ßÇÏ´Âµ¥ 
 		
-		/*ë‹¤ìš´ë°›ìœ¼ë©´ OSê°€ ë°›ì•„ì„œ ì €ì¥í•˜ëŠ”ë°  ë‹¤ìš´ë¡œë“œ í´ë”ì— ê¸°ë³¸ìœ¼ë¡œ ì €ì¥ë¨
-		ê·¼ë° OSì˜ í•œê¸€ë¬¸ìì…‹ì€  ut-8 ì•„ë‹˜
-		ê·¸ë˜ì„œ í•œê¸€ì´ë¦„ìœ¼ë¡œ ë‚˜ê°€ë”ë¼ë„ OSì˜ ë¬¸ìì…‹ìœ¼ë¡œ ë°”ë€Œê¸° ë•Œë¬¸ì— ë¶„ëª…íˆ í•œê¸€ ê¹¨ì§
-		ë‚´ë³´ë‚´ëŠ” ì• ì˜ íŒŒì¼ì´ë¦„ì€ ë°›ì•„ì£¼ëŠ” OSì˜ ë¬¸ì ì¸ì½”ë”©ìœ¼ë¡œ ë°”ê¿”ì¤˜ì•¼ë¨
+		/*´Ù¿î¹ŞÀ¸¸é OS°¡ ¹Ş¾Æ¼­ ÀúÀåÇÏ´Âµ¥  ´Ù¿î·Îµå Æú´õ¿¡ ±âº»À¸·Î ÀúÀåµÊ
+		±Ùµ¥ OSÀÇ ÇÑ±Û¹®ÀÚ¼ÂÀº  ut-8 ¾Æ´Ô
+		±×·¡¼­ ÇÑ±ÛÀÌ¸§À¸·Î ³ª°¡´õ¶óµµ OSÀÇ ¹®ÀÚ¼ÂÀ¸·Î ¹Ù²î±â ¶§¹®¿¡ ºĞ¸íÈ÷ ÇÑ±Û ±úÁü
+		³»º¸³»´Â ¾ÖÀÇ ÆÄÀÏÀÌ¸§Àº ¹Ş¾ÆÁÖ´Â OSÀÇ ¹®ÀÚ ÀÎÄÚµùÀ¸·Î ¹Ù²ãÁà¾ßµÊ
 		*/
 		response.setContentType("text/plane; charset=utf-8");
-		//íŒŒì¼ë¡œ ë‚´ë³´ë‚´ëŠ”ê±´ htmlì´ë¼ê³  í•˜ë©´ ì•ˆë˜ê³  planeìœ¼ë¡œ í•´ì•¼ë¨
+		//ÆÄÀÏ·Î ³»º¸³»´Â°Ç htmlÀÌ¶ó°í ÇÏ¸é ¾ÈµÇ°í planeÀ¸·Î ÇØ¾ßµÊ
 	
-		// í•œê¸€ íŒŒì¼ëª… ì¸ì½”ë”© ì²˜ë¦¬í•¨ : ë°›ì•„ì£¼ëŠ” ì‹œìŠ¤í…œì˜ ì¸ì½”ë”©ìœ¼ë¡œ ë³€í™˜í•¨
-		response.addHeader("Content-Disposition", "attachment; filename=\"" + new String(originalFileName.getBytes("utf-8"), "ISO-8859-1") + "\"");  //ë‹¤ìš´ë¡œë“œ ë°›ì„ íŒŒì¼ëª… ì§€ì •í•˜ëŠ”ê±°
-		//ìë°”ì—ì„œ ë”°ì˜´í‘œ ì•ˆì— ë˜ ë”°ì˜´í‘œ ì“°ê³ ì‹¶ì„ ë•Œ ì—­ìŠ¬ë˜ì‰¬ \ ì“°ê³  " ì´ê±° ì“°ë©´ ë¨
-		//new String(originalFileName.getBytes("utf-8") -> String ê°ì²´ë¥¼ utf-8(ì›ë˜ ë¬¸ìì— ì ìš©ëœ ë¬¸ìì…‹)ì´ ì ìš©ëœ byte ê°ì²´ë¡œ ë°”ê¿”ì¤Œ
+		// ÇÑ±Û ÆÄÀÏ¸í ÀÎÄÚµù Ã³¸®ÇÔ : ¹Ş¾ÆÁÖ´Â ½Ã½ºÅÛÀÇ ÀÎÄÚµùÀ¸·Î º¯È¯ÇÔ
+		response.addHeader("Content-Disposition", "attachment; filename=\"" + new String(originalFileName.getBytes("utf-8"), "ISO-8859-1") + "\"");  //´Ù¿î·Îµå ¹ŞÀ» ÆÄÀÏ¸í ÁöÁ¤ÇÏ´Â°Å
+		//ÀÚ¹Ù¿¡¼­ µû¿ÈÇ¥ ¾È¿¡ ¶Ç µû¿ÈÇ¥ ¾²°í½ÍÀ» ¶§ ¿ª½½·¡½¬ \ ¾²°í " ÀÌ°Å ¾²¸é µÊ
+		//new String(originalFileName.getBytes("utf-8") -> String °´Ã¼¸¦ utf-8(¿ø·¡ ¹®ÀÚ¿¡ Àû¿ëµÈ ¹®ÀÚ¼Â)ÀÌ Àû¿ëµÈ byte °´Ã¼·Î ¹Ù²ãÁÜ
 		
-		//"utf-8" ë¡œ ëœ ë¬¸ìì—´ì„  "ISO-8859-1"ë¡œ ë°”ê¿”ì„œ response ì˜ Headerì— attachmentí•´ì„œ ë‚´ë³´ëƒ„
+		//"utf-8" ·Î µÈ ¹®ÀÚ¿­À»  "ISO-8859-1"·Î ¹Ù²ã¼­ response ÀÇ Header¿¡ attachmentÇØ¼­ ³»º¸³¿
 		
-		response.setContentLength((int)downFile.length()); //íŒŒì¼ì˜ size ì•Œì•„ë‚´ëŠ”ê±° , longí˜•ìœ¼ë¡œ ë¦¬í„´ë˜ë‹ˆê¹Œ intí˜•ìœ¼ë¡œ í˜•ë³€í™˜í•´ì¤Œ
+		response.setContentLength((int)downFile.length()); //ÆÄÀÏÀÇ size ¾Ë¾Æ³»´Â°Å , longÇüÀ¸·Î ¸®ÅÏµÇ´Ï±î intÇüÀ¸·Î Çüº¯È¯ÇØÁÜ
 		
 		
-		//ì €ì¥ëœ í´ë”ì—ì„œ íŒŒì¼ì„ ì½ì–´ì„œ, í´ë¼ì´ì–¸íŠ¸í•œí…Œ ë‚´ë³´ë‚´ê¸°  : íŒŒì¼ ë‹¤ìš´
+		//ÀúÀåµÈ Æú´õ¿¡¼­ ÆÄÀÏÀ» ÀĞ¾î¼­, Å¬¶óÀÌ¾ğÆ®ÇÑÅ× ³»º¸³»±â  : ÆÄÀÏ ´Ù¿î
 		BufferedInputStream bin = new BufferedInputStream(new FileInputStream(downFile));
-		//íŒŒì¼ì´ txtë¼ëŠ” ë³´ì¥ì´ ì—†ê¸°ë•Œë¬¸ì— ê·¸ëƒ¥ ê¸°ë³¸ ìŠ¤íŠ¸ë¦¼ ì¦‰, ë°”ì´íŠ¸ìŠ¤íŠ¸ë¦¼ ì¨ì•¼ë¨		
+		//ÆÄÀÏÀÌ txt¶ó´Â º¸ÀåÀÌ ¾ø±â¶§¹®¿¡ ±×³É ±âº» ½ºÆ®¸² Áï, ¹ÙÀÌÆ®½ºÆ®¸² ½á¾ßµÊ		
 		
 		int read = -1;
-		while((read = bin.read()) != -1 ){  //ë‹¤ ì½ìœ¼ë©´  -1ì´ ë¦¬í„´ë˜ë‹ˆê¹Œ ë‹¤ ì½ì„ë•Œ ê¹Œì§€ ëŒë¦¼
+		while((read = bin.read()) != -1 ){  //´Ù ÀĞÀ¸¸é  -1ÀÌ ¸®ÅÏµÇ´Ï±î ´Ù ÀĞÀ»¶§ ±îÁö µ¹¸²
 			downOut.write(read);
 			downOut.flush();
 		}

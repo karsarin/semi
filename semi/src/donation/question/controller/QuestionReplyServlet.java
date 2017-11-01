@@ -31,7 +31,7 @@ public class QuestionReplyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ëŒ“ê¸€ ë“±ë¡ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		//´ñ±Û µî·Ï Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -45,25 +45,25 @@ public class QuestionReplyServlet extends HttpServlet {
 		
 		QuestionService bservice = new QuestionService();
 		
-		//ì›ê¸€ ì¡°íšŒ
+		//¿ø±Û Á¶È¸
 		Question originQuestion = bservice.selectQuestion(no);
 		
-		//ëŒ“ê¸€ ê°ì²´ ìƒì„±, ê°’ ê¸°ë¡
+		//´ñ±Û °´Ã¼ »ı¼º, °ª ±â·Ï
 		Question replyQuestion = new Question();
 		replyQuestion.setQuestionContent(content);
 		replyQuestion.setQuestionTitle(title);
 		replyQuestion.setQuestionWriter(writer);
-		replyQuestion.setQuestionLevel(originQuestion.getQuestionLevel() + 1); //ì›ë³¸ ê¸€ì˜ ë‹¤ìŒ levelì´ ë˜ì–´ì•¼ ì›ë³¸ê¸€ì˜ ëŒ“ê¸€ ë²ˆí˜¸ì„
-		replyQuestion.setQuestionRef(originQuestion.getQuestionRef()); //ì°¸ì¡°ë²ˆí˜¸ëŠ” ì–´ë–¤ê¸€ì˜ ëŒ“ê¸€ì¸ì§€ ì•Œë ¤ì£¼ë‹ˆê¹Œ ì›ê¸€ë²ˆí˜¸ ê·¸ëŒ€ë¡œ ì ìœ¼ë©´ëŒ
-		if(replyQuestion.getQuestionLevel() == 2 ) { //ëŒ“ê¸€ì˜ ëŒ“ê¸€ì´ë©´
+		replyQuestion.setQuestionLevel(originQuestion.getQuestionLevel() + 1); //¿øº» ±ÛÀÇ ´ÙÀ½ levelÀÌ µÇ¾î¾ß ¿øº»±ÛÀÇ ´ñ±Û ¹øÈ£ÀÓ
+		replyQuestion.setQuestionRef(originQuestion.getQuestionRef()); //ÂüÁ¶¹øÈ£´Â ¾î¶²±ÛÀÇ ´ñ±ÛÀÎÁö ¾Ë·ÁÁÖ´Ï±î ¿ø±Û¹øÈ£ ±×´ë·Î ÀûÀ¸¸é‰Î
+		if(replyQuestion.getQuestionLevel() == 2 ) { //´ñ±ÛÀÇ ´ñ±ÛÀÌ¸é
 			replyQuestion.setQuestionReplyRef(originQuestion.getQuestionNum());		
 		}
 		replyQuestion.setQuestionReplySeq(1);
 		
-		//ê°™ì€ ë ˆë²¨ì˜ ê¸°ì¡´ ëŒ“ê¸€ì˜ seq 1ì¦ê°€ ì²˜ë¦¬í•¨
+		//°°Àº ·¹º§ÀÇ ±âÁ¸ ´ñ±ÛÀÇ seq 1Áõ°¡ Ã³¸®ÇÔ
 		bservice.updateReplySeq(replyQuestion);
 		
-		//ëŒ“ê¸€ ë“±ë¡ ì²˜ë¦¬
+		//´ñ±Û µî·Ï Ã³¸®
 		int result = bservice.insertQuestionReply(originQuestion, replyQuestion);
 		
 		if(result>0){
@@ -71,13 +71,13 @@ public class QuestionReplyServlet extends HttpServlet {
 			if(result2>0) response.sendRedirect("/semi/qlist?page=" + currentPage);
 			else {
 				RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-				request.setAttribute("message", "ì›ê¸€ ë‹µë³€ì™„ë£Œ ìƒíƒœë¡œ ì—…ë°ì´íŠ¸ ì‹¤íŒ¨");
+				request.setAttribute("message", "¿ø±Û ´äº¯¿Ï·á »óÅÂ·Î ¾÷µ¥ÀÌÆ® ½ÇÆĞ");
 				view.forward(request, response);
 			}
 		}
 		else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "QA ëŒ“ê¸€ ë‹¬ê¸° ì‹¤íŒ¨");
+			request.setAttribute("message", "QA ´ñ±Û ´Ş±â ½ÇÆĞ");
 			view.forward(request, response);
 		}
 	}
