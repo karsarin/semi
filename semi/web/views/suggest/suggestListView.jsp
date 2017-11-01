@@ -10,10 +10,12 @@
 <link href="/semi/css/suggest/suggest.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file = "../../rightList.jsp" %>
+	<%@ include file="../../myPageLeftBar.jsp" %>
+	<%-- <%@ include file="../../headerbar.jsp" %>
+	<%@ include file = "../../rightList.jsp" %> --%>
 	
-	<div style="margin-top:200px; margin-left: 30px; width: 230px; height: 500px; float: left;">
+	
+	<%-- <div style="margin-top:200px; margin-left: 30px; width: 230px; height: 500px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">마이페이지</div>
@@ -27,7 +29,8 @@
 				</ul>
 			</li>
 		</ul>
-	</div>
+	</div> --%>
+	
 <%if(member!=null && member.getMemberId().equals("admin")) {%>
 <div class="heading-section text-center" style="margin-top:150px;">	
 <%} else {%>
