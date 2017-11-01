@@ -45,6 +45,18 @@ public class CategoryService {
 		return result;
 	}
 
+	public int deletePurchase(int cnum)
+	{
+		Connection con = getConnection();
+		int result = new CategoryDao().deletePurchase(con, cnum);
+		
+		if(result > 0)
+			commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+	
 	public int insertCategory(Category c) {
 		Connection con = getConnection();
 		int result = new CategoryDao().insertCategory(con, c);
@@ -116,8 +128,13 @@ public class CategoryService {
 	public int updateApprove(int cno) {
 		Connection con = getConnection();
 		int result = new CategoryDao().updateApprove(con, cno);
-		if(result>0) commit(con);
+		
+		if(result > 0) 
+			commit(con);
 		else rollback(con);
+		
+		close(con);
+		
 		return result;
 	}
 
