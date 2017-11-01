@@ -160,7 +160,7 @@ function goPurchaseView(){
 					<button type="button" class="btn btn-success" onclick="return goChatting();">채팅</button>
 				</td>
 			</tr>
-			<%if (member.getMemberId().equals("admin") && category.getApproval().equals("N")) {%>
+			<%if (member != null && member.getMemberId().equals("admin") && category.getApproval().equals("N")) {%>
 				<tr id="noWriter">
 					<td align="center" colspan="2">
 						<button type="button" class="btn btn-success" onclick="location.href='/semi/capprove?cno=<%=category.getCategoryNo()%>'">승인</button>
