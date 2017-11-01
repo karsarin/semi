@@ -63,6 +63,8 @@ public class FreeBoardListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
+	
+		
 		RequestDispatcher view = null;
 		if(list != null) {
 			view = request.getRequestDispatcher("views/freeBoard/freeBoardListView.jsp");
