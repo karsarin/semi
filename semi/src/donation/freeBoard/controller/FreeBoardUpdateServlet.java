@@ -40,7 +40,7 @@ public class FreeBoardUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °øÁö±Û ¼öÁ¤ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê³µì§€ê¸€ ìˆ˜ì • ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -50,59 +50,59 @@ public class FreeBoardUpdateServlet extends HttpServlet {
 		notice.setNoticeContent(request.getParameter("content"));*/
 		
 		
-		//enctype ÀÌ mulitpart ¹æ½ÄÀ¸·Î Àü¼ÛµÇ¾ú´ÂÁö È®ÀÎÇÏ´Â ÀÛ¾÷ÀÌ ÇÊ¿äÇÔ
+		//enctype ì´ mulitpart ë°©ì‹ìœ¼ë¡œ ì „ì†¡ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ëŠ” ì‘ì—…ì´ í•„ìš”í•¨
 		
 		RequestDispatcher view = null;
 		FreeBoard fboard = null;
-		if(!ServletFileUpload.isMultipartContent(request) ){ // request¸¦ °¡Áö°í ¿äÃ»µÈ viewÀÇ form ¾ĞÃà¹æ½ÄÀÌ  multipart ¹æ½ÄÀÎÁö È®ÀÎÇÔ
-															//ServletFileUpload ÀÌ°Ç cos.jar(ÆÄÀÏ ÀÔÃâ·Â ¶óÀÌºê·¯¸®)°¡ Á¦°øÇÔ 
+		if(!ServletFileUpload.isMultipartContent(request) ){ // requestë¥¼ ê°€ì§€ê³  ìš”ì²­ëœ viewì˜ form ì••ì¶•ë°©ì‹ì´  multipart ë°©ì‹ì¸ì§€ í™•ì¸í•¨
+															//ServletFileUpload ì´ê±´ cos.jar(íŒŒì¼ ì…ì¶œë ¥ ë¼ì´ë¸ŒëŸ¬ë¦¬)ê°€ ì œê³µí•¨ 
 			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-			request.setAttribute("message", "form ÀÇ enctype ¼Ó¼º ´©¶ôµÊ!");
+			request.setAttribute("message", "form ì˜ enctype ì†ì„± ëˆ„ë½ë¨!");
 			view.forward(request, response);
 		}
-			//¾÷·Îµå ÇÒ ÆÄÀÏÀÇ ¿ë·® Á¦ÇÑ : 10Mbyte ·Î Á¦ÇÑÇÑ´Ù¸é
+			//ì—…ë¡œë“œ í•  íŒŒì¼ì˜ ìš©ëŸ‰ ì œí•œ : 10Mbyte ë¡œ ì œí•œí•œë‹¤ë©´
 			int maxSize = 1024 * 1024  * 10;
 			
-			//¾÷·ÎµåµÈ ÆÄÀÏÀÇ ÀúÀå À§Ä¡ ÁöÁ¤
-			//ÇØ´ç ÄÁÅ×ÀÌ³Ê(ÅèÄ¹) ±¸µ¿ÁßÀÎ À¥ ¾îÇÃ¸®ÄÉÀÌ¼Ç ·çÆ® Æú´õ(content directory)ÀÇ °æ·Î¸¦ ¾Ë¾Æ³¿
-			//±×·¡¼­ ÇöÀç ÅèÄ¹¿¡¼­ ±¸µ¿ÁßÀÎ ¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ °æ·Î¸¦ ¾Ë¾Æ³»¼­ ±× Æú´õ¾È¿¡ ÀúÀåµÇ°Ô ¼Ò½ºÄÚµå·Î ÁöÁ¤ÇØÁÜ
-			//ÀÌ·¸°Ô ÇÏ¸é ¼­¹ö°¡ ¹Ù²¸µµ ¼Ò½º º¯°æÇÒ ÇÊ¿ä¾øÀ½
+			//ì—…ë¡œë“œëœ íŒŒì¼ì˜ ì €ì¥ ìœ„ì¹˜ ì§€ì •
+			//í•´ë‹¹ ì»¨í…Œì´ë„ˆ(í†°ìº£) êµ¬ë™ì¤‘ì¸ ì›¹ ì–´í”Œë¦¬ì¼€ì´ì…˜ ë£¨íŠ¸ í´ë”(content directory)ì˜ ê²½ë¡œë¥¼ ì•Œì•„ëƒ„
+			//ê·¸ë˜ì„œ í˜„ì¬ í†°ìº£ì—ì„œ êµ¬ë™ì¤‘ì¸ ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ê²½ë¡œë¥¼ ì•Œì•„ë‚´ì„œ ê·¸ í´ë”ì•ˆì— ì €ì¥ë˜ê²Œ ì†ŒìŠ¤ì½”ë“œë¡œ ì§€ì •í•´ì¤Œ
+			//ì´ë ‡ê²Œ í•˜ë©´ ì„œë²„ê°€ ë°”ê»´ë„ ì†ŒìŠ¤ ë³€ê²½í•  í•„ìš”ì—†ìŒ
 			String root = request.getSession().getServletContext().getRealPath("/");
-			//¼¼¼Ç°´Ã¼°¡ ¸¸µé¾îÁö´Â  ¾îÇÃ¸®ÄÉÀÌ¼Ç(context)   "/" Àº root Æú´õ¸¦ ÀÇ¹ÌÇÔ 
-			//¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ ·çÆ®Æú´õ¸¦ ¾Ë¾Æ³»¶ó´Â ¶æ 
+			//ì„¸ì…˜ê°ì²´ê°€ ë§Œë“¤ì–´ì§€ëŠ”  ì–´í”Œë¦¬ì¼€ì´ì…˜(context)   "/" ì€ root í´ë”ë¥¼ ì˜ë¯¸í•¨ 
+			//ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ë£¨íŠ¸í´ë”ë¥¼ ì•Œì•„ë‚´ë¼ëŠ” ëœ» 
 			
-			//¾÷·Îµå µÉ ÆÄÀÏÀÇ Æú´õ¸í°ú ·çÆ® Æú´õ ¿¬°á Ã³¸®
+			//ì—…ë¡œë“œ ë  íŒŒì¼ì˜ í´ë”ëª…ê³¼ ë£¨íŠ¸ í´ë” ì—°ê²° ì²˜ë¦¬
 			String savePath = root + "uploadfiles/" + "fuploadfiles";
-			// web/uploadfiles ·Î ¸¸µé¾îÁü
+			// web/uploadfiles ë¡œ ë§Œë“¤ì–´ì§
 			 
-			//request ¸¦ MultipartRequest °´Ã¼·Î º¯È¯ÇÔ
+			//request ë¥¼ MultipartRequest ê°ì²´ë¡œ ë³€í™˜í•¨
 			MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy()); 
-			//MulitpartRequest ¾ê´Â Å¬·¡½º
-			//new MultipartRequest(request°´Ã¼,  ÆÄÀÏ¾÷·ÎµåÇÏ´Â ÀúÀå°æ·Î, ¾÷·Îµå ÇÒ ÆÄÀÏÀÇ ¿ë·®, ÀÎÄÚµù °ª, µ¤¾î¾²±â ¹æÁö Å¬·¡½º) 
+			//MulitpartRequest ì–˜ëŠ” í´ë˜ìŠ¤
+			//new MultipartRequest(requestê°ì²´,  íŒŒì¼ì—…ë¡œë“œí•˜ëŠ” ì €ì¥ê²½ë¡œ, ì—…ë¡œë“œ í•  íŒŒì¼ì˜ ìš©ëŸ‰, ì¸ì½”ë”© ê°’, ë®ì–´ì“°ê¸° ë°©ì§€ í´ë˜ìŠ¤) 
 			
-			//new DefaultFileRenamePolicy()´Â ÆÄÀÏÀ» µ¤¾î¾²±âÇÏ´Â°Ô ¾Æ´Ï¶ó ÀÌ¸§ º¯°æÇØ¼­  ÀÌ¸§(1).txt, ÀÌ¸§(2)tx. ÀÌ·¸°Ô ±¸ºĞÇØ¼­ ÆÄÀÏ ¾÷·ÎµåÇÏ´Â Å¬·¡½º  
+			//new DefaultFileRenamePolicy()ëŠ” íŒŒì¼ì„ ë®ì–´ì“°ê¸°í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼ ì´ë¦„ ë³€ê²½í•´ì„œ  ì´ë¦„(1).txt, ì´ë¦„(2)tx. ì´ë ‡ê²Œ êµ¬ë¶„í•´ì„œ íŒŒì¼ ì—…ë¡œë“œí•˜ëŠ” í´ë˜ìŠ¤  
 					
 			int no = Integer.parseInt(mrequest.getParameter("no"));			
-			//ÀÌÁ¦ request°¡ mrequst·Î ¹Ù²¼±â ¶§¹®¿¡ mrequest¿¡¼­ getParameter() ÇØ¾ßÇÑ´Ù.
+			//ì´ì œ requestê°€ mrequstë¡œ ë°”ê¼ˆê¸° ë•Œë¬¸ì— mrequestì—ì„œ getParameter() í•´ì•¼í•œë‹¤.
 			String title = mrequest.getParameter("title");
 			String writer = mrequest.getParameter("writer");
 			String content = mrequest.getParameter("content");
-			String originalImageName = mrequest.getFilesystemName("file"); //ÆÄÀÏ ÀÌ¸§¸¸ ÃßÃâ
+			String originalImageName = mrequest.getFilesystemName("file"); //íŒŒì¼ ì´ë¦„ë§Œ ì¶”ì¶œ
 			String boardType = mrequest.getParameter("type");
 			
-			//¾÷·ÎµåµÇ¾î ÀÖ´Â ÆÄÀÏ¸íÀ» '³â¿ùÀÏ½ÃºĞÃÊ.È®ÀåÀÚ' Çü½ÄÀ¸·Î ¹Ù²Ù±â Ã³¸®
+			//ì—…ë¡œë“œë˜ì–´ ìˆëŠ” íŒŒì¼ëª…ì„ 'ë…„ì›”ì¼ì‹œë¶„ì´ˆ.í™•ì¥ì' í˜•ì‹ìœ¼ë¡œ ë°”ê¾¸ê¸° ì²˜ë¦¬
 			if(originalImageName != null){
-				//º¯°æÇÒ ÆÄÀÏ¸í ¸¸µé±â 
+				//ë³€ê²½í•  íŒŒì¼ëª… ë§Œë“¤ê¸° 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				String renameImageName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." + 
 				originalImageName.substring(originalImageName.lastIndexOf(".") + 1);
 				
-				//ÆÄÀÏ¸í ¹Ù²Ù·Á¸é File °´Ã¼ÀÇ renameTo() ¸Ş¼Òµå »ç¿ëÇÔ
-				File originalImage = new File(savePath + "\\" + originalImageName); // À¥¿¡¼­´Â °æ·Î¾µ ‹š /¸¦ ¾²Áö¸¸ ¿©±â¼­´Â "\\" »ç¿ë 
-				File renameImage = new File(savePath + "\\" + renameImageName); //java.io.File import ÇØ¾ßµÊ
-				//¼º°øÇÏ¸é true , ½ÇÆĞÇÏ¸é false°¡ ¸®ÅÏµÊ
+				//íŒŒì¼ëª… ë°”ê¾¸ë ¤ë©´ File ê°ì²´ì˜ renameTo() ë©”ì†Œë“œ ì‚¬ìš©í•¨
+				File originalImage = new File(savePath + "\\" + originalImageName); // ì›¹ì—ì„œëŠ” ê²½ë¡œì“¸ ë–„ /ë¥¼ ì“°ì§€ë§Œ ì—¬ê¸°ì„œëŠ” "\\" ì‚¬ìš© 
+				File renameImage = new File(savePath + "\\" + renameImageName); //java.io.File import í•´ì•¼ë¨
+				//ì„±ê³µí•˜ë©´ true , ì‹¤íŒ¨í•˜ë©´ falseê°€ ë¦¬í„´ë¨
 				if(!originalImage.renameTo(renameImage)){
-					//ÀÌ¸§¹Ù²Ù±â°¡ ½ÇÆĞÇß´Ù¸é  ¿ø ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ¾î¼­, º¹»çº» ÆÄÀÏ¿¡ ¿Å°Ü ±â·ÏÇÏ°í Æú´õ¿¡¼­ ¿ø ÆÄÀÏÀ» »èÁ¦ÇÔ
+					//ì´ë¦„ë°”ê¾¸ê¸°ê°€ ì‹¤íŒ¨í–ˆë‹¤ë©´  ì› íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ì–´ì„œ, ë³µì‚¬ë³¸ íŒŒì¼ì— ì˜®ê²¨ ê¸°ë¡í•˜ê³  í´ë”ì—ì„œ ì› íŒŒì¼ì„ ì‚­ì œí•¨
 					int read = -1;
 					byte[] buf = new byte[1024];
 					
@@ -110,25 +110,25 @@ public class FreeBoardUpdateServlet extends HttpServlet {
 					FileOutputStream fout = new FileOutputStream(renameImage);
 					
 					
-					while((read = fin.read(buf, 0, buf.length)) != -1){  //read¿¡´Â ÀĞ¾îµéÀÎ ¹ÙÀÌÆ® »çÀÌÁî°¡ µé¾îÀÖÀ½, ´Ù ÀĞÀ¸¸é -1ÀÌ µé¾î°¨
+					while((read = fin.read(buf, 0, buf.length)) != -1){  //readì—ëŠ” ì½ì–´ë“¤ì¸ ë°”ì´íŠ¸ ì‚¬ì´ì¦ˆê°€ ë“¤ì–´ìˆìŒ, ë‹¤ ì½ìœ¼ë©´ -1ì´ ë“¤ì–´ê°
 						fout.write(buf, 0 , read);					
-						//buf°¡ °¡Áø °ªÀ» 0 ¹ÙÀÌÆ®ºÎÅÍ read°¡ °¡Áø ¸¸Å­ writeÇØ¶ó						
+						//bufê°€ ê°€ì§„ ê°’ì„ 0 ë°”ì´íŠ¸ë¶€í„° readê°€ ê°€ì§„ ë§Œí¼ writeí•´ë¼						
 					}
 					fin.close();
 					fout.close();
 					
-					//Æú´õ¿¡¼­ ¿ø ÆÄÀÏÀ» »èÁ¦ÇÔ
+					//í´ë”ì—ì„œ ì› íŒŒì¼ì„ ì‚­ì œí•¨
 					originalImage.delete();
 			
 				}
-				//¾÷·Îµå µÈ ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì
-				 fboard = new FreeBoard(no, title, writer, content, null, originalImageName, renameImageName, 0, boardType, 2); //ºÒ·¯¿Â °ªÀ¸·Î notice°´Ã¼ ÃÊ±âÈ­
+				//ì—…ë¡œë“œ ëœ íŒŒì¼ì´ ìˆì„ ê²½ìš°
+				 fboard = new FreeBoard(no, title, writer, content, null, originalImageName, renameImageName, 0, boardType, 2); //ë¶ˆëŸ¬ì˜¨ ê°’ìœ¼ë¡œ noticeê°ì²´ ì´ˆê¸°í™”
 				
 				
 			}
 			else{
-				// ¾÷·Îµå µÈ ÆÄÀÏÀÌ ¾øÀ» °æ¿ì(Ã·ºÎÆÄÀÏÀÌ ¾øÀ» °æ¿ì)
-				fboard = new FreeBoard(no, title, writer, content, null, null, null, 0, boardType, 2); //ºÒ·¯¿Â °ªÀ¸·Î notice°´Ã¼ ÃÊ±âÈ­
+				// ì—…ë¡œë“œ ëœ íŒŒì¼ì´ ì—†ì„ ê²½ìš°(ì²¨ë¶€íŒŒì¼ì´ ì—†ì„ ê²½ìš°)
+				fboard = new FreeBoard(no, title, writer, content, null, null, null, 0, boardType, 2); //ë¶ˆëŸ¬ì˜¨ ê°’ìœ¼ë¡œ noticeê°ì²´ ì´ˆê¸°í™”
 			}		
 		
 		
@@ -137,7 +137,7 @@ public class FreeBoardUpdateServlet extends HttpServlet {
 			response.sendRedirect("/semi/flist");
 		}else{
 			view= request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-			request.setAttribute("message", "ÀÚÀ¯ °Ô½Ã±Û ¼öÁ¤ Ã³¸® ½ÇÆĞ!");
+			request.setAttribute("message", "ììœ  ê²Œì‹œê¸€ ìˆ˜ì • ì²˜ë¦¬ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 		

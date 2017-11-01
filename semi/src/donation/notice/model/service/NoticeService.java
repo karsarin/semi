@@ -25,7 +25,7 @@ public class NoticeService {
 		return listCount;
 	}
 	
-	//ÆäÀÌÁöº° ¸ñ·Ï Á¶È¸¿ë
+	//í˜ì´ì§€ë³„ ëª©ë¡ ì¡°íšŒìš©
 	public ArrayList<Notice> selectList(int currentPage, int limit){
 		Connection con = getConnection();
 		ArrayList<Notice> list = new NoticeDao().selectList(con, currentPage, limit);
@@ -44,7 +44,7 @@ public class NoticeService {
 	public HashMap<Integer, Notice> selectMap() {
 		Connection con = getConnection();
 		HashMap<Integer, Notice> map = new NoticeDao().selectMap(con);
-		//select Á¶È¸ÀÌ±â ¶§¹®¿¡ Æ®·£Àè¼Ç Ã³¸® ÇÊ¿ä¾øÀ½
+		//select ì¡°íšŒì´ê¸° ë•Œë¬¸ì— íŠ¸ëœì­ì…˜ ì²˜ë¦¬ í•„ìš”ì—†ìŒ
 		close(con);				
 		return map;
 	}
@@ -69,7 +69,7 @@ public class NoticeService {
 		}
 		close(con);
 		
-		//ÀÌ ¸Ş¼Òµå¸¦ È£ÃâÇÑ ¼­ºí¸´ ´ÜÀÇ ¸Ş¼Òµå°¡ voidÇüÀÌ¶ó ¸®ÅÏ¾È½ÃÅ´
+		//ì´ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•œ ì„œë¸”ë¦¿ ë‹¨ì˜ ë©”ì†Œë“œê°€ voidí˜•ì´ë¼ ë¦¬í„´ì•ˆì‹œí‚´
 	}
 
 	public int insertNotice(Notice notice) {

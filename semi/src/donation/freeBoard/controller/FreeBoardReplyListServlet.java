@@ -37,7 +37,7 @@ public class FreeBoardReplyListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");  //JSON °´Ã¼·Î ³»º¸³¾¶§´Â text/html ¾Æ´Ô
+		response.setContentType("application/json; charset=utf-8");  //JSON ê°ì²´ë¡œ ë‚´ë³´ë‚¼ë•ŒëŠ” text/html ì•„ë‹˜
 		
 		
 		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
@@ -49,15 +49,15 @@ public class FreeBoardReplyListServlet extends HttpServlet {
 		 
 		//System.out.println(list);
 		 
-		///³»º¸³»´Â°Ç json °´Ã¼ ÇÏ³ª¸¸ ³»º¸³¾ ¼ö ÀÖÀ½
-		//±×·¡¼­ json ¹è¿­À» json °´Ã¼¿¡ ÀúÀåÇÔ
-		//³»º¸³¾ json °´Ã¼ ¼±¾ğ
+		///ë‚´ë³´ë‚´ëŠ”ê±´ json ê°ì²´ í•˜ë‚˜ë§Œ ë‚´ë³´ë‚¼ ìˆ˜ ìˆìŒ
+		//ê·¸ë˜ì„œ json ë°°ì—´ì„ json ê°ì²´ì— ì €ì¥í•¨
+		//ë‚´ë³´ë‚¼ json ê°ì²´ ì„ ì–¸
 		JSONObject job = new JSONObject();
-		//list ¿Å°Ü´ãÀ»  json ¹è¿­ ¼±¾ğ
+		//list ì˜®ê²¨ë‹´ì„  json ë°°ì—´ ì„ ì–¸
 		JSONArray jarr = new JSONArray();
 		
 		for(CommentBoard comment : list){
-			//user °´Ã¼ ÇÑ °³¸¦ ÀúÀåÇÒ json °´Ã¼ ¼±¾ğ
+			//user ê°ì²´ í•œ ê°œë¥¼ ì €ì¥í•  json ê°ì²´ ì„ ì–¸
 			JSONObject j = new JSONObject();
 			j.put("commentNum", comment.getCommentNum());
 			j.put("boardNum", comment.getBoardNum());
@@ -72,13 +72,13 @@ public class FreeBoardReplyListServlet extends HttpServlet {
 		job.put("list", jarr);
 	//	System.out.println("comment job : " + job.toJSONString());
 		PrintWriter pw = response.getWriter();
-		//PrintWriter´Â ¹®ÀÚ ½ºÆ®¸²ÀÌ±â¶§¹®¿¡ object°¡ ³ª°¥ ¼ö ¾ø´Ù. 
-		//¹®ÀÚ ½ºÆ®¸²ÀÌ¹Ç·Î °´Ã¼¸¦ ¹®ÀÚ¿­ÇüÀ¸·Î ¹Ù²ã¼­ ³»º¸³»¾ß ÇÔ
+		//PrintWriterëŠ” ë¬¸ì ìŠ¤íŠ¸ë¦¼ì´ê¸°ë•Œë¬¸ì— objectê°€ ë‚˜ê°ˆ ìˆ˜ ì—†ë‹¤. 
+		//ë¬¸ì ìŠ¤íŠ¸ë¦¼ì´ë¯€ë¡œ ê°ì²´ë¥¼ ë¬¸ìì—´í˜•ìœ¼ë¡œ ë°”ê¿”ì„œ ë‚´ë³´ë‚´ì•¼ í•¨
 		pw.print(job.toJSONString());
 		pw.flush();
 		pw.close();
 		
-	//	System.out.println("ÆÄÀÏ Àü¼Û ¿Ï·á");
+	//	System.out.println("íŒŒì¼ ì „ì†¡ ì™„ë£Œ");
 	}
 
 	/**

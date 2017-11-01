@@ -31,12 +31,12 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °øÁö±Û ¼öÁ¤ÆäÀÌÁö Ãâ·Â Ã³¸®¿ë ÄÁÆ®·Ñ·¯		
-		//¼öÁ¤ÇÒ notice ±ÛÀ» db¿¡¼­ ´Ù½Ã ºÒ·¯¿Í¼­ ¼öÁ¤ÇØ¾ß Á¤È®ÇÔ
+		// ê³µì§€ê¸€ ìˆ˜ì •í˜ì´ì§€ ì¶œë ¥ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬		
+		//ìˆ˜ì •í•  notice ê¸€ì„ dbì—ì„œ ë‹¤ì‹œ ë¶ˆëŸ¬ì™€ì„œ ìˆ˜ì •í•´ì•¼ ì •í™•í•¨
 		response.setContentType("text/html charset=utf-8");
 		
 		Notice notice = new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
-		//¿©±â¼­ DB¿¡ ÀÖ´Â °Ô½Ã±Û Á¤º¸ ÀÌ¹Ì ºÒ·¯¿È
+		//ì—¬ê¸°ì„œ DBì— ìˆëŠ” ê²Œì‹œê¸€ ì •ë³´ ì´ë¯¸ ë¶ˆëŸ¬ì˜´
 		
 		
 		
@@ -48,7 +48,7 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 		}else{
 
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "°øÁö±Û ¼öÁ¤ ÆäÀÌÁö Ãâ·Â Ã³¸® ½ÇÆĞ");
+			request.setAttribute("message", "ê³µì§€ê¸€ ìˆ˜ì • í˜ì´ì§€ ì¶œë ¥ ì²˜ë¦¬ ì‹¤íŒ¨");
 			view.forward(request, response);
 		}
 		

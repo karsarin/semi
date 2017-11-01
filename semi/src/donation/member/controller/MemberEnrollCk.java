@@ -53,7 +53,7 @@ public class MemberEnrollCk extends HttpServlet {
 			 * [가-힣] : 한글
 			 * [a-zA-Z0-9] : 영어/숫자 
 			 * ex) boolean d = Pattern.matches("[가-힝]", "락"); */
-			if(Pattern.matches("^[a-zA-Z]*$", memberId) || Pattern.matches("^[0-9]*$", memberId) ||
+			/*if(Pattern.matches("^[a-zA-Z]*$", memberId) || Pattern.matches("^[0-9]*$", memberId) ||
 			   Pattern.matches("^[a-zA-Z]*$", memberPwd) || Pattern.matches("^[0-9]*$", memberPwd)) {
 				result = "영문자와숫자모두";
 			} else if(!(Pattern.matches("^[a-zA-Z0-9]*$", memberId)) || !(Pattern.matches("^[a-zA-Z0-9]*$", memberPwd))) {
@@ -61,6 +61,15 @@ public class MemberEnrollCk extends HttpServlet {
 			} else {
 				// 아이디, 주민번호, 닉네임, 전화번호 중복확인
 				result = new MemberService().mEnrollCk(memberId,memberNo,memberNik,memberPhone); 
+			}*/
+			result = new MemberService().mEnrollCk(memberId,memberNo,memberNik,memberPhone);
+			if(result.equals("success")) {
+				if(Pattern.matches("^[a-zA-Z]*$", memberId) || Pattern.matches("^[0-9]*$", memberId) ||
+				   Pattern.matches("^[a-zA-Z]*$", memberPwd) || Pattern.matches("^[0-9]*$", memberPwd)) {
+					result = "영문자와숫자모두";
+				} else if(!(Pattern.matches("^[a-zA-Z0-9]*$", memberId)) || !(Pattern.matches("^[a-zA-Z0-9]*$", memberPwd))) {
+					result = "영문자와숫자만";
+				}
 			}
 		}
 

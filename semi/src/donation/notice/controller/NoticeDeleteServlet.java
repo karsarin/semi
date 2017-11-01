@@ -30,16 +30,16 @@ public class NoticeDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//°øÁö±Û »èÁ¦ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		//ê³µì§€ê¸€ ì‚­ì œ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		response.setContentType("text/html charset=utf-8");
 		
 		if( new NoticeService().deleteNotice(Integer.parseInt(request.getParameter("no"))) > 0){
-			//»èÁ¦ÇÏ¸é ¸ñ·ÏÀ¸·Î ¹Ù·Î º¸³»±â
+			//ì‚­ì œí•˜ë©´ ëª©ë¡ìœ¼ë¡œ ë°”ë¡œ ë³´ë‚´ê¸°
 			response.sendRedirect("/semi/nlist");
 		}else{
 			RequestDispatcher errorPage = null;
 			errorPage = request.getRequestDispatcher("views/notice/noticeEorr");
-			request.setAttribute("message", "°øÁö±Û »èÁ¦ ½ÇÆĞ!");
+			request.setAttribute("message", "ê³µì§€ê¸€ ì‚­ì œ ì‹¤íŒ¨!");
 			errorPage.forward(request, response);
 		}
 		

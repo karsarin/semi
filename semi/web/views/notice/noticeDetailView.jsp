@@ -144,7 +144,7 @@ background-color: #F29661;
 						
 					}else{
 						
-						
+						 
 						$("#reply").append(							
 								"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
 								+"</div>" +"<br>");					

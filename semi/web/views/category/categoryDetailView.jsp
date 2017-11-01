@@ -127,7 +127,7 @@ function goPurchaseView(){
 		<table class="table table-bordered" id="table">
 			<tr>
 				<th height="250px" colspan="2">
-					<img src="/uploadfiles/cuploadfiles/<%=category.getRenameImage()%>" width="185px" height="185px">
+					<img src="cuploadfiles/<%=category.getRenameImage()%>" width="185px" height="185px">
 				</th>
 			</tr>
 			<tr>

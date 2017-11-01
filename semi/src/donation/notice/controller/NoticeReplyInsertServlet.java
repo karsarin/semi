@@ -41,7 +41,7 @@ public class NoticeReplyInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("application/json; charset=utf-8");  //JSON °´Ã¼·Î ³»º¸³¾¶§´Â text/html ¾Æ´Ô
+		response.setContentType("application/json; charset=utf-8");  //JSON ê°ì²´ë¡œ ë‚´ë³´ë‚¼ë•ŒëŠ” text/html ì•„ë‹˜
 		
 		String content = request.getParameter("content");	
 		String writer = request.getParameter("writer");	
@@ -72,7 +72,7 @@ public class NoticeReplyInsertServlet extends HttpServlet {
 	         
 	      }else {
 	         RequestDispatcher view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-	         request.setAttribute("message", "°øÁö±Û ´ñ±Û ´Ş±â ½ÇÆĞ");
+	         request.setAttribute("message", "ê³µì§€ê¸€ ëŒ“ê¸€ ë‹¬ê¸° ì‹¤íŒ¨");
 	         view.forward(request, response);
 	      }
 		

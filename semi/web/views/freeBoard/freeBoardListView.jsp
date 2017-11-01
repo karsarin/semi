@@ -88,7 +88,7 @@ background-color: #F29661;
 #searchType{
 	height:37px;
 }
-#writeButton{
+#writeButton{ 
 	height:37px;
 	
 }

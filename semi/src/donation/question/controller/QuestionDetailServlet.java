@@ -31,7 +31,7 @@ public class QuestionDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °Ô½Ã±Û »ó¼¼º¸±â Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸° ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		response.setContentType("text/html; charset=utf-8");
 		
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -39,10 +39,10 @@ public class QuestionDetailServlet extends HttpServlet {
 		
 		QuestionService bservice = new QuestionService();
 		
-		//ÇØ´ç °Ô½Ã±Û¿¡ ´ëÇÑ Á¶È¸¼ö 1 Áõ°¡ Ã³¸®
+		//í•´ë‹¹ ê²Œì‹œê¸€ì— ëŒ€í•œ ì¡°íšŒìˆ˜ 1 ì¦ê°€ ì²˜ë¦¬
 		bservice.addReadCount(no);
 		
-		//ÇØ´ç °Ô½Ã±Û Á¤º¸ ¸®ÅÏ¹ŞÀ½
+		//í•´ë‹¹ ê²Œì‹œê¸€ ì •ë³´ ë¦¬í„´ë°›ìŒ
 		Question question = bservice.selectQuestion(no);
 		
 		RequestDispatcher view = null;
@@ -54,7 +54,7 @@ public class QuestionDetailServlet extends HttpServlet {
 			
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "QA°Ô½Ã±Û »ó¼¼Á¶È¸ ½ÇÆĞ!");
+			request.setAttribute("message", "QAê²Œì‹œê¸€ ìƒì„¸ì¡°íšŒ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 	

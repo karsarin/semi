@@ -35,20 +35,19 @@ public class FreeBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// a ÅÂ±×·Î ¿äÃ»¿Â°Ç doGet()ÀÌ ¹ŞÀ½
-				//°øÁö±Û »ó¼¼ Á¶È¸ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// a íƒœê·¸ë¡œ ìš”ì²­ì˜¨ê±´ doGet()ì´ ë°›ìŒ
+				//ê³µì§€ê¸€ ìƒì„¸ ì¡°íšŒ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 				response.setContentType("text/html; charset=utf-8");
 				//CommentBoardDeleteServlet cbd = new CommentBoardDeleteServlet();
-				int no = Integer.parseInt(request.getParameter("no"));	           
+				int no = Integer.parseInt(request.getParameter("no"));
+	           
 				
 				
 				FreeBoardService fservice  = new FreeBoardService();
-				//Á¶È¸¼ö 1 Áõ°¡ Ã³¸®(DB¿¡ count°ªÀ» updateÇØ¾ßÇÔ)
-				fservice.addReadCount(no); //public void - ¸®ÅÏ¾È½ÃÅ°°í ±×³É °ª¸¸ º¯°æÇÔ
+				//ì¡°íšŒìˆ˜ 1 ì¦ê°€ ì²˜ë¦¬(DBì— countê°’ì„ updateí•´ì•¼í•¨)
+				fservice.addReadCount(no); //public void - ë¦¬í„´ì•ˆì‹œí‚¤ê³  ê·¸ëƒ¥ ê°’ë§Œ ë³€ê²½í•¨
 				FreeBoard fboard = fservice.selectFreeBoard(no);
-
-				
-				
+					
 				RequestDispatcher view = null;
 				if(fboard != null){			
 					
@@ -58,7 +57,7 @@ public class FreeBoardDetailServlet extends HttpServlet {
 					
 				}else{
 					view = request.getRequestDispatcher("views/freeboard/freeBoardError.jsp");
-					request.setAttribute("message", "ÀÚÀ¯ °Ô½ÃÆÇ »ó¼¼ Á¶È¸ ½ÇÆĞ!");
+					request.setAttribute("message", "ììœ  ê²Œì‹œíŒ ìƒì„¸ ì¡°íšŒ ì‹¤íŒ¨!");
 					view.forward(request, response);
 				}
 				

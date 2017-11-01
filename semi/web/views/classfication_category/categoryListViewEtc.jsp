@@ -212,7 +212,7 @@ ul.sub li:hover {
 						<div class="col-md-4" style="width: 300px;">
 							<div class="imgholder">
 								<a
-									href="/semi/cdetail?cnum=<%=c.getCategoryNo()%>&page=<%=ccurrentPage%>">
+									href="/semi/cdetail?cnum=<%=c.getCategoryNo()%>&cpage=<%=ccurrentPage%>">
 									<img src="cuploadfiles/<%=c.getRenameImage()%>" />
 								</a>
 							</div>
@@ -245,7 +245,7 @@ ul.sub li:hover {
 			<%
 				} else {
 			%>
-			<a href="/semi/clist?page=<%=ccurrentPage - 1%>">[이전]</a>
+			<a href="/semi/clist?cpage=<%=ccurrentPage - 1%>">[이전]</a>
 			<%
 				}
 			%>
@@ -259,7 +259,7 @@ ul.sub li:hover {
 			<%
 				} else {
 			%>
-			<a href="/semi/clist?page=<%=p%>"> <%=p%></a>
+			<a href="/semi/clist?cpage=<%=p%>"> <%=p%></a>
 			<%
 				}
 				}
@@ -273,7 +273,7 @@ ul.sub li:hover {
 			<%
 				} else {
 			%>
-			<a href="/semi/clist?page=<%=ccurrentPage + 1%>">[다음]</a>
+			<a href="/semi/clist?cpage=<%=ccurrentPage + 1%>">[다음]</a>
 			<% } %>
 		</div>
 

@@ -9,7 +9,6 @@
    int flag2 = 0;
    
    boolean insertR = true;
-   String insertS = "";
    
    %>
 <!DOCTYPE html>
@@ -22,6 +21,7 @@
 <script type="text/javascript">
 	function insert(){
 	   var result = true;
+	   <%insertR=true;%>
 	   
 	   var memberId = $('input[name="memberid"]').val();
 	   var memberName = $('input[name="membername"]').val();
@@ -36,12 +36,11 @@
 	   
 	   //alert(memberId+"\n"+memberName+"\n"+memberNo+"\n"+memberPwd+"\n"+memberPwdCk+"\n"+memberNik+"\n"+memberAddress+"\n"+memberAddressDetail+"\n"+memberEmail+"\n"+memberPhone);
 	   
-	   var allData = {"memberId":memberId, "memberNo":memberNo, "memberPwd":memberPwd, 
-						   "memberNik":memberNik, "memberPhone":memberPhone};
+	   var allData = {"memberId":memberId, "memberNo":memberNo, "memberPwd":memberPwd, "memberNik":memberNik, "memberPhone":memberPhone};
 		$.ajax({url:"/semi/menrollcheck",
-				   data:allData,
-				   type:"post",
-				   success:function(data){
+				data:allData,
+				type:"post",
+				success:function(data){
 						if(data!="success") {
 							if(data=="글자수초과") {alert("아이디 또는 비밀번호 최대 글자 수를 조과하였습니다."); <%insertR = false;%>}
 							else if(data=="영문자와숫자만") {alert("아이디와 비밀번호는 영문자와 숫자만 입력가능합니다."); <%insertR = false;%>}
@@ -50,20 +49,20 @@
 							else if(data=="주민확인") {alert("주민등록번호를 확인하세요."); <%insertR = false;%>}
 							else if(data=="닉네임중복") {alert("닉네임이 중복되었습니다.\n다른 닉네임을 입력해주세요."); <%insertR = false;%>}
 							else if(data=="번호확인") {alert("전화번호를 확인해주세요."); <%insertR = false;%>}
-						}
-				   },
-				   error:function(data){
+						} else {<%insertR=true;%>}
+				 },
+				 error:function(data){
 						console.log("에러 발생 : "+data);
-						<%insertR = false;%>
-				   }
+				 }
 			});
 		result = <%=insertR%>;
+		
 	   if(memberId=="" || memberName=="" || memberNo=="" || memberPwd=="" || memberPwdCk==""
 		 || memberNik=="" || memberAddress=="" || memberAddressDetail=="" 
 		 || memberEmail=="" || memberPhone==""){ alert("모든 항목을 입력하세요."); result=false; }
 	   
-	   else if(memberPwd!=memberPwdCk) { alert("비밀번호를 확인하세요."); result=false;}
-	   alert(result);
+	   else if(memberPwd!=memberPwdCk) { alert("비밀번호를 확인하세요."); result=false;}	   
+	   
 	   return result;
 	}
 </script>
@@ -85,22 +84,22 @@
 		<div class="form">
 
 			<form class="login-form" action="/semi/minsert" method="post" id="login-form" name="login-form" onSubmit="return insert();">
-				<input type="text" id="memberid" placeholder="아이디" name="memberid" />
+				<input type="text" id="memberid" placeholder="아이디" name="memberid" value="wltjs1796"/>
 
 
 
 				<input type="text" id="membername" placeholder="이름"
-					name="membername" /> <input type="text" placeholder="주민번호(-제외)"
-					name="memberno" id="memberno" /> <input type="password" id="pwd1"
+					name="membername" value="윤지선"/> <input type="text" placeholder="주민번호(-제외)"
+					name="memberno" id="memberno" value="9510102200614"/> <input type="password" id="pwd1"
 					placeholder="비밀번호" name="memberpwd1" /> <input type="password"
 					id="pwd2" placeholder="비밀번호 확인" name="memberpwd2" />
-				<input type="text" placeholder="닉네임" name="membernik" id="membernik" />
+				<input type="text" placeholder="닉네임" name="membernik" id="membernik" value="지선짱짱" />
 
 				<input type="text" placeholder="주소" name="memberaddress1"
-					id="memberaddress1" /> <input type="text" placeholder="상세주소"
-					name="memberaddress2" id="memberaddress2" /> <input type="text"
-					placeholder="이메일" name="memberemail" id="memberemail" /> <input
-					type="text" placeholder="전화번호" name="memberphone" id="memberphone" />
+					id="memberaddress1" value="경기도 안산시 단원구"/> <input type="text" placeholder="상세주소"
+					name="memberaddress2" id="memberaddress2" value="222-2번지"/> <input type="text"
+					placeholder="이메일" name="memberemail" id="memberemail" value="wltjs1796@naver.com"/> <input
+					type="text" placeholder="전화번호" name="memberphone" id="memberphone" value="01062436597"/>
 
 				<table>
 					<tr>

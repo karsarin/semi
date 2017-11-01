@@ -55,7 +55,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 		
 		int result = fservice.deleteCommentBoard(commentNum);
 		
-		System.out.println("³»²¨ result : " + result   );
+		System.out.println("ë‚´êº¼ result : " + result   );
 	
 		
 		System.out.println(result);
@@ -71,7 +71,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 	         
 	      }else {
 	         RequestDispatcher view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-	         request.setAttribute("message", "´ñ±Û »èÁ¦ ¿¡·¯");
+	         request.setAttribute("message", "ëŒ“ê¸€ ì‚­ì œ ì—ëŸ¬");
 	         view.forward(request, response);
 	      }
 		

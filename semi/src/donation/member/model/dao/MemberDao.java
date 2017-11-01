@@ -56,7 +56,7 @@ public class MemberDao {
 	public int memberInsert(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into member values(?,?,?,?,?,?,?,?,default,default,?,default,default)";
+		String query = "insert into member values(?,?,?,?,?,?,?,?,default,'N',?,default,default)";
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, member.getMemberId());
@@ -114,8 +114,6 @@ public class MemberDao {
 					m.setMemberPhone(rset.getString("member_phone"));
 					list.add(m);
 				}
-				
-				
 			}
 			} catch (Exception e) {
 			e.printStackTrace();
@@ -728,7 +726,7 @@ public class MemberDao {
 	}
 
 	public String mEnrollCk(Connection conn, String memberId, String memberNo, String memberNik, String memberPhone) {
-		String result = "error";
+		String result = "success";
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query = "select * from member";

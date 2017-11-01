@@ -101,7 +101,7 @@ background-color:lightblue;
 	<% } %>
 <% }else{ %>
 	<tr>
-		<td colspan="4" align="center" style="font-size:10pt; color:gray;">게시글이 없습니다</td>
+		<td colspan="7" align="center" style="font-size:10pt; color:gray;">게시글이 없습니다</td>
 	</tr>
 <% } %>
 </table>

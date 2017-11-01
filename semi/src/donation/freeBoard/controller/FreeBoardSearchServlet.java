@@ -35,41 +35,41 @@ public class FreeBoardSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//ÆäÀÌÁö Ã³¸®¿ë
+		//í˜ì´ì§€ ì²˜ë¦¬ìš©
 		request.setCharacterEncoding("utf-8");
 
 		response.setContentType("text/html; charset=utf-8");
 		
 		
 		int currentPage = 1;
-		//ÇÑ ÆäÀÌÁö¿¡ Ãâ·ÂÇÒ ÆäÀÌÁö °¹¼ö ÁöÁ¤
+		//í•œ í˜ì´ì§€ì— ì¶œë ¥í•  í˜ì´ì§€ ê°¯ìˆ˜ ì§€ì •
 		int limit = 10;
 		
-		//ÆäÀÌÁö ¼ıÀÚ°¡ Àü¼ÛÀÌ ¿ÔÀ» °æ¿ì
+		//í˜ì´ì§€ ìˆ«ìê°€ ì „ì†¡ì´ ì™”ì„ ê²½ìš°
 		if(request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		//ÇØ´ç ÆäÀÌÁö¿ë ¸ñ·Ï Á¶È¸
+		//í•´ë‹¹ í˜ì´ì§€ìš© ëª©ë¡ ì¡°íšŒ
 		String keyword = request.getParameter("keyword");
 		String type = request.getParameter("type");
 		
 		System.out.println(keyword);
 		System.out.println(type);
-		//System.out.println("¼­ºí¸´ searchType : " + searchType);
+		//System.out.println("ì„œë¸”ë¦¿ searchType : " + searchType);
 		
 		
 /*		String type = "";
 		
-		if(searchType.equals("ºĞ·ù")) {
+		if(searchType.equals("ë¶„ë¥˜")) {
 			type = "BOARDTYPE";
 		}
-		else if(searchType.equals("Á¦¸ñ")) {
+		else if(searchType.equals("ì œëª©")) {
 			type = "FREEBOARD_TITLE";
 		}
-		else if(searchType.equals("ÀÛ¼ºÀÚ")) {
+		else if(searchType.equals("ì‘ì„±ì")) {
 			type = "FREEBOARD_WRITER";
 		}
-		else if(searchType.equals("³»¿ë")) {
+		else if(searchType.equals("ë‚´ìš©")) {
 			type = "FREEBOARD_CONTENT";
 		}
 		*/
@@ -78,7 +78,7 @@ public class FreeBoardSearchServlet extends HttpServlet {
 		FreeBoardService fservice = new FreeBoardService();
 		
 	
-		//ÀüÃ¼ ¸ñ·Ï °¹¼ö Á¶È¸ÇÔ
+		//ì „ì²´ ëª©ë¡ ê°¯ìˆ˜ ì¡°íšŒí•¨
 		//int listCount = nservice.getListCount();
 		int listSearchCount = fservice.getSearchListCount(type, keyword);
 		System.out.println("listSearchCount : " + listSearchCount);
@@ -93,14 +93,14 @@ public class FreeBoardSearchServlet extends HttpServlet {
 		
 		
 		
-		//ÃÑ ÆäÀÌÁö ¼ö °è»ê : ¸ñ·ÏÀÌ ÃÖ¼Ò 1°³ÀÏ ¶§´Â ÇÑ ÆäÀÌÁö·Î Ã³¸®ÇÔ
-		//ÆäÀÌÁö 1ÀÌ µÇ·Á¸é = ¸ñ·Ï 0.1 °³ + 0.9 °è»êµÇ°Ô ÇÔ
+		//ì´ í˜ì´ì§€ ìˆ˜ ê³„ì‚° : ëª©ë¡ì´ ìµœì†Œ 1ê°œì¼ ë•ŒëŠ” í•œ í˜ì´ì§€ë¡œ ì²˜ë¦¬í•¨
+		//í˜ì´ì§€ 1ì´ ë˜ë ¤ë©´ = ëª©ë¡ 0.1 ê°œ + 0.9 ê³„ì‚°ë˜ê²Œ í•¨
 		int maxPage = (int)((double)listSearchCount / limit + 0.9);
-		//ÇöÀç ÆäÀÌÁö°¡ 13ÀÌ¸é È­¸é¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö´Â 11·Î ÁöÁ¤
+		//í˜„ì¬ í˜ì´ì§€ê°€ 13ì´ë©´ í™”ë©´ì— ë³´ì—¬ì¤„ ì‹œì‘ í˜ì´ì§€ëŠ” 11ë¡œ ì§€ì •
 		//(1, 11, 21, 31, .......)
 		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-		//¸¸¾à, ¸ñ·Ï ¾Æ·¡¿¡ º¸¿©Áú ÆäÀÌÁö °¹¼ö°¡ 10°³ÀÌ¸é
-		//ÇöÀç ÆäÀÌÁö°¡ 13ÀÌ¸é ³¡ ÆäÀÌÁö¼ö´Â 20ÆäÀÌÁö°¡ µÇ¾î¾ß ÇÔ
+		//ë§Œì•½, ëª©ë¡ ì•„ë˜ì— ë³´ì—¬ì§ˆ í˜ì´ì§€ ê°¯ìˆ˜ê°€ 10ê°œì´ë©´
+		//í˜„ì¬ í˜ì´ì§€ê°€ 13ì´ë©´ ë í˜ì´ì§€ìˆ˜ëŠ” 20í˜ì´ì§€ê°€ ë˜ì–´ì•¼ í•¨
 		int endPage = startPage + limit - 1;
 		if(maxPage < endPage)
 			endPage = maxPage;
@@ -122,7 +122,7 @@ public class FreeBoardSearchServlet extends HttpServlet {
 			view.forward(request, response);
 	}else{
 		view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-		request.setAttribute("message", "ÀÚÀ¯°Ô½Ã±Û °Ë»ö  Á¶È¸ ½ÇÆĞ!");
+		request.setAttribute("message", "ììœ ê²Œì‹œê¸€ ê²€ìƒ‰  ì¡°íšŒ ì‹¤íŒ¨!");
 		view.forward(request, response);
 	}
 	}

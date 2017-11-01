@@ -32,7 +32,7 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// °Ô½Ã±Û ¼öÁ¤ÆäÀÌÁö Ãâ·Â Ã³¸®¿ë ÄÁÆ®·Ñ·¯
+		// ê²Œì‹œê¸€ ìˆ˜ì •í˜ì´ì§€ ì¶œë ¥ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 		response.setContentType("text/html; charset=utf-8");
 		
 		int no = Integer.parseInt(request.getParameter("no"));
@@ -48,7 +48,7 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "QA ¼öÁ¤ÆäÀÌÁö Ãâ·Â ½ÇÆĞ!");
+			request.setAttribute("message", "QA ìˆ˜ì •í˜ì´ì§€ ì¶œë ¥ ì‹¤íŒ¨!");
 			view.forward(request, response);
 		}
 		

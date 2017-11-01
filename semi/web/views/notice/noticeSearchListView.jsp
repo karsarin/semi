@@ -185,7 +185,7 @@ background-color: #F29661;
 				}
 				</script>	
 				
-				
+		 		
 				
 				<%if(member!=null && member.getMemberId().equals("admin")) {%>
 				<td><button onclick="return insertPage();" class="form-control" id="writeButton">글쓰기</button></td>

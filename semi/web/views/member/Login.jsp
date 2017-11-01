@@ -30,7 +30,7 @@ style="color:white;text-decoration:none;">다재다능</a></h1>
   <div class="form">
     
 	
-    <form class="login-form" action="../../login" method="post">
+    <form class="login-form" action="../../login" method="post"name ="" >
       <input type="text" placeholder="username" name="memberid" placeholder="아이디" id="memberid">
       <input type="password" placeholder="password"  name="memberpwd" placeholder="비밀번호" id="memberpwd">
       <button value="로그인">login</button>
@@ -40,6 +40,11 @@ style="color:white;text-decoration:none;">다재다능</a></h1>
 	  <button value="pwdSearch" style="width:150px;" onclick="window.open('/semi/views/member/pwdSearch.jsp','usage1','resizable=no ,width=490,left=500,top=100, height=330');return false">PW</button>
       
    </form>
+   <script type="text/javascript">
+   
+   document.getElementById('memberid').focus();
+   </script>
+  
   </div>
 </div>
 

@@ -36,14 +36,14 @@ public class NoticeDao {
 		return result;
 	}
 
-	// ÇÑ ÆäÀÌÁö¿¡ Ãâ·ÂÇÒ °Ô½Ã±Û ¸ñ·Ï Á¶È¸¿ë
+	// í•œ í˜ì´ì§€ì— ì¶œë ¥í•  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒìš©
 	public ArrayList<Notice> selectList(Connection con, 
 			int currentPage, int limit) {
 		ArrayList<Notice> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		//currentPage ¿¡ ÇØ´çµÇ´Â ¸ñ·Ï¸¸ Á¶È¸
+		//currentPage ì— í•´ë‹¹ë˜ëŠ” ëª©ë¡ë§Œ ì¡°íšŒ
 		String query ="select * from ("
 				+ "select rownum rnum, NOTICE_NO, NOTICE_TITLE, "
 				+ "NOTICE_WRITER, NOTICE_CONTENT, NOTICE_DATE, "
@@ -117,7 +117,7 @@ public class NoticeDao {
 					n.setReadCount(rset.getInt("READ_COUNT"));
 					
 					
-					list.add(n); //map¿¡´Â °´Ã¼¸¸ ¿Í¾ßµÇ´Âµ¥ n.getNoticeNo()´Â intÇü, ±Ùµ¥  AutoBoxing µÊ
+					list.add(n); //mapì—ëŠ” ê°ì²´ë§Œ ì™€ì•¼ë˜ëŠ”ë° n.getNoticeNo()ëŠ” intí˜•, ê·¼ë°  AutoBoxing ë¨
 				}
 			}
 			
@@ -158,7 +158,7 @@ public class NoticeDao {
 					n.setReadCount(rset.getInt("READ_COUNT"));
 					
 					
-					map.put(n.getNoticeNo(), n); //map¿¡´Â °´Ã¼¸¸ ¿Í¾ßµÇ´Âµ¥ n.getNoticeNo()´Â intÇü, ±Ùµ¥  AutoBoxing µÊ
+					map.put(n.getNoticeNo(), n); //mapì—ëŠ” ê°ì²´ë§Œ ì™€ì•¼ë˜ëŠ”ë° n.getNoticeNo()ëŠ” intí˜•, ê·¼ë°  AutoBoxing ë¨
 				}
 			}
 		} catch (Exception e) {
@@ -182,7 +182,7 @@ public class NoticeDao {
 			pstmt.setInt(1,  no);
 			
 			rset = pstmt.executeQuery();
-			if(rset.next())//pk·Î Á¶È¸ÇÑ°Ç °á°ú°¡ ÇÑ°³´Ï±î if¹® »ç¿ë
+			if(rset.next())//pkë¡œ ì¡°íšŒí•œê±´ ê²°ê³¼ê°€ í•œê°œë‹ˆê¹Œ ifë¬¸ ì‚¬ìš©
 			{
 				notice = new Notice();
 				notice.setNoticeNo(rset.getInt("NOTICE_NO"));
@@ -302,7 +302,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		String query = "select * from notice where notice_title like ? order by notice_no desc";
-																//¿©±â¼­ like µÚ¿¡ % ¾²¸é¾ÈµÊ ¿©±â´Â ?¸¸ ¾²°í setStringÇÒ ¶§ ¹®ÀÚ¿­ °ªÀ¸·Î Ãß°¡½ÃÄÑÁà¾ßµÊ
+																//ì—¬ê¸°ì„œ like ë’¤ì— % ì“°ë©´ì•ˆë¨ ì—¬ê¸°ëŠ” ?ë§Œ ì“°ê³  setStringí•  ë•Œ ë¬¸ìì—´ ê°’ìœ¼ë¡œ ì¶”ê°€ì‹œì¼œì¤˜ì•¼ë¨
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -324,7 +324,7 @@ public class NoticeDao {
 					n.setReadCount(rset.getInt("READ_COUNT"));
 					
 					
-					list.add(n); //map¿¡´Â °´Ã¼¸¸ ¿Í¾ßµÇ´Âµ¥ n.getNoticeNo()´Â intÇü, ±Ùµ¥  AutoBoxing µÊ
+					list.add(n); //mapì—ëŠ” ê°ì²´ë§Œ ì™€ì•¼ë˜ëŠ”ë° n.getNoticeNo()ëŠ” intí˜•, ê·¼ë°  AutoBoxing ë¨
 				}
 			}
 			
@@ -342,7 +342,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		//currentPage ¿¡ ÇØ´çµÇ´Â ¸ñ·Ï¸¸ Á¶È¸
+		//currentPage ì— í•´ë‹¹ë˜ëŠ” ëª©ë¡ë§Œ ì¡°íšŒ
 		String query ="select * from ("
 				+ "select rownum rnum, NOTICE_NO, NOTICE_TITLE, "
 				+ "NOTICE_WRITER, NOTICE_CONTENT, NOTICE_DATE, "
@@ -400,7 +400,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		String query = "select count(*) from notice where notice_title like ?";
-		//¿©±â¼­ like µÚ¿¡ % ¾²¸é¾ÈµÊ ¿©±â´Â ?¸¸ ¾²°í setStringÇÒ ¶§ ¹®ÀÚ¿­ °ªÀ¸·Î Ãß°¡½ÃÄÑÁà¾ßµÊ
+		//ì—¬ê¸°ì„œ like ë’¤ì— % ì“°ë©´ì•ˆë¨ ì—¬ê¸°ëŠ” ?ë§Œ ì“°ê³  setStringí•  ë•Œ ë¬¸ìì—´ ê°’ìœ¼ë¡œ ì¶”ê°€ì‹œì¼œì¤˜ì•¼ë¨
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "%" + keyword + "%");

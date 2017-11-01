@@ -20,7 +20,7 @@
 		$('.main-menu ul #category').removeClass('active');
 		$('.main-menu ul #board').addClass('active');
 	});
-</script>
+</script> 
 
 <!-- 카테고리  -->
 

@@ -196,7 +196,7 @@ background-color: #F29661;
 						return false;						
 					}					
 				}
-				</script>	
+				</script>	 
 				
 				
 				
@@ -252,10 +252,6 @@ background-color: #F29661;
 
   </div>
 </div>	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
  </div>
   
 <%@ include file="../../footerbar.jsp" %>
