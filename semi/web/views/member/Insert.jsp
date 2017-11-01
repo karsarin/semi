@@ -8,6 +8,9 @@
    int flag1 = 0;
    int flag2 = 0;
    
+   boolean insertR = true;
+   String insertS = "";
+   
    %>
 <!DOCTYPE html>
 <html>
@@ -33,37 +36,34 @@
 	   
 	   //alert(memberId+"\n"+memberName+"\n"+memberNo+"\n"+memberPwd+"\n"+memberPwdCk+"\n"+memberNik+"\n"+memberAddress+"\n"+memberAddressDetail+"\n"+memberEmail+"\n"+memberPhone);
 	   
-	   if(memberId=="" || memberName=="" || memberNo=="" || memberPwd=="" || memberPwdCk==""
-		 || memberNik=="" || memberAddress=="" || memberAddressDetail=="" 
-		 || memberEmail=="" || memberPhone==""){ result=false; alert("모든 항목을 입력하세요.");}
-	   
-	   else if(memberPwd!=memberPwdCk) { result=false; alert("비밀번호를 확인하세요.");}
-	   else {
-			var allData = {"memberId":memberId, "memberNo":memberNo, "memberPwd":memberPwd, 
+	   var allData = {"memberId":memberId, "memberNo":memberNo, "memberPwd":memberPwd, 
 						   "memberNik":memberNik, "memberPhone":memberPhone};
-		   $.ajax({url:"/semi/menrollcheck",
+		$.ajax({url:"/semi/menrollcheck",
 				   data:allData,
 				   type:"post",
 				   success:function(data){
 						if(data!="success") {
-							if(data=="글자수초과") {alert("아이디 또는 비밀번호 최대 글자 수를 조과하였습니다.");}
-							else if(data=="영문자와숫자만") {alert("아이디와 비밀번호는 영문자와 숫자만 입력가능합니다.");}
-							else if(data=="영문자와숫자모두") {alert("아이디와 비밀번호는 영문자와 숫자의 조합으로 입력하세요.");}
-							else if(data=="ID중복") {alert("ID가 중복되었습니다.\n다른 ID를 입력해주세요.");}
-							else if(data=="주민확인") {alert("주민등록번호를 확인하세요.");}
-							else if(data=="닉네임중복") {alert("닉네임이 중복되었습니다.\n다른 닉네임을 입력해주세요.");}
-							else if(data=="번호확인") {alert("전화번호를 확인해주세요.");}
-							
-							result=false;
+							if(data=="글자수초과") {alert("아이디 또는 비밀번호 최대 글자 수를 조과하였습니다."); <%insertR = false;%>}
+							else if(data=="영문자와숫자만") {alert("아이디와 비밀번호는 영문자와 숫자만 입력가능합니다."); <%insertR = false;%>}
+							else if(data=="영문자와숫자모두") {alert("아이디와 비밀번호는 영문자와 숫자의 조합으로 입력하세요."); <%insertR = false;%>}
+							else if(data=="ID중복") {alert("ID가 중복되었습니다.\n다른 ID를 입력해주세요."); <%insertR = false;%>}
+							else if(data=="주민확인") {alert("주민등록번호를 확인하세요."); <%insertR = false;%>}
+							else if(data=="닉네임중복") {alert("닉네임이 중복되었습니다.\n다른 닉네임을 입력해주세요."); <%insertR = false;%>}
+							else if(data=="번호확인") {alert("전화번호를 확인해주세요."); <%insertR = false;%>}
 						}
 				   },
 				   error:function(data){
 						console.log("에러 발생 : "+data);
-						result=false;
+						<%insertR = false;%>
 				   }
-			});	
-		}
+			});
+		result = <%=insertR%>;
+	   if(memberId=="" || memberName=="" || memberNo=="" || memberPwd=="" || memberPwdCk==""
+		 || memberNik=="" || memberAddress=="" || memberAddressDetail=="" 
+		 || memberEmail=="" || memberPhone==""){ alert("모든 항목을 입력하세요."); result=false; }
 	   
+	   else if(memberPwd!=memberPwdCk) { alert("비밀번호를 확인하세요."); result=false;}
+	   alert(result);
 	   return result;
 	}
 </script>
@@ -86,7 +86,6 @@
 
 			<form class="login-form" action="/semi/minsert" method="post" id="login-form" name="login-form" onSubmit="return insert();">
 				<input type="text" id="memberid" placeholder="아이디" name="memberid" />
-				<button onclick="return butn_confirm1(this);">중복확인</button>
 
 
 
@@ -95,7 +94,6 @@
 					name="memberno" id="memberno" /> <input type="password" id="pwd1"
 					placeholder="비밀번호" name="memberpwd1" /> <input type="password"
 					id="pwd2" placeholder="비밀번호 확인" name="memberpwd2" />
-				<button type="button" onclick="return checkpwd();">중복확인</button>
 				<input type="text" placeholder="닉네임" name="membernik" id="membernik" />
 
 				<input type="text" placeholder="주소" name="memberaddress1"

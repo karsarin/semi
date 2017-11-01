@@ -34,22 +34,21 @@
 </head>
 <body>
    	<%@ include file = "../../header.jsp" %>
-   	<br>
-	<!-- 채팅 폼 -->
-	<div id="_chatbox" style="margin:50px; width:auto;">
+	<!-- 채팅 -->
+	<div id="_chatbox" style="margin-top:200px; width:auto;">
    <fieldset>
    <table>
       <tr>
          <td colspan="3"><textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea></td>
       </tr>
       <tr>
-         <td colspan="2"><input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send();}" style="width:337px;"></td>
+         <td colspan="2"><input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send();}" style="width:300px;"></td>
          <td><input type="submit" value="send" onclick="send()"></td>
       </tr>
    </table>
    </fieldset>
    </div>
-	<!-- 채팅 폼 끝 -->
+
 </body>
 
    <!-- 채팅 -->   
