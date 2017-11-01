@@ -65,7 +65,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 	        // nto = boardNum;
 	        request.setAttribute("no", boardNum);
 	        // System.out.println("---------------------------");
-	        // flag =1;
+	        // flag =1;  
 	       //  System.out.println(boardNum);
 	         view.forward(request, response);
 	         
