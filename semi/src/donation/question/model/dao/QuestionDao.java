@@ -10,7 +10,7 @@ public class QuestionDao {
 	public QuestionDao(){}
 
 
-	// ì´ ê²Œì‹œê¸€ ê°¯ìˆ˜ ì¡°íšŒìš©
+	// ÃÑ °Ô½Ã±Û °¹¼ö Á¶È¸¿ë
 	public int getListCount(Connection con) {
 		int result = 0;
 		Statement stmt = null;
@@ -35,14 +35,14 @@ public class QuestionDao {
 		return result;
 	}
 
-	// í•œ í˜ì´ì§€ì— ì¶œë ¥í•  ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒìš©
+	// ÇÑ ÆäÀÌÁö¿¡ Ãâ·ÂÇÒ °Ô½Ã±Û ¸ñ·Ï Á¶È¸¿ë
 	public ArrayList<Question> selectList(Connection con, 
 			int currentPage, int limit) {
 		ArrayList<Question> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		//currentPage ì— í•´ë‹¹ë˜ëŠ” ëª©ë¡ë§Œ ì¡°íšŒ
+		//currentPage ¿¡ ÇØ´çµÇ´Â ¸ñ·Ï¸¸ Á¶È¸
 		String query ="select * from ("
 				+ "select rownum rnum, Question_num, Question_title, "
 				+ "Question_writer, Question_content, QUESTION_ORIGINAL_IMAGENAME, "
@@ -98,7 +98,7 @@ public class QuestionDao {
 	}
 
 	
-	//ê²Œì‹œê¸€ ë“±ë¡ ì²˜ë¦¬
+	//°Ô½Ã±Û µî·Ï Ã³¸®
 	public int insertQuestion(Connection con, Question q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -130,7 +130,7 @@ public class QuestionDao {
 	}
 
 	
-	//ì¡°íšŒìˆ˜ ì¦ê°€ ì²˜ë¦¬
+	//Á¶È¸¼ö Áõ°¡ Ã³¸®
 	public int addReadCount(Connection con, int qnum) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -249,7 +249,7 @@ public class QuestionDao {
 		
 		String query = null;
 		
-		//ì›ê¸€ì˜ ëŒ“ê¸€ì¼ ë•Œ
+		//¿ø±ÛÀÇ ´ñ±ÛÀÏ ¶§
 		if(replyQuestion.getQuestionLevel() == 1){
 			query = "insert into Question values ("
 					+ "(select max(Question_num) + 1 from Question), "
@@ -258,7 +258,7 @@ public class QuestionDao {
 					+ "1, 'Y', ?)";
 		}
 		
-		//ëŒ“ê¸€ì˜ ëŒ“ê¸€ì¼ ë•Œ
+		//´ñ±ÛÀÇ ´ñ±ÛÀÏ ¶§
 		if(replyQuestion.getQuestionLevel() == 2){
 			query = "insert into Question values ("
 					+ "(select max(Question_num) + 1 from Question), "
@@ -397,7 +397,7 @@ public class QuestionDao {
 		ResultSet rset = null;
 		
 		String query = "select * from notice where notice_title like ? order by notice_no desc";
-																//ì—¬ê¸°ì„œ like ë’¤ì— % ì“°ë©´ì•ˆë¨ ì—¬ê¸°ëŠ” ?ë§Œ ì“°ê³  setStringí•  ë•Œ ë¬¸ìì—´ ê°’ìœ¼ë¡œ ì¶”ê°€ì‹œì¼œì¤˜ì•¼ë¨
+																//¿©±â¼­ like µÚ¿¡ % ¾²¸é¾ÈµÊ ¿©±â´Â ?¸¸ ¾²°í setStringÇÒ ¶§ ¹®ÀÚ¿­ °ªÀ¸·Î Ãß°¡½ÃÄÑÁà¾ßµÊ
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -419,7 +419,7 @@ public class QuestionDao {
 					n.setReadCount(rset.getInt("READ_COUNT"));
 					
 					
-					list.add(n); //mapì—ëŠ” ê°ì²´ë§Œ ì™€ì•¼ë˜ëŠ”ë° n.getNoticeNo()ëŠ” intí˜•, ê·¼ë°  AutoBoxing ë¨
+					list.add(n); //map¿¡´Â °´Ã¼¸¸ ¿Í¾ßµÇ´Âµ¥ n.getNoticeNo()´Â intÇü, ±Ùµ¥  AutoBoxing µÊ
 				}
 			}
 			
@@ -439,7 +439,7 @@ public class QuestionDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		//currentPage ì— í•´ë‹¹ë˜ëŠ” ëª©ë¡ë§Œ ì¡°íšŒ
+		//currentPage ¿¡ ÇØ´çµÇ´Â ¸ñ·Ï¸¸ Á¶È¸
 		String query ="select * from (select rownum rnum, Question_num, Question_title, Question_writer, Question_content, QUESTION_ORIGINAL_IMAGENAME, QUESTION_RENAME_IMAGENAME, Question_date, Question_level, Question_ref, Question_reply_ref, Question_reply_seq, Question_readcount, BOARD_NO from (select * from Question where question_title like ? order by Question_ref desc, Question_reply_ref desc, Question_level asc, Question_reply_seq asc))	where rnum >= ? and rnum <= ?";
 		
 		
@@ -504,7 +504,7 @@ public class QuestionDao {
 		ResultSet rset = null;
 		
 		String query = "select count(*) from question where question_title like ?";
-		//ì—¬ê¸°ì„œ like ë’¤ì— % ì“°ë©´ì•ˆë¨ ì—¬ê¸°ëŠ” ?ë§Œ ì“°ê³  setStringí•  ë•Œ ë¬¸ìì—´ ê°’ìœ¼ë¡œ ì¶”ê°€ì‹œì¼œì¤˜ì•¼ë¨
+		//¿©±â¼­ like µÚ¿¡ % ¾²¸é¾ÈµÊ ¿©±â´Â ?¸¸ ¾²°í setStringÇÒ ¶§ ¹®ÀÚ¿­ °ªÀ¸·Î Ãß°¡½ÃÄÑÁà¾ßµÊ
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, "%" + keyword + "%");

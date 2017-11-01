@@ -61,7 +61,7 @@ public class FreeBoardService {
 		}
 		close(con);
 		
-		//ì´ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•œ ì„œë¸”ë¦¿ ë‹¨ì˜ ë©”ì†Œë“œê°€ voidí˜•ì´ë¼ ë¦¬í„´ì•ˆì‹œí‚´
+		//ÀÌ ¸Ş¼Òµå¸¦ È£ÃâÇÑ ¼­ºí¸´ ´ÜÀÇ ¸Ş¼Òµå°¡ voidÇüÀÌ¶ó ¸®ÅÏ¾È½ÃÅ´
 	}
 
 	public int insertNotice(FreeBoard fboard) {
@@ -118,7 +118,7 @@ public class FreeBoardService {
 	public int getSearchListCount(String type, String keyword) {
 		Connection con = getConnection();
 		int listCount = new FreeBoardDao().getSearchListCount(con, type, keyword);
-		System.out.println("Serviceë‹¨ type :" + type);
+		System.out.println("Service´Ü type :" + type);
 		
 		close(con);
 		return listCount;

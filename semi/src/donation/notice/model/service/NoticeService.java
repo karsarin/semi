@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import donation.freeBoard.model.dao.FreeBoardDao;
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.notice.model.dao.NoticeDao;
+import donation.notice.model.vo.CommentNotice;
 import donation.notice.model.vo.Notice;
 
 public class NoticeService {
@@ -22,7 +25,7 @@ public class NoticeService {
 		return listCount;
 	}
 	
-	//í˜ì´ì§€ë³„ ëª©ë¡ ì¡°íšŒìš©
+	//ÆäÀÌÁöº° ¸ñ·Ï Á¶È¸¿ë
 	public ArrayList<Notice> selectList(int currentPage, int limit){
 		Connection con = getConnection();
 		ArrayList<Notice> list = new NoticeDao().selectList(con, currentPage, limit);
@@ -41,7 +44,7 @@ public class NoticeService {
 	public HashMap<Integer, Notice> selectMap() {
 		Connection con = getConnection();
 		HashMap<Integer, Notice> map = new NoticeDao().selectMap(con);
-		//select ì¡°íšŒì´ê¸° ë•Œë¬¸ì— íŠ¸ëœì­ì…˜ ì²˜ë¦¬ í•„ìš”ì—†ìŒ
+		//select Á¶È¸ÀÌ±â ¶§¹®¿¡ Æ®·£Àè¼Ç Ã³¸® ÇÊ¿ä¾øÀ½
 		close(con);				
 		return map;
 	}
@@ -66,7 +69,7 @@ public class NoticeService {
 		}
 		close(con);
 		
-		//ì´ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•œ ì„œë¸”ë¦¿ ë‹¨ì˜ ë©”ì†Œë“œê°€ voidí˜•ì´ë¼ ë¦¬í„´ì•ˆì‹œí‚´
+		//ÀÌ ¸Ş¼Òµå¸¦ È£ÃâÇÑ ¼­ºí¸´ ´ÜÀÇ ¸Ş¼Òµå°¡ voidÇüÀÌ¶ó ¸®ÅÏ¾È½ÃÅ´
 	}
 
 	public int insertNotice(Notice notice) {
@@ -120,6 +123,36 @@ public class NoticeService {
 		int listCount = new NoticeDao().getSearchListCount(con, keyword);
 		close(con);
 		return listCount;
+	}
+
+	public int insertReplyNotice(CommentNotice cnotice) {
+
+		Connection con = getConnection();
+		int result = new NoticeDao().insertReplyNotice(con, cnotice);
+		close(con);
+		return result;
+	}
+
+	public ArrayList<CommentNotice> selectReplyNoticeList(int noticeNum) {
+		Connection con = getConnection();
+		ArrayList<CommentNotice> list = new NoticeDao().selectReplyList(con, noticeNum);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int deleteCommentNotice(int commentNum) {
+		Connection con = getConnection();
+		int result = new NoticeDao().deleteCommentNotice(con, commentNum);
+		if(result > 0 ) {
+			commit(con);
+			
+		}else {
+			rollback(con);
+		}
+		
+		return result;
 	}
 
 

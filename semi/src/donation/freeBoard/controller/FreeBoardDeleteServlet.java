@@ -31,16 +31,16 @@ public class FreeBoardDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//ê³µì§€ê¸€ ì‚­ì œ ì²˜ë¦¬ìš© ì»¨íŠ¸ë¡¤ëŸ¬
+		//°øÁö±Û »èÁ¦ Ã³¸®¿ë ÄÁÆ®·Ñ·¯
 		response.setContentType("text/html charset=utf-8");
 		
 		if( new FreeBoardService().deleteFreeBoard(Integer.parseInt(request.getParameter("no"))) > 0){
-			//ì‚­ì œí•˜ë©´ ëª©ë¡ìœ¼ë¡œ ë°”ë¡œ ë³´ë‚´ê¸°
+			//»èÁ¦ÇÏ¸é ¸ñ·ÏÀ¸·Î ¹Ù·Î º¸³»±â
 			response.sendRedirect("/semi/flist");
 		}else{
 			RequestDispatcher errorPage = null;
 			errorPage = request.getRequestDispatcher("views/freeBoard/freeBoardEorr");
-			request.setAttribute("message", "ììœ  ê²Œì‹œê¸€ ì‚­ì œ ì‹¤íŒ¨!");
+			request.setAttribute("message", "ÀÚÀ¯ °Ô½Ã±Û »èÁ¦ ½ÇÆĞ!");
 			errorPage.forward(request, response);
 		}
 		 

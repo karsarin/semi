@@ -1,34 +1,35 @@
-package donation.freeBoard.controller;
+package donation.notice.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import donation.freeBoard.model.service.FreeBoardService;
 import donation.freeBoard.model.vo.CommentBoard;
-import donation.freeBoard.model.vo.FreeBoard;
+import donation.notice.model.service.NoticeService;
+import donation.notice.model.vo.CommentNotice;
 
 /**
- * Servlet implementation class FreeBoardReplyInsertServlet
+ * Servlet implementation class FreeBoardReplyListServlet
  */
-@WebServlet("/reInsert")
-public class FreeBoardReplyInsertServlet extends HttpServlet {
+@WebServlet("/nreList")
+public class NoticeReplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FreeBoardReplyInsertServlet() {
+    public NoticeReplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,29 +38,19 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");  //JSON 객체로 내보낼때는 text/html 아님
 		
-		String content = request.getParameter("content");	
-		String writer = request.getParameter("writer");	
-		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
-
-		CommentBoard cboard = new CommentBoard(boardNum, writer, content );
 		
+		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
 		
-		FreeBoardService fservice = new FreeBoardService();
-		int result = fservice.insertReplyBoard(cboard);
+		//System.out.println(boardNum);
+		NoticeService nservice = new NoticeService();		
 		
-		System.out.println("result : " + result);
+		ArrayList<CommentNotice> list = nservice.selectReplyNoticeList(noticeNum);	
+		
+		//System.out.println(list);
 		 
-		
-
-		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);
-		
-		/*
-		System.out.println(list);
-		
 		///내보내는건 json 객체 하나만 내보낼 수 있음
 		//그래서 json 배열을 json 객체에 저장함
 		//내보낼 json 객체 선언
@@ -67,11 +58,11 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 		//list 옮겨담을  json 배열 선언
 		JSONArray jarr = new JSONArray();
 		
-		for(CommentBoard comment : list){
+		for(CommentNotice comment : list){
 			//user 객체 한 개를 저장할 json 객체 선언
 			JSONObject j = new JSONObject();
 			j.put("commentNum", comment.getCommentNum());
-			j.put("boardNum", comment.getBoardNum());
+			j.put("noticeNum", comment.getnoticeNum());
 			j.put("writer", URLEncoder.encode(comment.getWriter(), "UTF-8"));
 			//j.put("date", comment.getDate());
 			j.put("date",  comment.getDateString());
@@ -79,34 +70,17 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 			
 			jarr.add(j);
 		}		
-		//
+		
 		job.put("list", jarr);
-		System.out.println("comment job : " + job.toJSONString());
+	//	System.out.println("comment job : " + job.toJSONString());
 		PrintWriter pw = response.getWriter();
 		//PrintWriter는 문자 스트림이기때문에 object가 나갈 수 없다. 
 		//문자 스트림이므로 객체를 문자열형으로 바꿔서 내보내야 함
 		pw.print(job.toJSONString());
 		pw.flush();
 		pw.close();
-		*/
 		
-		if(result > 0) {
-	         RequestDispatcher view = request.getRequestDispatcher("/reList");
-	        // nto = boardNum;
-	        request.setAttribute("no", boardNum);
-	        // System.out.println("---------------------------");
-	        // flag =1;
-	       //  System.out.println(boardNum);
-	         view.forward(request, response);
-	         
-	      }else {
-	         RequestDispatcher view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-	         request.setAttribute("message", "자유게시판 댓글 달기 실패");
-	         view.forward(request, response);
-	      }
-		
-		
-		System.out.println("파일 전송 완료");
+	//	System.out.println("파일 전송 완료");
 	}
 
 	/**
