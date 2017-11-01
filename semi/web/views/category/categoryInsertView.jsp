@@ -74,7 +74,7 @@ function onTestChange()
  		<%@ include file="../../leftList.jsp" %> 
  	</div> 
 
- 
+ <br><br><br><br>
   <div style="width:1000px;">
   <div style="align: center;">
 	<font size="5">&nbsp; &nbsp; &nbsp;재능 등록</font>
@@ -107,15 +107,16 @@ function onTestChange()
 		</select>
 </td>
 </tr>
-   <tr><th><strong>*재능제목</strong></th> <td> <input type="text" name="ctitle" required> &nbsp; 40자 이내 </td></tr>
- <tr><th> <strong>*기부금설정</strong></th><td> <input type="text" name="cdonation" required> &nbsp; 별도의 가격이 정해지지 않으면 0원으로 설정됩니다.</td></tr>
+   <tr><th><strong>*재능제목</strong></th> <td> <input type="text" name="ctitle" required> &nbsp; 게시글의 제목을 작성합니다. </td></tr>
+ <tr><th> <strong>*기부금설정</strong></th><td> <input type="text" name="cdonation" required>원 <br> 별도의 가격이 정해지지 않으면 0원으로 설정됩니다.</td></tr>
  <tr><th><strong>*작업일</strong></th> <td><input type="text" name="cworkdate" required> &nbsp; 작업이 완료되는 평균 작업일을 작성합니다.</td></tr>
  <tr><th><strong>*이메일</strong></th><td><input type="email" name="cemail" required></td></tr>
  <tr><th><strong>휴대폰</strong></th> <td><input type="text" name="cphone"></td> </tr>
   <tr><th><strong>*메인 이미지 등록</strong></th><td> <input type="file" name="upfile" required> &nbsp; 나의 재능을 잘 대표할 수 있는 이미지로 설정합니다.</td></tr>
-  <tr><th><strong>*재능상세내용</strong></th> <td><textarea id="textarea" onkeypress="onTestChange();" cols="50" row="15" name="ccontent" style="white-space:pre-line;"></textarea></td> </tr>
+  <tr><th><strong>*재능상세내용</strong></th> <td><textarea id="textarea" onkeypress="onTestChange();" cols="60" rows="10" name="ccontent" style="white-space:pre-line;"></textarea></td> </tr>
   <tr><th><strong>재능상세이미지</strong></th>  
   	<td> 
+  			추가로 4장의 이미지를 더 설정할 수 있습니다.<br>
 			<input type="file" name="cimage1" id="addImage1" onchange="addImage2Check();"> <br>
 			<input type="file" name="cimage2" id="addImage2" onchange="addImage3Check();" disabled> <br>
 			<input type="file" name="cimage3" id="addImage3" onchange="addImage4Check();" disabled> <br>
