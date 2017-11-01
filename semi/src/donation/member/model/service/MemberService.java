@@ -101,9 +101,12 @@ public class MemberService {
 
 	public void logout(String memberId) {
 		Connection con = getConnection();
-		close(con);
 		new MemberDao().logout(con,memberId);
-		
+		if(con!=null)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
 	}
 
 	public ArrayList<MyWrite> selectMyWrite(int currentPage, int limit, String memberId,int boardNo) {

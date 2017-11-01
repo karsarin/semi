@@ -61,45 +61,16 @@ public class MemberInsertServlet extends HttpServlet {
 			talent = "";
 		}
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
-		int result = new MemberService().memberInsertCheck(member,memberPwd2);
-		if(result ==0){
-			int result2 = new MemberService().memberInsert(member);
-			if(result2 >0){
+			
+		int result = new MemberService().memberInsert(member);
+			if(result >0){
 				response.sendRedirect("/semi/index.jsp");
 			}else{
 				RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
 				request.setAttribute("message", "회원가입 실패!");
 				view.forward(request, response);
 			}
-		}else if(result == 1){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디길이 오류");
-			view.forward(request, response);
-		}else if(result == 2){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디 영문숫자 오류");
-			view.forward(request, response);
-		}else if(result == 3){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디 영문숫자조합 오류");
-			view.forward(request, response);
-		}else if(result == 4){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "비밀번호 확인 실패!");
-			view.forward(request, response);
-		}else if(result == 5){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "주민번호 중복!");
-			view.forward(request, response);
-		}else if(result == 6){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "이메일 중복!");
-			view.forward(request, response);
-		}else if(result == 7){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "전화번호 중복!");
-			view.forward(request, response);
-		}
+		
 	}
 
 	/**
