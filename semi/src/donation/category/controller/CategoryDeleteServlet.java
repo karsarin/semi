@@ -36,6 +36,7 @@ public class CategoryDeleteServlet extends HttpServlet {
 		CategoryService cservice = new CategoryService();
 		
 		cservice.deletePurchase(cnum);
+		
 			if(new CategoryService().deleteBoard(cnum) > 0)
 			{
 				response.sendRedirect("/semi/clist?cpage=1");
