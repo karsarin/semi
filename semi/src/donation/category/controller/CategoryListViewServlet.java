@@ -38,7 +38,7 @@ public class CategoryListViewServlet extends HttpServlet {
 				int ccurrentPage = 1;
 				
 				// 한 페이지에 출력할 목록 개수 지정
-				int climit = 10;
+				int climit = 16;
 				
 				// 페이지 숫자가 전송이 왔을 경우 
 				if(request.getParameter("cpage") != null)
@@ -54,15 +54,15 @@ public class CategoryListViewServlet extends HttpServlet {
 				
 				// 총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
 				// 페이지 1이 되려면 = 목록 0.1 개 + 0.9 계산되게 함
-				int cmaxPage = (int)((double)clistCount / climit + 0.9);
+				int cmaxPage = (int)((double)clistCount / 10 + 0.9);
 				
 				// 현재 페이지가 13이면 화면에 보여줄 시작 페이지는 11로 지정
 				// (1, 11, 21, 31, ........)
-				int cstartPage = (((int)((double)ccurrentPage / climit + 0.9)) - 1) * climit + 1;
+				int cstartPage = (((int)((double)ccurrentPage / 10 + 0.9)) - 1) * 10 + 1;
 				
 				// 만약, 목록 아래에 보여질 페이지 개수가 10개이면 
 				// 현재 페이지가 13이면 끝 페이지수는 20페이지가 되어야 함
-				int cendPage = cstartPage + climit - 1;
+				int cendPage = cstartPage + 10 - 1;
 				
 				if(cmaxPage < cendPage)
 					cendPage = cmaxPage;
@@ -71,7 +71,6 @@ public class CategoryListViewServlet extends HttpServlet {
 				
 				if(clist != null)
 				{
-					
 					view = request.getRequestDispatcher("views/category/categoryListView.jsp");
 					request.setAttribute("clist", clist);
 					request.setAttribute("ccurrentPage", ccurrentPage);

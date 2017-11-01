@@ -44,9 +44,9 @@ public class CategoryDao {
 		ResultSet rset = null;
 		
 		
-		String query = "select * from "
-					 + "(select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
-					 + "where rownum >= ? and rownum <= ? and approval='Y'";
+		String query = "select * "
+				+ "from(select rownum rnum, T.* from category_board T) a " 
+				+ "where a.rnum >= ? and a.rnum <= ?";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;

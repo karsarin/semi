@@ -192,7 +192,8 @@ $(document).ready(function() {
 		<hgroup>
 		<div class="row" style="width: 1000px">
   		<div class="col-md-4"><h1 style="font-size:20pt">카테고리 게시판</h1>
-			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3></div>
+			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
+			</div>
 
 		</div>
 			</hgroup>
