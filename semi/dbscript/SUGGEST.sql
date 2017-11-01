@@ -30,4 +30,4 @@ COMMENT ON COLUMN SUGGEST.SUGGEST_RECIVE IS '요구사항 받는 유저';
 
 COMMIT;
 
-INSERT INTO SUGGEST VALUES (1, '쪽지 테스트', '11월 3일', '성공', DEFAULT, NULL, NULL, 'user77', 'user22');
+INSERT INTO SUGGEST VALUES (1, '쪽지 테스트', '11월 3일', '성공', DEFAULT, NULL, NULL, 'user77', 'user88');
