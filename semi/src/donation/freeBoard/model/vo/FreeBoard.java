@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class FreeBoard implements java.io.Serializable{
 	private static final long serialVersionUID = 10001L;
-	
+	 
 	
 	
 	private int freeBoardNo;

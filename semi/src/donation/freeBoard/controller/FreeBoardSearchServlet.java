@@ -118,7 +118,7 @@ public class FreeBoardSearchServlet extends HttpServlet {
 			request.setAttribute("keyword", keyword);
 			request.setAttribute("type", type);
 			
-			
+			 
 			view.forward(request, response);
 	}else{
 		view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");

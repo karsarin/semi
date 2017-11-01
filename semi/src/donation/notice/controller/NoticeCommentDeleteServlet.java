@@ -57,7 +57,7 @@ public class NoticeCommentDeleteServlet extends HttpServlet {
 		int result = nservice.deleteCommentNotice(commentNum);
 		
 		System.out.println("³»²¨ result : " + result   );
-	
+	 
 		
 		System.out.println(result);
 		System.out.println("noticeNum" + noticeNum);

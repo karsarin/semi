@@ -50,7 +50,7 @@ public class CommentNotice {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
+	} 
 	public String getContent() {
 		return content;
 	}

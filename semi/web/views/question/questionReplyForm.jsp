@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>boardReplyForm</title>
 
-
+ 
 <script src="/semi/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {

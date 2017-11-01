@@ -75,7 +75,7 @@ public class Notice implements java.io.Serializable{
 	}
 	public void setRenameFileName(String renameFileName) {
 		this.renameFileName = renameFileName;
-	}
+	} 
 	public int getReadCount() {
 		return readCount;
 	}

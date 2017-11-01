@@ -79,7 +79,7 @@ width:66vw;
 			</div>
   <div class="col-md-8">
 
-	
+	 
 	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
 	<table id="writetable">
 	<th colspan="2" style="font-size:20px;">QnA 글쓰기</th>

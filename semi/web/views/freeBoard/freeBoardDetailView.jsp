@@ -274,7 +274,7 @@ color: #4C4C4C;
 		<a href="/semi/fdel?no=<%=fboard.getfreeBoardNo()%>">삭제</a>
 	</td></tr>
 	<%} %>
-	
+	 
 	</table>
 	<!-- 게시글 -->
 

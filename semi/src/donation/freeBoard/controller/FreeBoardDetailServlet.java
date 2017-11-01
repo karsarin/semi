@@ -35,7 +35,7 @@ public class FreeBoardDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// a 태그로 요청온건 doGet()이 받음
+		// a 태그로 요청온건 doGet()이 받음 
 				//공지글 상세 조회 처리용 컨트롤러
 				response.setContentType("text/html; charset=utf-8");
 				//CommentBoardDeleteServlet cbd = new CommentBoardDeleteServlet();

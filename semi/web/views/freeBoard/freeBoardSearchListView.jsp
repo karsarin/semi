@@ -87,7 +87,7 @@ background-color: #F29661;
 #writeButton{
 	
 	height:37px;
-}
+} 
 #typeSelect {
 	width: 5vw;
 }

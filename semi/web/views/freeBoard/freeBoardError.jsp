@@ -10,4 +10,4 @@
 자유 게시판 오류입니다 : <%= (String)request.getAttribute("message") %>
 <a href="/semi/index.jsp">시작 페이지로 이동</a>
 </body>
-</html>
+</html> 

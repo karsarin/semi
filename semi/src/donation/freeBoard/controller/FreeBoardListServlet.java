@@ -36,7 +36,7 @@ public class FreeBoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		int currentPage = 1;
+		int currentPage = 1; 
 		int limit = 10;
 		
 		if(request.getParameter("page")!=null )

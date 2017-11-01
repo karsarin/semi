@@ -9,7 +9,7 @@ import donation.notice.model.vo.Notice;
 
 import static donation.common.JDBCTemplate.close;
 import static donation.common.JDBCTemplate.*;
-
+ 
 public class NoticeDao {
 	public NoticeDao(){}
 	public int getListCount(Connection con) {
