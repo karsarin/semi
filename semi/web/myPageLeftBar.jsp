@@ -72,6 +72,8 @@ ul.sub li:hover {
 					<li><a href="/semi/minfor?userid=<%=member.getMemberId()%>">내정보보기</a></li>
 					<li><a href="/semi/dselect?memberid=<%= member.getMemberId() %>">기부현황보기</a></li>
 					<li><a href="/semi/mylist?memberid=<%= member.getMemberId() %>">작성한 글 보기</a></li>
+					<li><a href="/semi/suglist?reciver=<%= member.getMemberId() %>">쪽지 보관함</a></li>
+					<li><a href="/semi/sugslist?writer=<%= member.getMemberId() %>">보낸 쪽지함</a></li>
 					<li><a href="/semi/myapp?memberid=<%= member.getMemberId() %>">재능기부신청현황</a></li>
 					<li><a href="/semi/views/member/DeleteCheck.jsp">회원탈퇴</a></li>
 					

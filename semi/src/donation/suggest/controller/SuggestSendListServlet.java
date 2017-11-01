@@ -38,7 +38,7 @@ public class SuggestSendListServlet extends HttpServlet {
 				
 				String suggestWriter = request.getParameter("writer");
 				
-				ArrayList<Suggest> list = new SuggestService().selectList(suggestWriter);
+				ArrayList<Suggest> list = new SuggestService().selectSendList(suggestWriter);
 				
 				RequestDispatcher view = null;	
 				if(list != null){

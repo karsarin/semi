@@ -97,6 +97,7 @@
 			<input type="reset" value="취소" style="background:white;">
 		</div>
 	</form>
+	
 	<%@ include file="../../footerbar.jsp" %>	
 </body>
 </html>
