@@ -49,6 +49,11 @@ public class ChattingService {
 		if(result>0) commit(conn);
 		else rollback(conn);
 	}
-	
-	
+
+	public boolean chatMgr(String user) {
+		Connection conn = getConnection();
+		boolean result = new ChattingDao().chatMgr(conn, user);
+		close(conn);
+		return result;
+	}	
 }
