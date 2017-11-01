@@ -73,7 +73,7 @@ public class FreeBoardCommentDeleteServlet extends HttpServlet {
 	         RequestDispatcher view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
 	         request.setAttribute("message", "댓글 삭제 에러");
 	         view.forward(request, response);
-	      }
+	      } 
 		
 		
 		
