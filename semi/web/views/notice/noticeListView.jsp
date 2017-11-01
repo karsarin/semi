@@ -90,10 +90,13 @@ background-color: #F29661;
  
 
 <div class="col-md-2">	
-	<%if(member != null){ %>
-	<%@ include file="../../boardLeftBar.jsp"%>
+
+<%if( !(member != null) || member.getMemberId().equals("admin")) {%>
+	
+	<%@ include file="../../boardLeftBar2.jsp"%>
 	<%}else{ %>
-	<%@ include file="../../boardLeftBar2.jsp"%>	
+		
+	<%@ include file="../../boardLeftBar.jsp"%>
 	<%} %> 
 	
 </div>

@@ -49,7 +49,7 @@
 }
 
 #textarea textarea{
-height:200px;
+height:500px;
 width:66vw;
 }
 
@@ -69,11 +69,13 @@ width:66vw;
 <div class="row" style="margin-top:200px;">
 <%}%>
   <div class="col-md-2">
-  		<%if(member != null){ %>
-	<%@ include file="../../boardLeftBar.jsp"%>
+<%if( !(member != null) || member.getMemberId().equals("admin")) {%>
+	
+	<%@ include file="../../boardLeftBar2.jsp"%>
 	<%}else{ %>
-	<%@ include file="../../boardLeftBar2.jsp"%>	
-	<%} %>
+		
+	<%@ include file="../../boardLeftBar.jsp"%>
+	<%} %> 
 </div>
   <div class="col-md-8">
 
