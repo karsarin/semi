@@ -35,18 +35,16 @@ public class CategoryDeleteServlet extends HttpServlet {
 		int cnum = Integer.parseInt(request.getParameter("cnum"));
 		CategoryService cservice = new CategoryService();
 		
-		if(cservice.deletePurchase(cnum) > 0){
+		cservice.deletePurchase(cnum);
 			if(new CategoryService().deleteBoard(cnum) > 0)
 			{
-				response.sendRedirect("/semi/clist?page=1");
+				response.sendRedirect("/semi/clist?cpage=1");
 			} else {
 				RequestDispatcher view = request.getRequestDispatcher("views/category/categoryError.jsp");
 				request.setAttribute("message", "게시글 삭제 처리 실패");
 				view.forward(request, response);
 			}
-		} else {
-			System.out.println("구매 리스트 삭제 실패");
-		}
+	
 	}
 
 	/**
