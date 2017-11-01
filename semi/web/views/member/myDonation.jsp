@@ -147,7 +147,8 @@ background-color:lightblue;
 	<%}else{ %>
 	<a href="/semi/dselect?page=<%= currentPage+1 %>&memberid=<%= member.getMemberId() %>&beforedate=<%= beforeDate %>&afterdate=<%= afterDate %>">[다음]</a>
 	<% }}else{ %>
-	<%= member.getMemberNik() %>님의 기부기록이 없습니다.
+	<br><br><br><br><hr>
+	<div align="center" style="font-size:20pt;color:crimson;"><%= member.getMemberNik() %>님의 기부기록이 없습니다.</div>
 	<% } %> 
 
 </div> 
