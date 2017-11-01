@@ -38,17 +38,90 @@
   		<%}%>
    	});
 </script>
+
+<%-- 세로목록 --%>
+<style>
+ul#navi {
+   width: 200px;
+   text-indent: 10px;
+   background-color: lightgray;
+}
+
+ul#navi, ul#navi ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+li.group {
+   margin-bottom: 3px;
+}
+
+li.group div.title {
+   height: 35px;
+   line-height: 35px;
+   background: lightblue;
+   cursor: pointer;
+}
+
+ul.sub li {
+   margin-bottom: 2px;
+   height: 35px;
+   line-height: 35px;
+   background: #f4f4f4;
+   cursor: pointer;
+}
+
+ul.sub li a {
+   display: block;
+   width: 100%;
+   height: 100%;
+   text-decoration: none;
+   color: #000;
+}
+
+ul.sub li:hover {
+   background: lightblue;
+}
+</style>
+<!-- 세로목록 끝 -->
+
 </head>
 <body>
+
 	<%@ include file="../../headerbar.jsp" %>	
 	<%@ include file = "../../rightList.jsp" %>
+	<%--<%@ include file="../../leftList.jsp" %> --%>
+	<%-- <%@ include file="../../myPageLeftBar.jsp" %> --%>
+	
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left; margin-top:250px;">
+
+		<ul id="navi">
+			<li class="group">
+				<div class="title">카테고리</div>
+				<ul class="sub">
+				<li><a href="/semi/clist">모두 보기</a>
+					<li><a href="/semi/cfIT">IT</a></li>
+               <li><a href="/semi/cfdesign">디자인</a></li>
+               <li><a href="/semi/cfmarketing">마케팅</a></li>
+               <li><a href="/semi/cfmusic">음악</a></li>
+               <li><a href="/semi/cfknowhow">노하우/상담</a></li>
+               <li><a href="/semi/cftranslation">번역</a></li>
+               <li><a href="/semi/cfhealth">건강</a></li>
+               <li><a href="/semi/cfetc">기타</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	
 <%if(member!=null && member.getMemberId().equals("admin")) {%>
 <div class="heading-section text-center" style="margin-top:150px;">	
 <%} else {%>
-<div class="heading-section text-center" style="margin-top:200px;">	
+<!-- <div class="heading-section text-center" style="margin-top:200px;"> -->
+<div style="text-align: center; padding-right: 160px; margin-top:200px;">	
 <%}%>
 
-		<h2 style="text-shadow:1px 1px 2px gray;">쪽지 보내기</h2>
+		<h2 style="text-shadow:1px 1px 2px gray; font-weight: bold; font-size: 30px; margin-bottom: 15px;">쪽지 보내기</h2>
 	</div>
 
 	<form action="/semi/sugsend" method="post" enctype="multipart/form-data">
@@ -97,6 +170,7 @@
 			<input type="reset" value="취소" style="background:white;">
 		</div>
 	</form>
+	
 	<%@ include file="../../footerbar.jsp" %>	
 </body>
 </html>
