@@ -32,9 +32,9 @@
    <div class="login-page">
       <div class="form">
 
-         <form class="login-form" method="post">
+         <form class="login-form" action="/semi/minsert" method="post" id="login-form"name="login-form">
             <input type="text" id="memberid" placeholder="아이디" name="memberid" />
-            <button onclick="butn_confirm1();return false;">중복확인</button>
+            <button onclick="return butn_confirm1(this);">중복확인</button>
 
 
 
@@ -43,7 +43,7 @@
                name="memberno" id="memberno"/> <input type="password" id="pwd1"
                placeholder="비밀번호" name="memberpwd1" /> <input type="password"
                id="pwd2" placeholder="비밀번호 확인" name="memberpwd2" />
-            <button onclick="checkpwd();return false;">중복확인</button>
+            <button type="button"onclick="return checkpwd();">중복확인</button>
             <input type="text" placeholder="닉네임" name="membernik" id="membernik" />
 
             <input type="text" placeholder="주소" name="memberaddress1" id="memberaddress1" /> <input
@@ -76,7 +76,7 @@
 
                </tr>
             </table>
-            <button onclick="insert()">create</button>
+            <button onclick="return insert();">create</button>
 
          </form>
 
@@ -87,7 +87,8 @@
 		
 	
    
-   function butn_confirm1(){
+   function butn_confirm1(event){
+	   
       var id = document.getElementById('memberid').value;
       var idtext = document.getElementById('memberid');
       var flag = 0; 
@@ -111,21 +112,25 @@
          
          alert("확인되었습니다.");
       }
+      return false;
    }
    
    function checkpwd(){
-      
+      alert("확인");
 	  var pwd1 = document.getElementById('pwd1').value;
       var pwd2 = document.getElementById('pwd2').value;
-      
-      if(pwd1 == pwd2){
+      if(id.length < 8){
+          alert("8자리 이상해주세요.");
+          idtext.value="";
+          else if(pwd1 == pwd2){
          
          
          alert("확인되었습니다.");
       }else{
          alert("비밀번호가 같지 않습니다.");
       }
-      
+          
+      return false;
    }
    
    
@@ -210,16 +215,7 @@
 	   var memberemail = document.getElementById('memberemail').value;	//이메일
 	   var memberphone = document.getElementById('memberphone').value;	//전화번호
 	   //var talent = document.getElementById('talent').value;	//재능
-	   alert(memberid);
-	   alert(membername);
-	   alert(memberno);
-	   alert(memberpwd1);
-	   alert(membernik);
-	   alert(memberaddress1);
-	   alert(memberaddress2);
-	   alert(memberemail);
-	   alert(memberphone);
-	   alert(talent);
+	   
          var id = document.getElementById('memberid').value;
          var idtext = document.getElementById('memberid');
          var flag = 0; 
@@ -266,19 +262,45 @@
          //서블릿으로 이동하는거 보내시면 됩니다.
          
          
-         
-         
-         
-         location.href="/semi/minsert?memberid="+memberid
-		 +"&membername="+membername+"&memberno"+memberno
-		 +"&memberpwd1="+memberpwd1+"&membernik="+membernik
-		 +"&memberaddress1="+memberaddress1+"&memberaddress2="+memberaddress2
-		 +"&memberemail="+memberemail+"&memberphone="+memberphone+"&talent="+talent;
-          
-         
+       alert(memberid);
+	   alert(membername);
+	   alert(memberno);
+	   alert(memberpwd1);
+	   alert(membernik);
+	   alert(memberaddress1);
+	   alert(memberaddress2);
+	   alert(memberemail);
+	   alert(memberphone);
+	   alert(talent);
+	   if(membername == null||membername==""){
+		   alert("이름을 입력해주세요.");
+		   return false;
+	   }else if(memberno ==null || memberno ==""){
+		   alert("주민번호를 입력해주세요.");
+		   return false;
+	   }else if(memberpwd1==null||memberpwd1==""){
+		alert("비밀번호를 입력해주세요.");  
+		return false;
+	   }else if(memberpwd1==null||memberpwd1==""){
+		alert("닉네임을 입력해주세요.");   
+		return false;
+	   }else if(memberpwd1==null||memberpwd1==""){
+		alert("주소를 입력해주세요.");  
+		return false;
+	   }else if(memberpwd1==null||memberpwd1==""){
+		alert("이메일을 입력해주세요.");  
+		return false;
+	   }else if(memberpwd1==null||memberpwd1==""){
+		alert("전화번호를 입력해주세요.");   
+		return false;
+	   }else{
+       $('#login-form').submit();
+       return true;
+      }
+       
          
       }
-      
+   
       
    }
    
