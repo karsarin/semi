@@ -17,6 +17,15 @@
 <head>
 <meta charset="UTF-8">
 <title>카테고리 게시판</title>
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    	$(function(){
+    		$('.main-menu ul #insertc').removeClass('active');
+    		$('.main-menu ul #home').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #category').addClass('active');
+    	});
+</script>
 <script type="text/javascript">
 	function insertPage()
 	{
@@ -151,18 +160,9 @@ $(document).ready(function() {
 
 <body>
 
-<%@ include file="../../header.jsp" %>
-
-<%if(member!=null&&member.getMemberId().equals("admin")) { %>
-	<%@ include file="../manager/managerHeader.jsp" %>
-<% } else { %>
-
-	
-	
-<%} %> 
 <%@ include file="../../headerbar.jsp" %>
 
-	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left; margin-top:250px;">
 
 		<ul id="navi">
 			<li class="group">
@@ -185,6 +185,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
+	<br><br><br><br><br><br>
 <div style="float:left; width:1000px;">
 <form action="/clist" method="post">
 	<div>
@@ -192,14 +193,7 @@ $(document).ready(function() {
 		<div class="row" style="width: 1000px">
   		<div class="col-md-4"><h1 style="font-size:20pt">카테고리 게시판</h1>
 			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3></div>
- 		 <div class="col-md-4"></div>
-  		<div class="col-md-4">
-  		<button type="button" class="btn btn-primary">조회순</button>
 
-			<button type="button" class="btn btn-success">구매순</button>
-
-			<button type="button" class="btn btn-info">평가순</button>
-		</div>
 		</div>
 			</hgroup>
 		<br><br>

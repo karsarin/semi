@@ -67,12 +67,12 @@
 	<br><br><br><br>
 	<div class="row">
 		<div class="container1 col-md-4 col-sm-12 col-md-offset-2">
-			<form id="search-body">
+			<form id="search-body" action="/semi/mgrmsearch" method="post">
 				<button id="s-btn-body" type="submit">
 					<span id="s-btn"></span>
 				</button>
 				<div id="s-form-body">
-					<input id="s-form" type="text" placeholder="Search Keyword">
+					<input name="keyword" id="s-form" type="text" placeholder="Search Keyword">
 				</div>
 			</form>
 			<br>

@@ -19,7 +19,7 @@ public class CategoryDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select count(*) from category_board";
+		String query = "select count(*) from category_board where approval='Y'";
 		
 		try {
 			stmt = con.createStatement();
@@ -44,8 +44,9 @@ public class CategoryDao {
 		ResultSet rset = null;
 		
 		
-		String query = "select * from (select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
-				+ "where rownum >= ? and rownum <= ?";
+		String query = "select * from "
+					 + "(select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
+					 + "where rownum >= ? and rownum <= ? and approval='Y'";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
@@ -269,7 +270,7 @@ public class CategoryDao {
 		
 		
 		String query = "select * from (select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
-				+ "where rownum >= ? and rownum <= ? and category_group = ?";
+				+ "where rownum >= ? and rownum <= ? and category_group = ? and approval='Y'";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
@@ -381,5 +382,63 @@ public class CategoryDao {
 		return result;
 	}
 
-	
+	public int updateCategory(Connection con, Category c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update category_board set category_group = ?, "
+						+ "category_title = ?, category_content = ?, "
+						+ "category_donation = ?, work_date = ?, "
+						+ "phone = ?, email = ?, original_image = ?, rename_image = ?, "
+						+ "add_image1 = ?, add_image2 = ?, add_image3 = ?, add_image4 = ?, "
+						+ "add_rename_image1 = ?, add_rename_image2 = ?, add_rename_image3 = ?, "
+						+ "add_rename_image4 = ? "
+						+ "where category_no = ? ";
+				
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, c.getCategoryGroup());
+			pstmt.setString(2, c.getCategoryTitle());
+			pstmt.setString(3, c.getCategoryContent());
+			pstmt.setInt(4, c.getCategoryDonation());
+			pstmt.setInt(5, c.getWorkDate());
+			pstmt.setString(6, c.getPhone());
+			pstmt.setString(7, c.getEmail());
+			pstmt.setString(8, c.getOriginalImage());
+			pstmt.setString(9, c.getRenameImage());
+			pstmt.setString(10, c.getAddImage1());
+			pstmt.setString(11, c.getAddImage2());
+			pstmt.setString(12, c.getAddImage3());
+			pstmt.setString(13, c.getAddImage4());
+
+			pstmt.setString(14, c.getAddRenameImage1());
+			pstmt.setString(15, c.getAddRenameImage2());
+			pstmt.setString(16, c.getAddRenameImage3());
+			pstmt.setString(17, c.getAddRenameImage4());
+			pstmt.setInt(18, c.getCategoryNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+					e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateApprove(Connection con, int cno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update category_board set approval='Y' where category_no=?";
+		try {
+			pstmt = con.prepareStatement(query);			
+			pstmt.setInt(1, cno);			
+			result = pstmt.executeUpdate();			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -31,7 +31,7 @@ public class ManagerDao {
 							rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
 							rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
 							rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
-							rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
+							rset.getString("connection"), rset.getString("talent"), rset.getString("manager_chatting"), rset.getString("manager_login")
 					);
 					list.add(member);
 				}
@@ -60,7 +60,7 @@ public class ManagerDao {
 						rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
 						rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
 						rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
-						rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
+						rset.getString("connection"), rset.getString("talent"), rset.getString("manager_chatting"), rset.getString("manager_login")
 				);
 			}
 		} catch (Exception e) {
@@ -75,7 +75,7 @@ public class ManagerDao {
 	public int updateMember(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "update member set mgrchat=?, mgrlogin=? "
+		String query = "update member set manager_chatting=?, manager_login=? "
 					 + "where member_id=?";
 		
 		try {
@@ -199,6 +199,38 @@ public class ManagerDao {
 						rset.getInt("QUESTION_LEVEL"), rset.getInt("QUESTION_REF"), rset.getInt("QUESTION_REPLY_REF"), rset.getInt("QUESTION_REPLY_SEQ")
 					);
 					list.add(question);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Member> searchMember(Connection conn, String keyword) {
+		ArrayList<Member> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from member where member_id like ? or member_name like ? or talent like ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			for(int i=1; i<4; i++)
+				pstmt.setString(i, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset!=null) {
+				list = new ArrayList<Member>();
+				while(rset.next()) {
+					Member member = new Member(
+							rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
+							rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
+							rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
+							rset.getString("connection"), rset.getString("talent"), rset.getString("manager_chatting"), rset.getString("manager_login")
+					);
+					list.add(member);
 				}
 			}
 		} catch (Exception e) {

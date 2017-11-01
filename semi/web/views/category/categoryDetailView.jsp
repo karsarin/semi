@@ -5,7 +5,6 @@
 <%
 	Category category = (Category)request.getAttribute("category");
 	int currentPage = ((Integer)request.getAttribute("ccurrentPage")).intValue();
-	String result = (String)request.getAttribute("result");
 	
 %>
 
@@ -58,16 +57,9 @@
 
 </style>
 <script type="text/javascript">
+
 	
-	
-	function loginAlert()
-	{
-		alert("로그인 해야 신청할 수 있습니다.");
-	}
-	
-	function goSuggestion(){
-		location.href="/semi/views/suggest/suggestWriteForm.jsp";
-	}
+		
 	
 	function confirmDelete()
 	{
@@ -80,25 +72,40 @@
 	function goUpdateView()
 	{
 		location.href="/semi/cupdate?cnum=<%= category.getCategoryNo() %>&cpage=<%= currentPage %>";
+		
 	}	
 </script>
 
 </head>
 <body style="margin-left:30px; margin-right:30px">
- <%@ include file="../../header.jsp" %>
+
 <%@ include file="../../headerbar.jsp" %>
 <script type="text/javascript">
 function goPurchaseView(){
-	
-	alert("재능 신청이 완료되었습니다.");
-	
+	<% if(member == null){ %>
+		alert("재능 신청은 로그인이 필요합니다.");	
+	<%} else { %>
+		alert("재능 신청이 완료되었습니다.");
+		
 		location.href="/semi/cpurchaselist?categoryNo=<%= category.getCategoryNo()%>&memberid=<%= member.getMemberId()%>"; 
+	<%}%>
+	
 }
 
+function goSuggestion(){
+	<% if(member != null){ %>
+	location.href="/semi/views/suggest/suggestWriteForm.jsp";
+	<%} else {%>
+		alert("로그인이 필요합니다.");
+	<% } %>
+	
+}
 </script>
 
 <!-- 판매자 정보 -->
+
 <div>
+<br><br><br><br><br>
 <table class="table table-bordered" id="table">
 
   <tr><th width="160px"><img src="cuploadfiles/<%=category.getRenameImage() %>" width="75" height="75"></th><td width="160px"><%= category.getUserId() %></td></tr>
@@ -118,7 +125,7 @@ function goPurchaseView(){
   <%} %>
   </tr>
   <tr><th width="160px">이메일</th><td><%= category.getEmail() %></td></tr>
-  <% if(member != null && !member.getMemberId().equals(category.getCategoryWriter())){ %>
+  <% if(member != null && !member.getMemberId().equals(category.getCategoryWriter()) || member == null){ %>
  <tr><td colspan="2" align="center"> <button type="button" class="btn btn-primary btn-lg" onclick="javascript:goPurchaseView();">재능 신청하기</button></tr>
  <% } else if(member != null && member.getMemberId().equals(category.getCategoryWriter())){ %>
  		<tr><td align="center">
@@ -126,19 +133,29 @@ function goPurchaseView(){
  	</td>
  	<td align="center"><button type="button" class="btn btn-warning" onclick="goUpdateView()">재능 수정</button></td>
  	</tr>
- <%} else {%> 	
- 	<tr><td colspan="2" align="center"> <button type="button" class="btn btn-primary btn-lg" onclick="javascript:loginAlert();">재능 신청하기</button></tr>
- <%} %>
+<%} %>
  
  <% if(member == null || !member.getMemberId().equals(category.getCategoryWriter())){ %>
- <tr><td align="center"><button type="button" class="btn btn-success" onclick="goSuggestion();">문의 보내기</button></td>
- 		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
+
+ <tr>
+ 	<td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></button></td>
+ 	<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
+
+<%--  <tr><td align="center"><a href="/semi/swrite?reciver=<%= category.getUserId() %>" class="btn btn-success">문의 보내기</a></button></td>
+ 		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %> --%>
+
  				<button type="button" class="btn btn-success"><a href="/semi/chatcon?chatRe=<%= category.getUserId() %>">채팅가능</a></button>
  			<%} else { %>
  				<button type="button" class="btn btn-danger">로그아웃상태</button>
  			<%} %>
- 		</td></tr>
-<%} %>
+ 	</td>
+ </tr>
+<%if(member.getMemberId().equals("admin") && category.getApproval().equals("N")){%>
+ <tr>
+ 	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/capprove?cno=<%=category.getCategoryNo()%>'">승인</button></td>
+ 	<td align="center"><button type="button" class="btn btn-success" onclick="location.href='/semi/crefusal?cno=<%=category.getCategoryNo()%>'">거절</button></td>
+ </tr>
+<%} } %>
  	
 </table>
 
@@ -170,7 +187,7 @@ function goPurchaseView(){
 		<p><strong><font size="4"> 재능 <font color="blue">상세 내용</font></font></strong></p><br>
 		
 		<p style="margin-bottom:20px">
-			<%= category.getCategoryContent() %> 
+			<%= category.getCategoryContent().replaceAll("\n", "<br>") %> 
 		</p>
 	</div>
 	
@@ -189,7 +206,7 @@ function goPurchaseView(){
 	
 	 <% if(category.getAddRenameImage4() != null){ %> 
 		<img class="mainimg" src="cuploadfiles/<%= category.getAddRenameImage4() %>" width="855px" height="600px"><br>
-	 <%} %>
+	 <% } %>
 	</div>
 <!-- 게시글 정보 끝 -->
 <%@ include file="../../rightList.jsp" %>

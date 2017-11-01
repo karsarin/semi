@@ -150,8 +150,8 @@ ul.sub li:hover {
 
 <body>
 
-	<%@ include file="../../header.jsp"%>
-
+	
+<%@ include file="../../headerbar.jsp"%>
 	<%
 		if (member != null && member.getMemberId().equals("admin")) {
 	%>
@@ -165,7 +165,7 @@ ul.sub li:hover {
 	<%
 		}
 	%>
-	<%@ include file="../../headerbar.jsp"%>
+	
 
 	<div
 		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
@@ -190,6 +190,7 @@ ul.sub li:hover {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
+	<br><br><br><br><br>
 	<div style="float: left; width: 1000px;">
 		<form action="/clist" method="post">
 			<div>

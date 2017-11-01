@@ -38,7 +38,7 @@ public class CategoryDetailViewServlet extends HttpServlet {
 		int cnum = Integer.parseInt(request.getParameter("cnum"));
 		ccnum = Integer.parseInt(request.getParameter("cnum"));
 		int ccurrentPage = Integer.parseInt(request.getParameter("cpage"));
-		ccurrentPage = Integer.parseInt(request.getParameter("cpage"));
+		ccpage = ccurrentPage = Integer.parseInt(request.getParameter("cpage"));
 		CategoryService cservice = new CategoryService();
 		
 		// 조회수 증가 처리
