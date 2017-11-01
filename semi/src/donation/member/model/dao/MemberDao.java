@@ -77,10 +77,7 @@ public class MemberDao {
 		return result;
 	}
 	public int memberInsertCheck(Connection con, Member member, String memberPwd2){
-		
 		int result = 0;
-
-
 
 		if(!(member.getMemberId().length() >= 8 && member.getMemberId().length() <= 15)){
 			 return 1;//아이디 길이 오류
@@ -727,6 +724,44 @@ public class MemberDao {
 		}finally{
 			close(pstmt);
 		}
+		return result;
+	}
+
+	public String mEnrollCk(Connection conn, String memberId, String memberNo, String memberNik, String memberPhone) {
+		String result = "error";
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "select * from member";
+		ArrayList<Member> list = null;
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset!=null) {
+				list = new ArrayList<Member>();
+				while(rset.next()) {
+					Member member = new Member(
+							rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
+							rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
+							rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
+							rset.getString("connection"), rset.getString("talent"), rset.getString("manager_chatting"), rset.getString("manager_login")
+					);
+					list.add(member);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		for(Member m : list) {
+			if(memberId.equals(m.getMemberId())) result = "ID중복";
+			else if(memberNo.equals(m.getMemberNo()) || memberNo.length()!=13) result = "주민확인";
+			else if(memberNik.equals(m.getMemberNik())) result = "닉네임중복";
+			else if(memberPhone.equals(m.getMemberPhone())) result = "번호확인";
+		}
+		
 		return result;
 	}
 }

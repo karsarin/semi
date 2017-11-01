@@ -170,6 +170,13 @@ public class MemberService {
 		return result;
 	}
 
+	public String mEnrollCk(String memberId, String memberNo, String memberNik, String memberPhone) {
+		Connection conn = getConnection();
+		String result = new MemberDao().mEnrollCk(conn, memberId, memberNo, memberNik, memberPhone);
+		close(conn);
+		return result;
+	}
+
 
 
 }
