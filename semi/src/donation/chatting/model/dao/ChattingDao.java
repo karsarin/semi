@@ -99,6 +99,24 @@ public class ChattingDao {
 		}
 		return result;
 	}
-	
+
+	public boolean chatMgr(Connection conn, String user) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		boolean result = false;
+		String query = "select member_id from member where member_id=? and manager_chatting='Y'";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, user);
+			rset = pstmt.executeQuery();
+			if(rset.next() && rset.getString("member_id")!=null) result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}	
 	
 }

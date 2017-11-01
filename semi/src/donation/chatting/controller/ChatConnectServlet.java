@@ -33,11 +33,17 @@ public class ChatConnectServlet extends HttpServlet {
 		//키테고리에서 채팅으로 넘어가게 함
 		response.setContentType("text/html; charset=utf-8");
 
-		String reciver = request.getParameter("reciver");
-		boolean rresult=false;
+		String reciver = null;
+		boolean rresult=false, reciverChatMgr=false;
 		int insertChat = 0;
-		if(reciver!=null) rresult = new ChattingService().reciverConnectionSt(reciver);
-		if(rresult)	insertChat = new ChattingService().insertChat(request.getParameter("rsender"), reciver);
+		if(new ChattingService().chatMgr(request.getParameter("rsender"))) {
+			reciver = request.getParameter("reciver");
+			if(reciver!=null) {
+				rresult = new ChattingService().reciverConnectionSt(reciver);
+				if(rresult) reciverChatMgr = new ChattingService().chatMgr(reciver);
+			}
+			if(reciverChatMgr)	insertChat = new ChattingService().insertChat(request.getParameter("rsender"), reciver);
+		}
 		
 		String sender = request.getParameter("sender");
 		String sresult = null;
@@ -54,7 +60,9 @@ public class ChatConnectServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/chatting/chattingError.jsp");
-			if(!rresult) request.setAttribute("message", reciver+"님이 접속 중이 아닙니다.");
+			if(reciver==null) request.setAttribute("message", request.getParameter("rsender")+"님은 현재 채팅이 제한되어있습니다."); 
+			else if(!rresult) request.setAttribute("message", reciver+"님이 접속 중이 아닙니다.");
+			else if(!reciverChatMgr) request.setAttribute("message", reciver+"님은 현재 채팅이 제한되어있습니다."); 
 			if(sresult!=null) request.setAttribute("message", "채팅방을 열 수 없습니다.");
 			
 			view.forward(request, response);
