@@ -121,7 +121,7 @@ ul.sub li:hover {
 <div style="text-align: center; padding-right: 160px; margin-top:200px;">	
 <%}%>
 
-		<h2 style="text-shadow:1px 1px 2px gray; font-weight: bold; font-size: 30px; margin-bottom: 15px;">쪽지 보내기</h2>
+		<h2 style="text-shadow:1px 1px 2px gray; font-weight: bold; font-size: 30px; margin-bottom: 50px;">쪽지 보내기</h2>
 	</div>
 
 	<form action="/semi/sugsend" method="post" enctype="multipart/form-data">
@@ -165,7 +165,7 @@ ul.sub li:hover {
 				<td><input type="file" name="file"></td>
 			</tr>
 		</table>
-		<div align="center" style="margin-top:30px; margin-bottom:100px;">
+		<div align="center" style="margin-top:30px; margin-bottom:20px; padding-left: 250px;">
 			<input type="submit" value="보내기" style="background:white;">
 			<input type="reset" value="취소" style="background:white;">
 		</div>
