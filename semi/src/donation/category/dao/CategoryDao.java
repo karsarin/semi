@@ -46,7 +46,7 @@ public class CategoryDao {
 		
 		String query = "select * "
 				+ "from(select rownum rnum, T.* from category_board T) a " 
-				+ "where a.rnum >= ? and a.rnum <= ?";
+				+ "where a.rnum >= ? and a.rnum <= ? and approval = 'Y'";
 		
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
