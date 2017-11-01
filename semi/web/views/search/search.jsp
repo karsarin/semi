@@ -4,6 +4,7 @@
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
 	int ccurrentPage = 1;
+	int size = 0;
 %>
 <!DOCTYPE html>
 <html>
@@ -16,14 +17,46 @@
 
 
 <!-- 더보기  -->
-<link type="text/css" rel="stylesheet" href="../../semi/css/reset.css"
-	media="screen" />
-<link type="text/css" rel="stylesheet" href="../../semi/css/js-load.css"
-	media="screen" />
-<script type="text/javascript"
-	src="https://nanati.me/common/js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../../semi/js/js-load.js"></script>
+<link type="text/css" rel="stylesheet" href="../../semi/css/reset.css"media="screen" >
+<link type="text/css" rel="stylesheet" href="../../semi/css/js-load.css"media="screen" >
+<script type="text/javascript"src="https://nanati.me/common/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+$(window).on('load', function () {
+	
 
+	<% if(list.size() < 13){   %>
+	load('#js-load', '<%= list.size() %>');
+	<% }else{ %>
+	load('#js-load', '12');	
+   <% } %>
+	
+	$("#js-btn-wrap .button").on("click", function () {
+		load('#js-load', '1', '#js-btn-wrap');
+	})
+	
+	
+});
+
+function load(id, cnt, btn) {
+	var girls_list = id + " .js-load:not(.active)";
+	var girls_length = $(girls_list).length;
+	var girls_total_cnt;
+	if (cnt <= girls_length) {
+		girls_total_cnt = cnt;
+	} else {
+		girls_total_cnt = girls_length;
+		$(button).hide();
+	}
+	$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+}
+
+</script>
+
+<style>
+.floating {  position: fixed; right: 50%; top: 310px;
+ margin-right: -615px; text-align:center; width:70px;
+  border-radius: 8px; -webkit-border-radius: 8px; } 
+</style>
 
 <%-- 세로목록 --%>
 <style>
@@ -149,6 +182,7 @@ ul.sub li:hover {
 
 
 
+
 </head>
 
 <body>
@@ -189,7 +223,7 @@ ul.sub li:hover {
 	<div style="float:left; width: 1000px; margin-top:200px;">
 		<hgroup>
 			<h1 style="font-size: 20pt">[검색 결과]</h1>
-			
+			<p>검색된 갯수 : <%= list.size() %></p>
 		</hgroup>
 		<br>
 		<div id="container">
@@ -198,11 +232,15 @@ ul.sub li:hover {
 
 				<div id="js-load" class="main">
 
+
+		<div  style="width:1200px;">
 				<% for(Notice c : list){ %>
-		
+		 		
 		<div class="row" style="float:left; width:300px; height:400px;">
 		  <div class="col-md-4" style="width:300px;">
-		  	<div class="imgholder">			
+		  	<div class ="lists__item js-load">
+		  	<div class="imgholder">
+		
 				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&cpage=<%= ccurrentPage%>">
 				<img src="cuploadfiles/<%=c.getRenameImage() %>" /> </a>
 				</div>
@@ -210,26 +248,34 @@ ul.sub li:hover {
 				<strong><%=c.getCategoryTitle() %></strong>
 				<p >by <%=c.getUserId() %> <br>
 				<%=c.getCategoryDonation() %>원 <br>★★★★ 후기 5건</p>
-			</div>
-  
+			 </div> 
+  					</div>
 			</div>
 		
 			<%} %>
+			
+			</div>
 				</div>
 				<!-- 더보기 끝 -->
 				
-			</div>
 			
 		</div>
-
-			<div id="js-btn-wrap" class="btn-wrap" style="clear:both;">
-						<a href="javascript:;" class="button">더보기</a>
-
-	</div>
-	<!-- 그림 끝 -->
-
-
+		
+		</div>
+<!-- 그림 끝 -->
 	
+		
+	</div>
+		
+ 
+
+<!--  더보기 -->
+<div class="floating">
+<% if(list.size() > 12){ %>
+	<div id="js-btn-wrap" class="btn-wrap" style=""> <a href="javascript:;" class="button">더보기</a> </div>
+  </div>
+<%} %>
+</div>
 
 
 
@@ -238,6 +284,7 @@ ul.sub li:hover {
 	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-md-8 col-xs-12 text-left">
 					<span>Copyright &copy; 2017 다재다능</span>
 				</div>
@@ -245,13 +292,16 @@ ul.sub li:hover {
 				<div class="col-md-4 hidden-xs text-right">
 					<a href="#top" id="go-top">Back to top</a>
 				</div>
+				
 				<!-- /.text-center -->
 			</div>
 			<!-- /.row -->
 		</div>
 		<!-- /.container -->
+		
 	</div>
 	<!-- /#footer -->
+	
 
 
 </body>
