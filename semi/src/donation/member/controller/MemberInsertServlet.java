@@ -44,48 +44,33 @@ public class MemberInsertServlet extends HttpServlet {
 		String memberAddress = request.getParameter("memberaddress1") +" " + request.getParameter("memberaddress2");
 		String memberEmail = request.getParameter("memberemail");
 		String memberPhone = request.getParameter("memberphone");
-		String talent = request.getParameter("talent");
+		String[] talents = request.getParameterValues("talent");
+		StringBuilder t = new StringBuilder();
+		String talent = null;
 		
+		if(talents!=null){
+			for(int i = 0; i<talents.length;i++){
+				if(i<talents.length-1)
+					t.append(talents[i] + ",");
+				else
+					t.append(talents[i]);
+			}
+			
+			talent = t.toString();
+		}else{
+			talent = "";
+		}
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
-		int result = new MemberService().memberInsertCheck(member,memberPwd2);
-		if(result ==0){
-			int result2 = new MemberService().memberInsert(member);
-			if(result2 >0){
+			
+		int result = new MemberService().memberInsert(member);
+			if(result >0){
 				response.sendRedirect("/semi/index.jsp");
 			}else{
 				RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
 				request.setAttribute("message", "회원가입 실패!");
 				view.forward(request, response);
 			}
-		}else if(result == 1){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디길이 오류");
-			view.forward(request, response);
-		}else if(result == 2){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디 영문숫자 오류");
-			view.forward(request, response);
-		}else if(result == 3){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "아이디 영문숫자조합 오류");
-			view.forward(request, response);
-		}else if(result == 4){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "비밀번호 확인 실패!");
-			view.forward(request, response);
-		}else if(result == 5){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "주민번호 중복!");
-			view.forward(request, response);
-		}else if(result == 6){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "이메일 중복!");
-			view.forward(request, response);
-		}else if(result == 7){
-			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "전화번호 중복!");
-			view.forward(request, response);
-		}
+		
 	}
 
 	/**
